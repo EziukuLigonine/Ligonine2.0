@@ -42,6 +42,7 @@ handleClick = (event) => {
       password: ''
     });
     alert("Administratorius užregistruotas!");
+    this.props.history.push("/admin/admins");
   })
   .catch((error) => {
     console.log(error);
