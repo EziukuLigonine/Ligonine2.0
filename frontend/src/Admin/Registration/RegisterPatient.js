@@ -50,6 +50,7 @@ handleClick = (event) => {
       dateOfBirth: '',
       doctorUsername: ''
     });
+    alert("Pacientas užregistruotas!");
   })
   .catch((error) => {
     console.log(error);

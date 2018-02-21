@@ -25,10 +25,17 @@ class PatientDetailsContainer extends Component {
 
   };
 
+  handleClick = (event) => {
+      
+  };
+
 
   render(){
     return(
-        <PatientDetailsComponent patient={this.state.patient} history={this.props.history}/>
+        <PatientDetailsComponent
+          patient={this.state.patient}
+          history={this.props.history}
+          onClick={this.handleClick}/>
     );
   }
 }

@@ -44,6 +44,7 @@ handleClick = (event) => {
       password: '',
       specialisation: ''
     });
+    alert("Daktaras užregistruotas!");
   })
   .catch((error) => {
     console.log(error);

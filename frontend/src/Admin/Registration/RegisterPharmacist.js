@@ -47,6 +47,7 @@ handleClick = (event) => {
       companyType: '',
       companyName: ''
     });
+    alert("Vaistininkas užregistruotas!");
   })
   .catch((error) => {
     console.log(error);

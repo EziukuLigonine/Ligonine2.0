@@ -12,7 +12,11 @@ import AdminDetailsContainer from './Details/AdminDetailsContainer';
 import DoctorDetailsContainer from './Details/DoctorDetailsContainer';
 import PatientDetailsContainer from './Details/PatientDetailsContainer';
 import PharmacistDetailsContainer from './Details/PharmacistDetailsContainer';
-import PatientToDoctor from './Assign/PatientToDoctor';
+import AssignDoctor from './Assign/AssignDoctor';
+import AdminEditContainer from './Registration/AdminEditContainer';
+import DoctorEditContainer from './Registration/DoctorEditContainer';
+import PatientEditContainer from './Registration/PatientEditContainer';
+import PharmacistEditContainer from './Registration/PharmacistEditContainer';
 
   class AdminRouter extends Component {
       render(){
@@ -22,20 +26,23 @@ import PatientToDoctor from './Assign/PatientToDoctor';
               <Route exact path="/admin/register/admin" component={RegisterAdmin} />
               <Route exact path="/admin/admins" component={AdminList} />
               <Route exact path="/admin/admin/:id" component={AdminDetailsContainer} />
+              <Route exact path="/admin/admin/edit/:id" component={AdminEditContainer} />
 
               <Route exact path="/admin/register/doctor" component={RegisterDoctor} />
               <Route exact path="/admin/doctors" component={DoctorList} />
               <Route exact path="/admin/doctor/:id" component={DoctorDetailsContainer} />
+              <Route exact path="/admin/doctor/edit/:id" component={DoctorEditContainer} />
 
               <Route exact path="/admin/register/patient" component={RegisterPatient} />
               <Route exact path="/admin/patients" component={PatientList} />
               <Route exact path="/admin/patient/:id" component={PatientDetailsContainer} />
+              <Route exact path="/admin/patient/edit/:id" component={PatientEditContainer} />
+              <Route exact path="/admin/patient/assign/:id" component={AssignDoctor} />
 
               <Route exact path="/admin/register/pharmacist" component={RegisterPharmacist} />
               <Route exact path="/admin/pharmacists" component={PharmacistList} />
               <Route exact path="/admin/pharmacist/:id" component={PharmacistDetailsContainer} />
-
-              <Route exact path="admin/assign" component={PatientToDoctor} />
+              <Route exact path="/admin/pharmacist/edit/:id" component={PharmacistEditContainer} />
 
             </Switch>
           </div>

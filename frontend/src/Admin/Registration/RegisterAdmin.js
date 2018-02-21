@@ -41,6 +41,7 @@ handleClick = (event) => {
       username: '',
       password: ''
     });
+    alert("Administratorius užregistruotas!");
   })
   .catch((error) => {
     console.log(error);

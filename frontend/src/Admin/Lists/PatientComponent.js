@@ -15,7 +15,7 @@ const green = {
   var {id, name, surname, username, password, personalId, dateOfBirth, doctorUsername} = props;
 
   var handleClick = (event) => {
-      props.history.push("/patients/" + id);
+      props.history.push("/admin/patient/edit/" + id);
       event.preventDefault();
   };
 

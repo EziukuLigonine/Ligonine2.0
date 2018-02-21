@@ -1,8 +1,7 @@
 import React from 'react';
-import TopNavBar from './NavBar/TopNavBar';
-import AdminRouter from './AdminRouter';
 
-class AdminContainer extends React.Component {
+
+class PatientContainer extends React.Component {
 
 
 
@@ -10,10 +9,9 @@ class AdminContainer extends React.Component {
     return (
 
       <div className="container">
-        <TopNavBar />
         <div className="row">
           <div className="col-md-12">
-            <AdminRouter />
+susikisk i subine
           </div>
         </div>
       </div>
@@ -23,4 +21,4 @@ class AdminContainer extends React.Component {
 }
 
 
-export default AdminContainer;
+export default PatientContainer;
