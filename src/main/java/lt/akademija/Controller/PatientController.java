@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lt.akademija.Model.CreateDoctorCmd;
 import lt.akademija.Model.CreatePatientCmd;
 import lt.akademija.Model.Patient;
 import lt.akademija.Model.Prescription;
