@@ -8,6 +8,7 @@ import AdminContainer from './Admin/AdminContainer';
 import PatientContainer from './Patient/PatientContainer';
 import { HashRouter, Route, Switch} from 'react-router-dom';
 import PharmacistContainer from "./Pharmacist/PharmacistContainer";
+import DoctorContainer from "./Doctor/DoctorContainer";
 window.jQuery = $;
 require('bootstrap');
 
@@ -18,6 +19,7 @@ ReactDOM.render(
      <Route path="/admin" name="loginToAdmin" component={AdminContainer} />
      <Route path="/patient" name="loginToPatient" component={PatientContainer} />
        <Route path="/pharmacist" name="loginToPharmacist" component={PharmacistContainer} />
+       <Route path="/doctor" name="loginToDoctor" component={DoctorContainer} />
    </Switch>
  </HashRouter>
  , document.getElementById('root'));

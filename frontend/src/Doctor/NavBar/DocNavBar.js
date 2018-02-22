@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class TopNavBar extends Component {
+class DocNavBar extends Component {
 
     render() {
         return(
@@ -12,7 +12,10 @@ class TopNavBar extends Component {
                             <li className="dropdown">
                                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Meniu <span className="caret"></span></a>
                                 <ul className="dropdown-menu">
-                                    <li><Link to="/pharmacist/prescriptions"><span className="glyphicon glyphicon-search" aria-hidden="true"></span> Receptai</Link></li>
+                                    <li><Link to="/doctor/submit/prescription"><span className="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>Išrašyti Receptą</Link></li>
+                                    <li><Link to="/doctor/prescription"><span className="glyphicon glyphicon-search" aria-hidden="true"></span>Receptai</Link></li>
+                                    <li><Link to="/doctor/submit/record"><span className="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>Išrašyti ligos istoriją</Link></li>
+                                    <li><Link to="/doctor/record"><span className="glyphicon glyphicon-search" aria-hidden="true"></span>Ligos istorijos</Link></li>
                                 </ul>
                             </li>
                         </ul>
@@ -20,7 +23,7 @@ class TopNavBar extends Component {
                             <li className="dropdown">
                                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span className="glyphicon glyphicon-user" aria-hidden="true"></span> <span className="caret"></span></a>
                                 <ul className="dropdown-menu">
-                                    <li><Link to="/pharmacist/changePassword">Keisti slaptažodį</Link></li>
+                                    <li><Link to="/doctor/changePassword">Keisti slaptažodį</Link></li>
                                     <li><Link to="/">Atsijungti</Link></li>
                                 </ul>
                             </li>
@@ -32,4 +35,4 @@ class TopNavBar extends Component {
     }
 }
 
-export default TopNavBar;
+export default DocNavBar;
