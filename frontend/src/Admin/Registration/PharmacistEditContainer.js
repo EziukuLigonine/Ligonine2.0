@@ -59,9 +59,11 @@ class PharmacistEditContainer extends React.Component {
 
         axios.put(API + "/api/pharmacists/" + this.props.match.params.id, outputProduct)
             .then((response) => {
-                this.props.history.goBack();
+              alert("Duomenys išsaugoti!");
+              this.props.history.push("/admin/pharmacists");
             })
             .catch((error) => {
+              alert("Nepavyko! Blogai įvesti duomenys");
                 console.log(error);
             });
         event.preventDefault();

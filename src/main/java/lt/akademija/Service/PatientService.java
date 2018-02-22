@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import lt.akademija.Model.CreateDoctorCmd;
 import lt.akademija.Model.CreatePatientCmd;
 import lt.akademija.Model.Patient;
 import lt.akademija.Model.Prescription;

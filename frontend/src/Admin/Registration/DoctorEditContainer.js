@@ -56,9 +56,11 @@ class DoctorEditContainer extends React.Component {
 
         axios.put(API + "/api/doctors/" + this.props.match.params.id, outputProduct)
             .then((response) => {
-                this.props.history.goBack();
+                alert("Duomenys išsaugoti!");
+                this.props.history.push("/admin/doctors");
             })
             .catch((error) => {
+                alert("Nepavyko! Blogai įvesti duomenys");
                 console.log(error);
             });
         event.preventDefault();

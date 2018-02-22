@@ -1,8 +1,7 @@
 package lt.akademija.Model;
 
-public class CreatePatientCmd {
-	
-	private Long id;
+public class CreatePatientCmd  extends CreateUserCmd {
+
 	private String name;
 	private String surname;
 	private String username;
@@ -13,12 +12,7 @@ public class CreatePatientCmd {
 	private String doctorUsername;
 	private String role = "Patient";
 	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+	
 	public String getName() {
 		return name;
 	}
