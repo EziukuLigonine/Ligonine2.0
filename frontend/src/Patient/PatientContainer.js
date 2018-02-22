@@ -1,24 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-
-class PatientContainer extends React.Component {
-
-
-
-  render() {
-    return (
-
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12">
-susikisk i subine
+  class PatientContainer extends Component {
+      render(){
+        return(
+          <div>
+            dasds
           </div>
-        </div>
-      </div>
+        );
+      }
+    }
 
-    );
-  }
-}
-
-
-export default PatientContainer;
+  export default PatientContainer;

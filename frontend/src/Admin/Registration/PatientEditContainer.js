@@ -17,6 +17,7 @@ class PatientEditContainer extends React.Component {
             doctorUsername: '',
             history: {}
         }
+        
     }
 
     componentDidMount() {

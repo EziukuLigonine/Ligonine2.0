@@ -14,16 +14,15 @@ const tableStyle = {
             name = {doctor.name}
             surname = {doctor.surname}
             username = {doctor.username}
-            password = {doctor.password}
             specialisation = {doctor.specialisation}
             history = {props.history}
-            remove = {props.remove}
             patient = {props.patient}
             />
         );
       });
         return(
           <div>
+            <h4>Pasirinkite gydytoją</h4>
             <div className="panel panel-default" style={tableStyle.margin}>
                 <table className="table table-bordered table-hover">
                     <thead>
@@ -32,9 +31,8 @@ const tableStyle = {
                         <th>Vardas</th>
                         <th>Pavardė</th>
                         <th>Vartotojo vardas</th>
-                        <th>Slaptažodis</th>
                         <th>Specializacija</th>
-                        <th></th>
+                        <th>Priskirti</th>
                         </tr>
                     </thead>
                     <tbody>

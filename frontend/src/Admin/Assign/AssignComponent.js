@@ -1,8 +1,5 @@
 import React from 'react';
-import axios from 'axios';
-import {API} from '../ApiUrl';
-import RegisterPatientComponent from '../Registration/RegisterPatientComponent';
-
+import { Link } from 'react-router-dom';
 
 const green = {
   color: 'green',
@@ -10,29 +7,7 @@ const green = {
 }
 
  const AssignComponent = (props) => {
-  var {id, name, surname, username, password, specialisation, patient} = props;
-
-  var handleClick = (event) => {
-      props.history.push("/admin/patient/edit/" + patient);
-      event.preventDefault();
-      console.log(username);
-      console.log(patient);
-  };
-
-  var handleRemove = (event) => {
-    props.remove(event.target.id);
-    axios.delete(API + "/api/doctors/" + event.target.id)
-    .then(response => {
-
-    })
-    .catch(error => {
-      console.log(error);
-    })
-  }
-  var getDoctor = (event) => {
-      props.history.push("/admin/doctor/" + id);
-      event.preventDefault();
-  };
+  var {id, name, surname, username, specialisation, patient} = props;
 
   return (
       <tr>
@@ -40,11 +15,11 @@ const green = {
       <td>{name}</td>
       <td>{surname}</td>
       <td>{username}</td>
-      <td>{password}</td>
       <td>{specialisation}</td>
           <td>
-            <span id={id} className="glyphicon glyphicon-random" aria-hidden="true" style={green} onClick={handleClick}></span>
-            </td>
+
+            <Link to={{ pathname: `/admin/patient/confirm/${patient}`, state: { doctorUsernameObject: {username}} }}><span className="glyphicon glyphicon-transfer" aria-hidden="true" style={green}></span></Link>
+          </td>
 
       </tr>
   );
