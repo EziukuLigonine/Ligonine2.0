@@ -45,6 +45,7 @@ handleClick = (event) => {
       specialisation: ''
     });
     alert("Daktaras užregistruotas!");
+    this.props.history.push("/admin/doctors");
   })
   .catch((error) => {
     console.log(error);

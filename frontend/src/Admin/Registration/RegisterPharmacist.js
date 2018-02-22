@@ -48,6 +48,7 @@ handleClick = (event) => {
       companyName: ''
     });
     alert("Vaistininkas užregistruotas!");
+    this.props.history.push("/admin/pharmacists");
   })
   .catch((error) => {
     console.log(error);

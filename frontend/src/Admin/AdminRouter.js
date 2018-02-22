@@ -13,6 +13,7 @@ import DoctorDetailsContainer from './Details/DoctorDetailsContainer';
 import PatientDetailsContainer from './Details/PatientDetailsContainer';
 import PharmacistDetailsContainer from './Details/PharmacistDetailsContainer';
 import AssignDoctor from './Assign/AssignDoctor';
+import AssignDoctorToPatient from './Assign/AssignDoctorToPatient';
 import AdminEditContainer from './Registration/AdminEditContainer';
 import DoctorEditContainer from './Registration/DoctorEditContainer';
 import PatientEditContainer from './Registration/PatientEditContainer';
@@ -37,7 +38,9 @@ import PharmacistEditContainer from './Registration/PharmacistEditContainer';
               <Route exact path="/admin/patients" component={PatientList} />
               <Route exact path="/admin/patient/:id" component={PatientDetailsContainer} />
               <Route exact path="/admin/patient/edit/:id" component={PatientEditContainer} />
-              <Route exact path="/admin/patient/assign/:id" component={AssignDoctor} />
+              <Route exact path="/admin/patient/confirm/:id" component={AssignDoctor} />
+              <Route exact path="/admin/patient/assign/:id" component={AssignDoctorToPatient} />
+
 
               <Route exact path="/admin/register/pharmacist" component={RegisterPharmacist} />
               <Route exact path="/admin/pharmacists" component={PharmacistList} />

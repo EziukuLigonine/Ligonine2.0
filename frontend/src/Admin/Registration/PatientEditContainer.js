@@ -12,21 +12,26 @@ class PatientEditContainer extends React.Component {
             surname: '',
             username: '',
             password: '',
-            specialisation: '',
+            personalId: '',
+            dateOfBirth: '',
+            doctorUsername: '',
             history: {}
         }
+        
     }
 
     componentDidMount() {
         axios.get(API + "/api/patients/" + this.props.match.params.id)
         .then(response => {
-            const {name, surname, username, password, specialisation} = response.data;
+            const {name, surname, username, password, personalId, dateOfBirth, doctorUsername} = response.data;
             this.setState({
                 name : name,
                 surname : surname,
                 username : username,
                 password : password,
-                specialisation : specialisation,
+                personalId : personalId,
+                dateOfBirth : dateOfBirth,
+                doctorUsername : doctorUsername,
                 history: this.props.history
             })
         })
@@ -51,14 +56,18 @@ class PatientEditContainer extends React.Component {
             surname: this.state.surname,
             username: this.state.username,
             password: this.state.password,
-            specialisation: this.state.specialisation
+            personalId: this.state.personalId,
+            dateOfBirth: this.state.dateOfBirth,
+            doctorUsername: this.state.doctorUsername
         };
 
         axios.put(API + "/api/patients/" + this.props.match.params.id, outputProduct)
             .then((response) => {
-                this.props.history.goBack();
+              alert("Duomenys išsaugoti!");
+              this.props.history.push("/admin/patients");
             })
             .catch((error) => {
+              alert("Nepavyko! Blogai įvesti duomenys");
                 console.log(error);
             });
         event.preventDefault();
@@ -72,7 +81,9 @@ class PatientEditContainer extends React.Component {
                     surname={this.state.surname}
                     username={this.state.username}
                     password={this.state.password}
-                    specialisation={this.state.specialisation}
+                    personalId={this.state.personalId}
+                    dateOfBirth={this.state.dateOfBirth}
+                    doctorUsername={this.state.doctorUsername}
                     onChange={this.handleChange}
                     onClick={this.handleClick}
                     history={this.state.history}

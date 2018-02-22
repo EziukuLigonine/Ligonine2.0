@@ -51,6 +51,7 @@ handleClick = (event) => {
       doctorUsername: ''
     });
     alert("Pacientas užregistruotas!");
+    this.props.history.push("/admin/patients");
   })
   .catch((error) => {
     console.log(error);

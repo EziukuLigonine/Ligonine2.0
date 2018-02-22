@@ -1,12 +1,15 @@
 import React from 'react';
 import axios from 'axios';
 import {API} from '../ApiUrl';
-import AssignDoctorComponent from "./AssignDoctorComponent";
+import ConfirmDoctorComponent from "./ConfirmDoctorComponent";
 
 class AssignDoctor extends React.Component {
 
     constructor(props) {
         super(props);
+        const {doctorUsernameObject} = props.location.state
+        const newDoctorUsername = doctorUsernameObject.username
+        console.log(newDoctorUsername);
         this.state = {
             name: '',
             surname: '',
@@ -15,8 +18,9 @@ class AssignDoctor extends React.Component {
             personalId: '',
             dateOfBirth: '',
             doctorUsername: '',
-            history: {}
+            newDoctorUsername: newDoctorUsername
         }
+
     }
 
     componentDidMount() {
@@ -31,7 +35,6 @@ class AssignDoctor extends React.Component {
                 personalId : personalId,
                 dateOfBirth : dateOfBirth,
                 doctorUsername : doctorUsername,
-                history: this.props.history
             })
         })
         .catch(error => {
@@ -57,14 +60,16 @@ class AssignDoctor extends React.Component {
             password: this.state.password,
             personalId: this.state.personalId,
             dateOfBirth: this.state.dateOfBirth,
-            doctorUsername: this.state.doctorUsername
+            doctorUsername: this.state.newDoctorUsername
         };
 
         axios.put(API + "/api/patients/" + this.props.match.params.id, outputProduct)
             .then((response) => {
-                this.props.history.goBack();
+              alert("Duomenys išsaugoti!");
+              this.props.history.push("/admin/patients");
             })
             .catch((error) => {
+              alert("Nepavyko! Blogai įvesti duomenys");
                 console.log(error);
             });
         event.preventDefault();
@@ -73,14 +78,14 @@ class AssignDoctor extends React.Component {
     render() {
         return (
             <div>
-                <AssignDoctorComponent
+                <ConfirmDoctorComponent
                     name={this.state.name}
                     surname={this.state.surname}
                     username={this.state.username}
                     password={this.state.password}
                     personalId={this.state.personalId}
                     dateOfBirth={this.state.dateOfBirth}
-                    doctorUsername={this.state.doctorUsername}
+                    doctorUsername={this.state.newDoctorUsername}
                     onChange={this.handleChange}
                     onClick={this.handleClick}
                     history={this.state.history}
