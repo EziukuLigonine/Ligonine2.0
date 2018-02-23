@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {PrescriptionDetailsComponent} from './PrescriptionDetailsComponent';
+import {PharPrescriptionDetailsComponent} from './PrescriptionDetailsComponent';
 
-export class PrescriptionDetailsContainer extends Component {
+export class PharPrescriptionDetailsContainer extends Component {
     constructor(props){
         super(props);
 
@@ -27,7 +27,7 @@ export class PrescriptionDetailsContainer extends Component {
 
     render(){
         return(
-            <PrescriptionDetailsComponent prescription={this.state.prescription} history={this.props.history}/>
+            <PharPrescriptionDetailsComponent prescription={this.state.prescription} history={this.props.history}/>
         );
     }
 }

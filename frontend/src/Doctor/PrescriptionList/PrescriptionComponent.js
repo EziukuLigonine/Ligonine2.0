@@ -30,7 +30,7 @@ export var PrescriptionComponent = (props) => {
   }
 
   var getPrescription = (event) => {
-      props.history.push("/prescriptions/" + id);
+      props.history.push("/doctor/prescription/" + id);
       event.preventDefault();
   };
 

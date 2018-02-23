@@ -1,7 +1,9 @@
 import React from 'react';
 
-export var PrescriptionDetailsComponent = (props) => {
-
+const PrescriptionDetailsComponent = (props) => {
+    const styles = {
+        margin: '20px'
+    }
   return (
     <div>
       <h3>#{props.prescription.id}</h3>
@@ -15,3 +17,5 @@ export var PrescriptionDetailsComponent = (props) => {
     </div>
   );
 };
+
+export default PrescriptionDetailsComponent;

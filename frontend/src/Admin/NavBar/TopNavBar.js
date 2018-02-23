@@ -17,7 +17,7 @@ class TopNavBar extends Component {
                   <li><Link to="/admin/register/patient"><span className="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Pacientas</Link></li>
                   <li><Link to="/admin/register/pharmacist"><span className="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Vaistininkas</Link></li>
                   <li role="separator" className="divider"></li>
-                  <li><Link to="admin/assign"><span className="glyphicon glyphicon-random" aria-hidden="true"></span> Paciento priskirimas</Link></li>
+                  <li><Link to="admin/assign"><span className="glyphicon glyphicon-random" aria-hidden="true"></span> Paciento priskyrimas</Link></li>
                   <li role="separator" className="divider"></li>
                   <li><Link to="/admin/admins"><span className="glyphicon glyphicon-th-list" aria-hidden="true"></span> Administratorių sąrašas</Link></li>
                   <li><Link to="/admin/patients"><span className="glyphicon glyphicon-th-list" aria-hidden="true"></span> Pacientų sąrašas</Link></li>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {PrescriptionDetailsComponent} from './PrescriptionDetailsComponent';
+import {API} from "../../Admin/ApiUrl";
 
 export class PrescriptionDetailsContainer extends Component {
   constructor(props){
@@ -12,18 +13,16 @@ export class PrescriptionDetailsContainer extends Component {
 
   }
   componentDidMount() {
-    axios.get('http://localhost:8081/api/prescriptions/' + this.props.match.params.id)
-    .then((response) => {
-      this.setState({
-        prescription: response.data
-      });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-
-  };
-
+      axios.get(API + '/api/prescriptions/' + this.props.match.params.id)
+          .then((response) => {
+              this.setState({
+                  prescription: response.data
+              });
+          })
+          .catch((error) => {
+              console.log(error);
+          });
+  }
 
   render(){
     return(

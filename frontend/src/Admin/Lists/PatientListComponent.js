@@ -36,7 +36,7 @@ const tableStyle = {
                             <th>Slaptažodis</th>
                             <th>Asmens kdoas</th>
                             <th>Gimimo data</th>
-                            <th>Daktaro vardas</th>
+                            <th>Daktaras</th>
                             <th></th>
                         </tr>
                     </thead>

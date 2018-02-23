@@ -13,9 +13,9 @@ class DocNavBar extends Component {
                                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Meniu <span className="caret"></span></a>
                                 <ul className="dropdown-menu">
                                     <li><Link to="/doctor/submit/prescription"><span className="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>Išrašyti Receptą</Link></li>
-                                    <li><Link to="/doctor/prescription"><span className="glyphicon glyphicon-search" aria-hidden="true"></span>Receptai</Link></li>
+                                    <li><Link to="/doctor/prescriptions"><span className="glyphicon glyphicon-search" aria-hidden="true"></span>Receptai</Link></li>
                                     <li><Link to="/doctor/submit/record"><span className="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>Išrašyti ligos istoriją</Link></li>
-                                    <li><Link to="/doctor/record"><span className="glyphicon glyphicon-search" aria-hidden="true"></span>Ligos istorijos</Link></li>
+                                    <li><Link to="/doctor/records"><span className="glyphicon glyphicon-search" aria-hidden="true"></span>Ligos istorijos</Link></li>
                                 </ul>
                             </li>
                         </ul>

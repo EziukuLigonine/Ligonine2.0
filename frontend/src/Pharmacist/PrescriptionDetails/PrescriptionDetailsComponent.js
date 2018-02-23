@@ -1,6 +1,6 @@
 import React from 'react';
 
-export var PrescriptionDetailsComponent = (props) => {
+export var PharPrescriptionDetailsComponent = (props) => {
 
     return (
         <div>

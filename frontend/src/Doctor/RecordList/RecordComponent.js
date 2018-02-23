@@ -30,7 +30,7 @@ export var RecordComponent = (props) => {
   }
 
   var getRecord = (event) => {
-      props.history.push("/records/" + id);
+      props.history.push("/doctor/records/" + id);
       event.preventDefault();
   };
 
