@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -16,6 +17,7 @@ public class Prescription  implements Serializable {
 	@Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
+	@Pattern(regexp = "[3-6]{1}[0-9]{10}")
     private String personalId; // asmens kodas reik su pacientu sujungt
     private String date; // israsymo data
     private String activeMat; // veiklioji medziaga

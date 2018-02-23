@@ -53,6 +53,7 @@ export class PrescriptionAdministrationContainer extends React.Component {
                     doctorUsername: '',
                     validUntil: ''
                 });
+                alert("Receptas išrašytas");
             })
             .catch((error) => {
                 console.log(error);

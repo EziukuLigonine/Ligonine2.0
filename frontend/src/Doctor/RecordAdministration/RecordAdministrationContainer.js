@@ -53,6 +53,7 @@ export class RecordAdministrationContainer extends React.Component {
                   doctorUsername: '',
                   date: ''
                 });
+                alert("Ligos istorija sėkmingai užregistruota");
             })
             .catch((error) => {
                 console.log(error);

@@ -16,15 +16,15 @@ public class Patient extends User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private Long id;
-	//@Pattern(regexp ="[A-Za-z]+")
+	@Pattern(regexp ="[A-Za-z]+")
 	private String name;
-	//@Pattern(regexp ="[A-Za-z]+")
+	@Pattern(regexp ="[A-Za-z]+")
 	private String surname;
 	private String username;
-	//@Size(min=6)
+	@Size(min=6)
 	private String password;
 	private boolean enabled = true;
-	//@Pattern(regexp = "[3-6]{1}[0-9]{10}")
+	@Pattern(regexp = "[3-6]{1}[0-9]{10}")
 	private String personalId;
 	private String dateOfBirth;
 	private String doctorUsername;
