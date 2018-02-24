@@ -33,15 +33,15 @@ export var RecordListComponent = (props) => {
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Personal ID</th>
-                            <th>Duration</th>
+                            <th>Asmens kodas</th>
+                            <th>Vizito trukmė</th>
                             <th>TLK-10</th>
-                            <th>Appointment Description</th>
+                            <th>Vizito aprašymas</th>
                             <th>VLK</th>
-                            <th>Repeated</th>
-                            <th>Doctors Username</th>
-                            <th>Date</th>
-                            <th>Delete</th>
+                            <th>Kartotinas</th>
+                            <th>Daktaro slapyvardis</th>
+                            <th>Data</th>
+                            <th>Ištrinti</th>
                         </tr>
                     </thead>
                     <tbody>

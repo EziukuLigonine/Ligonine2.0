@@ -34,7 +34,7 @@ const tableStyle = {
                             <th>Pavardė</th>
                             <th>Vartotojo vardas</th>
                             <th>Slaptažodis</th>
-                            <th>Asmens kdoas</th>
+                            <th>Asmens kodas</th>
                             <th>Gimimo data</th>
                             <th>Daktaras</th>
                             <th></th>

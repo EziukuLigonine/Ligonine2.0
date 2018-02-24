@@ -16,7 +16,7 @@ export var PrescriptionAdministrationComponent = (props) => {
             <div className="form-group">
                 <label className="col-sm-2 control-label">Data</label>
                 <div className="col-sm-3">
-                    <input type="text" className="form-control" id="date" placeholder="Data" value={props.date}
+                    <input type="date" className="form-control" id="date" placeholder="Data" value={props.date}
                            onChange={props.onChange}/>
                 </div>
             </div>

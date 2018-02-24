@@ -48,7 +48,7 @@ const RegisterPatientComponent = (props) => {
               <div className="form-group">
                   <label className="col-sm-2 control-label">Gimimo data</label>
                   <div className="col-sm-3">
-                      <input type="text" className="form-control" id="dateOfBirth" placeholder="Gimimo data" value={props.dateOfBirth}
+                      <input type="date" className="form-control" id="dateOfBirth" placeholder="Gimimo data" value={props.dateOfBirth}
                              onChange={props.onChange}/>
                   </div>
               </div>

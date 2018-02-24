@@ -6,17 +6,17 @@ export var RecordAdministrationComponent = (props) => {
         <form className="form-horizontal">
 
             <div className="form-group">
-                <label className="col-sm-2 control-label">Personal ID</label>
+                <label className="col-sm-2 control-label">Paciento asmens kodas</label>
                 <div className="col-sm-3">
-                    <input type="text" className="form-control" id="personalId" placeholder="Personal ID" value={props.personalId}
+                    <input type="text" className="form-control" id="personalId" placeholder="Paciento asmens kodas" value={props.personalId}
                            onChange={props.onChange}/>
                 </div>
             </div>
 
             <div className="form-group">
-                <label className="col-sm-2 control-label">Duration</label>
+                <label className="col-sm-2 control-label">Vizito trukmė</label>
                 <div className="col-sm-3">
-                    <input type="text" className="form-control" id="duration" placeholder="Duration" value={props.duration}
+                    <input type="text" className="form-control" id="duration" placeholder="Trukmė" value={props.duration}
                            onChange={props.onChange}/>
                 </div>
             </div>
@@ -30,9 +30,9 @@ export var RecordAdministrationComponent = (props) => {
             </div>
 
             <div className="form-group">
-                <label className="col-sm-2 control-label">Appointment Description</label>
+                <label className="col-sm-2 control-label">Vizito aprašymas</label>
                 <div className="col-sm-3">
-                    <input type="text" className="form-control" id="appDesc" placeholder="Appointment Description" value={props.appDesc}
+                    <input type="text" className="form-control" id="appDesc" placeholder="Vizito aprašymas" value={props.appDesc}
                            onChange={props.onChange}/>
                 </div>
             </div>
@@ -46,25 +46,25 @@ export var RecordAdministrationComponent = (props) => {
             </div>
 
             <div className="form-group">
-                <label className="col-sm-2 control-label">Repeated</label>
+                <label className="col-sm-2 control-label">Kartotinas</label>
                 <div className="col-sm-3">
-                    <input type="text" className="form-control" id="repeated" placeholder="Repeated" value={props.repeated}
+                    <input type="text" className="form-control" id="repeated" placeholder="Kartotinas" value={props.repeated}
                            onChange={props.onChange}/>
                 </div>
             </div>
 
             <div className="form-group">
-                <label className="col-sm-2 control-label">Doctors Username</label>
+                <label className="col-sm-2 control-label">Daktaro slapyvardis</label>
                 <div className="col-sm-3">
-                    <input type="text" className="form-control" id="doctorUsername" placeholder="Doctors Username" value={props.doctorUsername}
+                    <input type="text" className="form-control" id="doctorUsername" placeholder="Daktaro slapyvardis" value={props.doctorUsername}
                            onChange={props.onChange}/>
                 </div>
             </div>
 
             <div className="form-group">
-                <label className="col-sm-2 control-label">Date</label>
+                <label className="col-sm-2 control-label">Data</label>
                 <div className="col-sm-3">
-                    <input type="text" className="form-control" id="date" placeholder="Date" value={props.date}
+                    <input type="date" className="form-control" id="date" placeholder="Data" value={props.date}
                            onChange={props.onChange}/>
                 </div>
             </div>
