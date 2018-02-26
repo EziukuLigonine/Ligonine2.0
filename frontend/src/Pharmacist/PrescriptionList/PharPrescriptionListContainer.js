@@ -38,6 +38,7 @@ export class PharPrescriptionListContainer extends Component {
                 }
             );
             console.log(this.state.prescriptions)
+            console.log(filteredPrescriptions)
             return (
                 <div className="row">
                     <form className="navbar-form" onSubmit={this.handleSubmit}>
@@ -51,11 +52,10 @@ export class PharPrescriptionListContainer extends Component {
                         </div>
                     </form>
                     <div>
-                        <PharPrescriptionListComponent prescriptions={filteredPrescriptions.map((personalId) => {
-                            return <PharPrescriptionListComponent prescriptions={personalId}
-                                                                  key={personalId.id}/>
-                        })} history={this.props.history}
-                                                       remove={this.removePrescription}/>
+                        <PharPrescriptionListComponent
+                            prescriptions={filteredPrescriptions}
+                            history={this.props.history}
+                            remove={this.removePrescription}/>
                     </div>
                 </div>
             );
