@@ -39,8 +39,14 @@ const RegisterPharmacistComponent = (props) => {
             <div className="form-group">
                 <label className="col-sm-2 control-label">Įmonės tipas</label>
                 <div className="col-sm-3">
-                    <input type="text" className="form-control" id="companyType" placeholder="Kompanijos tipas" value={props.companyType}
-                           onChange={props.onChange}/>
+                    <select id="companyType" value={props.companyType}
+                           onChange={props.onChange}>
+                        <option>Uždaroji akcinė bendrovė</option>
+                        <option>Individuali įmonė</option>
+                        <option>Viešoji įstaiga</option>
+                        <option>Mažoji bendrija</option>
+                        <option> Akcinė bendrovė</option>
+                    </select>
                 </div>
             </div>
 

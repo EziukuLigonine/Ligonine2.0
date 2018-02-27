@@ -52,8 +52,11 @@ export var RecordAdministrationComponent = (props) => {
             <div className="form-group">
                 <label className="col-sm-2 control-label">Kartotinas</label>
                 <div className="col-sm-3">
-                    <input type="text" className="form-control" id="repeated" placeholder="Kartotinas" value={props.repeated}
-                           onChange={props.onChange}/>
+                    <select id="repeated" placeholder="Kartotinas" value={props.repeated}
+                           onChange={props.onChange}>
+                        <option>Kartotinas</option>
+                        <option>Nekartotinas</option>
+                    </select>
                 </div>
             </div>
 

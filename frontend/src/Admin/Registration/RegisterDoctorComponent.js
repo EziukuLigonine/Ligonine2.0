@@ -39,8 +39,23 @@ const RegisterDoctorComponent = (props) => {
               <div className="form-group">
                   <label className="col-sm-2 control-label">Specializacija</label>
                   <div className="col-sm-3">
-                      <input type="text" className="form-control" id="specialisation" placeholder="Specializacija" value={props.specialisation}
-                             onChange={props.onChange}/>
+                      <select id="specialisation" placeholder="Specializacija" value={props.specialisation}
+                             onChange={props.onChange}>
+                          <option></option>
+                          <option></option>
+                          <option></option>
+                          <option></option>
+                          <option></option>
+                          <option></option>
+                          <option></option>
+                          <option></option>
+                          <option></option>
+                          <option></option>
+                          <option></option>
+                          <option></option>
+                          <option></option>
+                          <option></option>
+                      </select>
                   </div>
               </div>
 
