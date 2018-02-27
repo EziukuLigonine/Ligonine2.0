@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {PharPrescriptionListComponent} from "./PharPrescriptionListComponent";
-import prescriptions from "./PharPrescriptionListComponent";
+
 
 
 

@@ -1,9 +1,7 @@
 import React from 'react';
 
 const PrescriptionDetailsComponent = (props) => {
-    const styles = {
-        margin: '20px'
-    }
+    
   return (
     <div>
       <h3>#{props.prescription.id}</h3>

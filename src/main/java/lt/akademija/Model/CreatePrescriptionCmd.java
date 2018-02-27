@@ -10,7 +10,16 @@ public class CreatePrescriptionCmd {
     private String desc; // vartojimo aprasas
     private String doctorUsername; // israsiusio daktaro username. reikia su daktaru sujungt
     private String validUntil;
+    private boolean sold = false;
     
+    
+    
+	public boolean isSold() {
+		return sold;
+	}
+	public void setSold(boolean sold) {
+		this.sold = sold;
+	}
 	public String getPersonalId() {
 		return personalId;
 	}

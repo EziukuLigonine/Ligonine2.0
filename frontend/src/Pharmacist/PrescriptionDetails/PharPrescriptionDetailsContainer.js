@@ -10,7 +10,7 @@ class PharPrescriptionDetailsContainer extends Component {
     this.state = {
       prescription: {}
     };
-
+    console.log(this.state)
   }
   componentDidMount() {
       axios.get(API + '/api/prescriptions/' + this.props.match.params.id)
@@ -26,9 +26,12 @@ class PharPrescriptionDetailsContainer extends Component {
 
   render(){
     return(
-        <PharPrescriptionDetailsComponent prescription={this.state.prescription} history={this.props.history}/>
+        <PharPrescriptionDetailsComponent
+          prescription={this.state.prescription}
+          history={this.props.history}/>
     );
   }
+
 }
 
 export default PharPrescriptionDetailsContainer;
