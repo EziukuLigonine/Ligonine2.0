@@ -32,7 +32,18 @@ handleClick = (event) => {
     username: this.state.username,
     password: this.state.password
   };
-
+    if (this.state.name === "") {
+        alert("Prašome įvesti vardą");
+    }
+    if (this.state.surname === "") {
+        alert("Prašome įvesti pavardę");
+    }
+    if (this.state.username === "") {
+        alert("Prašome įvesti slapyvardį");
+    }
+    if (this.state.password.length < 6) {
+        alert("Slaptažodis turi būti sudarytas iš 6 arba daugiau simbolių");
+    }
   axios.post(API + "/api/admin/admins/new", outputAdmin)
   .then((response) => {
     this.setState( {

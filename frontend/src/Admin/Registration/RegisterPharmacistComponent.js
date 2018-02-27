@@ -1,8 +1,9 @@
 import React from 'react';
 
 const RegisterPharmacistComponent = (props) => {
-  return(
-    <form className="form-horizontal">
+    return (
+
+        <form className="form-horizontal">
 
             <div className="form-group">
                 <label className="col-sm-2 control-label">Vardas</label>
@@ -23,7 +24,8 @@ const RegisterPharmacistComponent = (props) => {
             <div className="form-group">
                 <label className="col-sm-2 control-label">Slapyvardis</label>
                 <div className="col-sm-3">
-                    <input type="text" className="form-control" id="username" placeholder="Slapyvardis" value={props.username}
+                    <input type="text" className="form-control" id="username" placeholder="Slapyvardis"
+                           value={props.username}
                            onChange={props.onChange}/>
                 </div>
             </div>
@@ -31,7 +33,8 @@ const RegisterPharmacistComponent = (props) => {
             <div className="form-group">
                 <label className="col-sm-2 control-label">Slaptažodis</label>
                 <div className="col-sm-3">
-                    <input type="text" className="form-control" id="password" placeholder="Slaptažodis" value={props.password}
+                    <input type="text" className="form-control" id="password" placeholder="Slaptažodis"
+                           value={props.password}
                            onChange={props.onChange}/>
                 </div>
             </div>
@@ -39,13 +42,13 @@ const RegisterPharmacistComponent = (props) => {
             <div className="form-group">
                 <label className="col-sm-2 control-label">Įmonės tipas</label>
                 <div className="col-sm-3">
-                    <select id="companyType" value={props.companyType}
-                           onChange={props.onChange}>
+                    <select id="companyType" value={props.companyType} onChange={props.onChange}>
+                        <option></option>
                         <option>Uždaroji akcinė bendrovė</option>
                         <option>Individuali įmonė</option>
                         <option>Viešoji įstaiga</option>
                         <option>Mažoji bendrija</option>
-                        <option> Akcinė bendrovė</option>
+                        <option>Akcinė bendrovė</option>
                     </select>
                 </div>
             </div>
@@ -53,7 +56,8 @@ const RegisterPharmacistComponent = (props) => {
             <div className="form-group">
                 <label className="col-sm-2 control-label">Įmonės pavadinimas</label>
                 <div className="col-sm-3">
-                    <input type="text" className="form-control" id="companyName" placeholder="Įmonės pavadinimas" value={props.companyName}
+                    <input type="text" className="form-control" id="companyName" placeholder="Įmonės pavadinimas"
+                           value={props.companyName}
                            onChange={props.onChange}/>
                 </div>
             </div>
@@ -65,7 +69,8 @@ const RegisterPharmacistComponent = (props) => {
                 </div>
             </div>
         </form>
-  );
+
+    );
 };
 
 export default RegisterPharmacistComponent;

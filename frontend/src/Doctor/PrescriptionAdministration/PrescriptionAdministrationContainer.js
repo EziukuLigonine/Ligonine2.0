@@ -40,6 +40,30 @@ export class PrescriptionAdministrationContainer extends React.Component {
             doctorUsername: this.state.doctorUsername,
             validUntil: this.state.validUntil
         };
+        if (this.state.personalId === "") {
+            alert("Prašome įvesti asmens kodą");
+        }
+        if (this.state.personalId.length>11) {
+            alert("Asmens kodas turi būti sudarytas iš 11 simbolių");
+        }
+        if (this.state.personalId.length<11) {
+            alert("Asmens kodas turi būti sudarytas iš 11 simbolių");
+        }
+        if (this.state.activeMat === "") {
+            alert("Prašome įvesti veikliąsias medžiagas");
+        }
+        if (this.state.activeMatQuantity === "") {
+            alert("Prašome įvesti veikliosios/veikliųjų medžiagos/ų kiekį");
+        }
+        if (this.state.unit === "") {
+            alert("Prašome įvesti kiek vienetų išrašyta");
+        }
+        if (this.state.desc === "") {
+            alert("Prašome įvesti aprašymą");
+        }
+        if (this.state.validUntil === "") {
+            alert("Prašome įvesti galiojimo datą");
+        }
 
         axios.post("http://localhost:8081/api/admin/prescriptions/new", outputPrescription)
             .then((response) => {

@@ -6,9 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
@@ -19,11 +21,14 @@ public class Record implements Serializable{
     private Long id;
     @Pattern(regexp = "[3-6]{1}[0-9]{10}")
     private String personalId; // asmens kodas reik su pacientu sujungt
+    @NotBlank
     private String duration; // vizito laikas
     private String tlk; // ICD-10/TLK10
     private String appDesc; // vizito aprasas
+    @NotBlank
     private String vlk; // kompensuojamas ar ne? bool?
-    private String repeated; // pakartotinis? bool ar ne?
+    @NotBlank
+    private String repeated; // pakartotinis? bool ar ne? if boolean = true repeated ==="Kartotinas"
     private String doctorUsername; // israsiusio daktaro username. reikia su daktaru sujungt
     private String date; // vizito data
 

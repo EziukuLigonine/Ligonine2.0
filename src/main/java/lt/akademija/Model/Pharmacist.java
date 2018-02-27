@@ -8,6 +8,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
@@ -24,6 +25,7 @@ public class Pharmacist extends User {
 	@Size(min=6)
 	private String password;
 	private boolean enabled = true;
+	@NotBlank
 	private String companyType;
 	private String companyName;
 	private String role = "Pharmacist";
