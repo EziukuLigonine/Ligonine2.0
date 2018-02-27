@@ -4,7 +4,7 @@ import {PrescriptionListContainer} from "./PrescriptionList/PrescriptionListCont
 import {RecordAdministrationContainer} from "./RecordAdministration/RecordAdministrationContainer";
 import {PrescriptionAdministrationContainer} from "./PrescriptionAdministration/PrescriptionAdministrationContainer";
 import {RecordListContainer} from "./RecordList/RecordListContainer";
-import {PharPrescriptionDetailsContainer} from "../Pharmacist/PrescriptionDetails/PrescriptionDetailsContainer";
+import PrescriptionDetailsContainer from "./PrescriptionDetails/PrescriptionDetailsContainer";
 import {RecordDetailsContainer} from "./RecordDetails/RecordDetailsContainer";
 
 
@@ -19,7 +19,7 @@ class AdminRouter extends Component {
                     <Route exact path="/doctor/submit/record" component={RecordAdministrationContainer} />
                     <Route exact path="/doctor/records" component={RecordListContainer} />
 
-                    <Route exact path="/doctor/prescriptions/:id" component={PharPrescriptionDetailsContainer} />
+                    <Route exact path="/doctor/prescription/:id" component={PrescriptionDetailsContainer} />
                     <Route exact path="/doctor/records/:id" component={RecordDetailsContainer} />
 
                 </Switch>

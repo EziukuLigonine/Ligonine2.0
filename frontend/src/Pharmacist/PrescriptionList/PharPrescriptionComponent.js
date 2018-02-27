@@ -10,24 +10,8 @@ const green = {
 export var PharPrescriptionComponent = (props) => {
     var {id, personalId, date, activeMat, activeMatQuantity, unit, desc, validUntil, doctorUsername} = props;
 
-    var handleClick = (event) => {
-        props.history.push('/prescriptions/' + id);
-        event.preventDefault();
-    };
-
-    var handleRemove = (event) => {
-        props.remove(event.target.id);
-        axios.delete('http://localhost:8081/api/prescriptions/' + event.target.id)
-            .then(response => {
-
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
-
     var getPrescription = (event) => {
-        props.history.push("/prescriptions/" + id);
+        props.history.push("/pharmacist/prescription/" + id);
         event.preventDefault();
     };
 
