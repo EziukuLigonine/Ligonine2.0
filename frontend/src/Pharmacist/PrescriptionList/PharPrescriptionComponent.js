@@ -43,7 +43,6 @@ export var PharPrescriptionComponent = (props) => {
             <td>{doctorUsername}</td>
             <td>{validUntil}</td>
             <td>
-                <span id={id} className="glyphicon glyphicon-wrench" aria-hidden="true" style={green} onClick={handleClick}></span>
                 <span id={id} className="glyphicon glyphicon-eye-open" aria-hidden="true" style={green} onClick={getPrescription}></span>
             </td>
         </tr>
