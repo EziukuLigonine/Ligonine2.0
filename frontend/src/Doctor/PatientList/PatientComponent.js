@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {API} from '../ApiUrl';
+import {API} from "../../Admin/ApiUrl";
 
 const styles = {
   color: 'red',

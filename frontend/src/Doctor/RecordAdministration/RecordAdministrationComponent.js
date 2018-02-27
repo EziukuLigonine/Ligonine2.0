@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 export var RecordAdministrationComponent = (props) => {
 
     return (
@@ -24,7 +25,7 @@ export var RecordAdministrationComponent = (props) => {
             <div className="form-group">
                 <label className="col-sm-2 control-label">TLK-10</label>
                 <div className="col-sm-3">
-                    <input type="text" className="form-control" id="tlk" placeholder="TLK-10" value={props.tlk}
+                    <input type="text" className='form-control' id="tlk" placeholder="TLK-10" value={props.tlk}
                            onChange={props.onChange}/>
                 </div>
             </div>
@@ -32,7 +33,7 @@ export var RecordAdministrationComponent = (props) => {
             <div className="form-group">
                 <label className="col-sm-2 control-label">Vizito aprašymas</label>
                 <div className="col-sm-3">
-                    <input type="text" className="form-control" id="appDesc" placeholder="Vizito aprašymas" value={props.appDesc}
+                    <input type="textarea" className="form-control" id="appDesc" placeholder="Vizito aprašymas" value={props.appDesc}
                            onChange={props.onChange}/>
                 </div>
             </div>
@@ -40,8 +41,11 @@ export var RecordAdministrationComponent = (props) => {
             <div className="form-group">
                 <label className="col-sm-2 control-label">VLK</label>
                 <div className="col-sm-3">
-                    <input type="text" className="form-control" id="vlk" placeholder="VLK" value={props.vlk}
-                           onChange={props.onChange}/>
+                    <select id="vlk" value={props.vlk}
+                           onChange={props.onChange}>
+                        <option> Kompensuojamas   </option>
+                        <option>Nekompensuojamas</option>
+                    </select>
                 </div>
             </div>
 

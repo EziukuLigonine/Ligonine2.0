@@ -33,15 +33,15 @@ export var PrescriptionListComponent = (props) => {
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Personal ID</th>
-                            <th>Date</th>
-                            <th>Active Material</th>
-                            <th>Active Material qty.</th>
-                            <th>Units</th>
-                            <th>Description</th>
-                            <th>Doctors Username</th>
-                            <th>Valid Until</th>
-                            <th>Delete</th>
+                            <th>Asmens kodas</th>
+                            <th>Data</th>
+                            <th>Veiklioji medžiaga</th>
+                            <th>Veikliosios medžiagos kiekis</th>
+                            <th>Vienetai</th>
+                            <th>Aprašymas</th>
+                            <th>Daktaro slapyvardis</th>
+                            <th>Galiojimo data</th>
+                            <th>Ištrinti</th>
                         </tr>
                     </thead>
                     <tbody>

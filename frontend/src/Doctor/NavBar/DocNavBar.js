@@ -16,6 +16,7 @@ class DocNavBar extends Component {
                                     <li><Link to="/doctor/prescriptions"><span className="glyphicon glyphicon-search" aria-hidden="true"></span>Receptai</Link></li>
                                     <li><Link to="/doctor/submit/record"><span className="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>Išrašyti ligos istoriją</Link></li>
                                     <li><Link to="/doctor/records"><span className="glyphicon glyphicon-search" aria-hidden="true"></span>Ligos istorijos</Link></li>
+                                    <li><Link to="/doctor/patients"><span className="glyphicon glyphicon-search" aria-hidden="true"></span>Pacientų sąrašas</Link></li>
                                 </ul>
                             </li>
                         </ul>
