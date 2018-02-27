@@ -33,14 +33,15 @@ export var PharPrescriptionListComponent = (props) => {
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Personal ID</th>
-                        <th>Date</th>
-                        <th>Active Material</th>
-                        <th>Active Material qty.</th>
-                        <th>Units</th>
-                        <th>Description</th>
-                        <th>Doctors Username</th>
-                        <th>Valid Until</th>
+                        <th>Asmens kodas</th>
+                        <th>Data</th>
+                        <th>Aktivi medžiaga</th>
+                        <th>Kiekis</th>
+                        <th>Vnt.</th>
+                        <th>Aprašymas</th>
+                        <th>Daktaras</th>
+                        <th>Galioja iki</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -51,4 +52,3 @@ export var PharPrescriptionListComponent = (props) => {
         </div>
     );
 };
-

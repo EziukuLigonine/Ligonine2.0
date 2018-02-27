@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import PrescriptionDetailsComponent from './PrescriptionDetailsComponent';
 import {API} from "../../Admin/ApiUrl";
+import PharPrescriptionDetailsComponent from './PharPrescriptionDetailsComponent';
 
-class PrescriptionDetailsContainer extends Component {
+class PharPrescriptionDetailsContainer extends Component {
   constructor(props){
     super(props);
 
@@ -26,9 +26,9 @@ class PrescriptionDetailsContainer extends Component {
 
   render(){
     return(
-        <PrescriptionDetailsComponent prescription={this.state.prescription} history={this.props.history}/>
+        <PharPrescriptionDetailsComponent prescription={this.state.prescription} history={this.props.history}/>
     );
   }
 }
 
-export default PrescriptionDetailsContainer;
+export default PharPrescriptionDetailsContainer;
