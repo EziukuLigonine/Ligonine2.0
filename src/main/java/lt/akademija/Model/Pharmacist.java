@@ -25,7 +25,6 @@ public class Pharmacist extends User {
 	@Size(min=6)
 	private String password;
 	private boolean enabled = true;
-	@NotBlank
 	private String companyType;
 	private String companyName;
 	private String role = "Pharmacist";
