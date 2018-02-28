@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-  class PharPrescriptionSold extends Component {
-      render(){
+    const PharPrescriptionSold = (props) => {
         return(
           <div>
-            blec nx
+            dsada
           </div>
         );
-      }
-    }
+      };
 
-  export default PharPrescriptionSold;
+export default PharPrescriptionSold;

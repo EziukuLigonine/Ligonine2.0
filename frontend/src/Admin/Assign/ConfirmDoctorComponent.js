@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ConfirmDoctorComponent = (props) => {
-  console.log(props);
+
   return(
     <div>
       <h3>Patvirtinkite pasirinkimą</h3>
