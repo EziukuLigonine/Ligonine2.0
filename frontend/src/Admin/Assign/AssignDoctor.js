@@ -1,7 +1,8 @@
 import React from 'react';
-import axios from 'axios';
 import {API} from '../ApiUrl';
 import ConfirmDoctorComponent from "./ConfirmDoctorComponent";
+import axios from 'axios';
+axios.defaults.withCredentials = true;
 
 class AssignDoctor extends React.Component {
 

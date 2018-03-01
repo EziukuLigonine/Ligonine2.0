@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import {RecordDetailsComponent} from './RecordDetailsComponent';
+import axios from 'axios';
+axios.defaults.withCredentials = true;
 
 export class RecordDetailsContainer extends Component {
   constructor(props){

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import PatientListComponent from "./PatientListComponent";
 import {API} from "../../Admin/ApiUrl";
+import axios from 'axios';
+axios.defaults.withCredentials = true;
 
 
 class PatientList extends Component {

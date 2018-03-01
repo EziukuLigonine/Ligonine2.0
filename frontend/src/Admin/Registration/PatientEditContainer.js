@@ -1,7 +1,8 @@
 import React from 'react';
-import axios from 'axios';
 import {API} from '../ApiUrl';
 import RegisterPatientComponent from "./RegisterPatientComponent";
+import axios from 'axios';
+axios.defaults.withCredentials = true;
 
 class PatientEditContainer extends React.Component {
 
@@ -17,7 +18,7 @@ class PatientEditContainer extends React.Component {
             doctorUsername: '',
             history: {}
         }
-        
+
     }
 
     componentDidMount() {

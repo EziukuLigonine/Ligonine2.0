@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import {RecordListComponent} from "./RecordListComponent";
+import axios from 'axios';
+axios.defaults.withCredentials = true;
 
 export class RecordListContainer extends Component {
 

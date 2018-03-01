@@ -56,7 +56,8 @@ public class PatientService {
 	
 	@Transactional
 	public List<Prescription> getPatientPrescriptions(@PathVariable String id) {
-		return prescriptionRepository.findByPersonalId(patientRepository.getOne(Long.parseLong(id)).getPersonalId());
+		String personalId = patientRepository.getOne(Long.parseLong(id)).getPersonalId();
+		return prescriptionRepository.findByPersonalId(personalId);
 	}
 	
 	@Transactional

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -23,6 +25,7 @@ import lt.akademija.Model.Admin;
 import lt.akademija.Model.CreateAdminCmd;
 import lt.akademija.Model.User;
 import lt.akademija.Service.AdminService;
+import lt.akademija.Service.UserService;
 
 @RestController
 @Api(value = "Admin")
@@ -32,6 +35,9 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private UserService userService;
 	
 	
 	@GetMapping(value = "/admins")
@@ -46,6 +52,15 @@ public class AdminController {
 	public User getAdmin(@PathVariable String id) {
 		return adminService.getAdmin(id);
 	}
+	
+	@GetMapping(value = "/userRole")
+	@ApiOperation(value = "Get user role", notes = "Returns a single user role")
+	public String getUserRole() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String currentPrincipalName = authentication.getName();
+		return userService.getUserRole(currentPrincipalName);
+	}
+	
 	
 	@PostMapping(value = "admin/admins/new")
 	@ResponseStatus(HttpStatus.CREATED)

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {API} from '../ApiUrl';
-import axios from 'axios';
 import RegisterDoctorComponent from './RegisterDoctorComponent';
+import axios from 'axios';
+axios.defaults.withCredentials = true;
 
 class RegisterDoctor extends Component {
   constructor(props) {

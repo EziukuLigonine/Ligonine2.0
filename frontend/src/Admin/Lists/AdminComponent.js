@@ -1,6 +1,7 @@
 import React from 'react';
-import axios from 'axios';
 import {API} from '../ApiUrl';
+import axios from 'axios';
+axios.defaults.withCredentials = true;
 
 const styles = {
   color: 'red',
@@ -30,7 +31,7 @@ const green = {
     })
   }
   var getAdmin = (event) => {
-      props.history.push("/admin/admin/" + id);
+      this.props.history.push("/admin/admin/" + id);
       event.preventDefault();
   };
 

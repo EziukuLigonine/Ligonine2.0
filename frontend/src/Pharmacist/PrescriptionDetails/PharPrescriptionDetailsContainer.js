@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import {API} from "../../Admin/ApiUrl";
 import PharPrescriptionDetailsComponent from './PharPrescriptionDetailsComponent';
+import axios from 'axios';
+axios.defaults.withCredentials = true;
 
 class PharPrescriptionDetailsContainer extends Component {
   constructor(props){

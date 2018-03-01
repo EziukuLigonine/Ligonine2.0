@@ -1,7 +1,8 @@
 import React from 'react';
-import axios from 'axios';
 import {API} from '../ApiUrl';
 import RegisterDoctorComponent from "./RegisterDoctorComponent";
+import axios from 'axios';
+axios.defaults.withCredentials = true;
 
 class DoctorEditContainer extends React.Component {
 

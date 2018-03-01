@@ -1,6 +1,7 @@
 import React from 'react';
-import axios from 'axios';
 import {PrescriptionAdministrationComponent} from "./PrescriptionAdministrationComponent";
+import axios from 'axios';
+axios.defaults.withCredentials = true;
 
 export class PrescriptionAdministrationContainer extends React.Component {
 

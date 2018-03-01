@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import AdminListComponent from "./AdminListComponent";
 import {API} from '../ApiUrl';
+import axios from 'axios';
+axios.defaults.withCredentials = true;
 
 class AdminList extends Component {
 
