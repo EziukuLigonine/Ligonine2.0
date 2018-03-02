@@ -3,56 +3,41 @@ import {API} from "../../Admin/ApiUrl";
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
+
 const styles = {
-  color: 'red',
-  padding: '5px'
+    color: 'red',
+    padding: '5px'
 }
 const green = {
-  color: 'green',
-  padding: '5px'
+    color: 'green',
+    padding: '5px'
 }
 
- const PatientComponent = (props) => {
-  var {id, name, surname, username, password, personalId, dateOfBirth, doctorUsername} = props;
+const DocPatientComponent = (props) => {
+    var {id, name, surname, username, password, personalId, dateOfBirth, doctorUsername} = props;
 
-  var handleClick = (event) => {
-      props.history.push("/admin/patient/edit/" + id);
-      event.preventDefault();
-  };
 
-  var handleRemove = (event) => {
-    props.remove(event.target.id);
-    axios.delete(API + "/api/patients/" + event.target.id)
-    .then(response => {
 
-    })
-    .catch(error => {
-      console.log(error);
-    })
-  }
-  var getPatient = (event) => {
-      props.history.push("/admin/patient/" + id);
-      event.preventDefault();
-  };
-
-  return (
-      <tr>
-        <td>{id}</td>
-        <td>{name}</td>
-        <td>{surname}</td>
-        <td>{username}</td>
-        <td>{password}</td>
-        <td>{personalId}</td>
-        <td>{dateOfBirth}</td>
-        <td>{doctorUsername}</td>
-          <td>
-            <span id={id} className="glyphicon glyphicon-wrench" aria-hidden="true" style={green} onClick={handleClick}></span>
-            <span id={id} className="glyphicon glyphicon-eye-open" aria-hidden="true" style={green} onClick={getPatient}></span>
-            <span id={id} className="glyphicon glyphicon-trash" aria-hidden="true" style={styles} onClick={handleRemove}></span>
+    var getPatientRecords = (event) => {
+        props.history.push("/doctor/patient/" + id);
+    };
+    return (
+        <tr>
+            <td>{id}</td>
+            <td>{name}</td>
+            <td>{surname}</td>
+            <td>{username}</td>
+            <td>{password}</td>
+            <td>{personalId}</td>
+            <td>{dateOfBirth}</td>
+            <td>{doctorUsername}</td>
+            <td>
+                <span id={id} className="glyphicon glyphicon-eye-open" aria-hidden="true" style={green} onClick={getPatientRecords}></span>
             </td>
-      </tr>
-  );
+        </tr>
+    );
 
 };
 
-export default PatientComponent;
+export default DocPatientComponent;
+

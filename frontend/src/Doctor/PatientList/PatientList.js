@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import PatientListComponent from "./PatientListComponent";
+import DocPatientListComponent from "./PatientListComponent";
 import {API} from "../../Admin/ApiUrl";
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
 
-class PatientList extends Component {
+class DocPatientList extends Component {
 
     constructor(props) {
         super(props);
@@ -20,6 +20,7 @@ class PatientList extends Component {
             .catch((error) => {
                 console.log(error);
             });
+
     };
 
     removePatient = (index) => {
@@ -54,12 +55,12 @@ class PatientList extends Component {
                         </div>
                     </form>
                     <div>
-                        <PatientListComponent patients={filteredPatients} history={this.props.history}
-                                              remove={this.removePatient}/>
+                        <DocPatientListComponent patients={filteredPatients} history={this.props.history}
+                                                 remove={this.removePatient}/>
                     </div>
                 </div>
             );
         }
     }
 }
-    export default PatientList;
+export default DocPatientList;
