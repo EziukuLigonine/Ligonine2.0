@@ -47,8 +47,8 @@ export var RecordAdministrationComponent = (props) => {
                     <select id="vlk" value={props.vlk}
                            onChange={props.onChange}>
                         <option></option>
-                        <option>Kompensuojamas</option>
-                        <option>Nekompensuojamas</option>
+                        <option>Taip</option>
+                        <option>Ne</option>
                     </select>
                 </div>
             </div>
