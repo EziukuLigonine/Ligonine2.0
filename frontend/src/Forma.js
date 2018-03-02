@@ -6,7 +6,7 @@ const Forma = ({username, password, onPassChange, onUsernameChange, onSubmit}, c
       <div className="login-panele">
         <div className="panel panel-default">
           <div className="panel-heading">
-            <h3 className="panel-title"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Prisijunkite</h3>
+            <h3 className="panel-title"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></h3>
           </div>
           <div className="panel-body">
             <form onSubmit={onSubmit}>
@@ -16,7 +16,7 @@ const Forma = ({username, password, onPassChange, onUsernameChange, onSubmit}, c
               <input type="password" value={password} onChange={onPassChange} />
               <br/>
               <br/>
-              <button type="submit" className="btn btn-success">Prisijungti</button>
+              <button type="submit" className="btn btn-success">Pirmyn!</button>
             </form>
           </div>
         </div>

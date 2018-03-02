@@ -6,7 +6,9 @@ const tableStyle = {
 };
 
     const PatientPrescriptionsComponent = (props) => {
-      const prescriptions = props.prescriptions.map((prescription, index) => {
+      const validPrescriptions = props.prescriptions
+                                    .filter((prescription) => prescription.sold === false)
+                                    .map((prescription, index) => {
         return (
           <PatientPrescriptionListComponent
                 key = {index}
@@ -19,13 +21,31 @@ const tableStyle = {
                 desc = {prescription.desc}
                 doctorUsername = {prescription.doctorUsername}
                 validUntil = {prescription.validUntil}
-                sold = {prescription.sold}
+                history = {props.history}
+            />
+        );
+      });
+      const soldPrescriptions = props.prescriptions
+                                    .filter((prescription) => prescription.sold === true)
+                                    .map((prescription, index) => {
+        return (
+          <PatientPrescriptionListComponent
+                key = {index}
+                id = {prescription.id}
+                personalId = {prescription.personalId}
+                date = {prescription.date}
+                activeMat = {prescription.activeMat}
+                activeMatQuantity = {prescription.activeMatQuantity}
+                unit = {prescription.unit}
+                desc = {prescription.desc}
+                doctorUsername = {prescription.doctorUsername}
                 history = {props.history}
             />
         );
       });
         return(
           <div>
+            <h3>Galiojantys receptai</h3>
             <div className="panel panel-default" style={tableStyle.margin}>
                 <table className="table table-bordered table-hover">
                     <thead>
@@ -39,11 +59,30 @@ const tableStyle = {
                             <th>Aprašymas</th>
                             <th>Išrašė</th>
                             <th>Galioja iki</th>
-                            <th>Galiojimas</th>
                         </tr>
                     </thead>
                     <tbody>
-                    {prescriptions}
+                    {validPrescriptions}
+                    </tbody>
+                </table>
+            </div>
+            <h3>Negaliojantys receptai</h3>
+            <div className="panel panel-default" style={tableStyle.margin}>
+                <table className="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Asmens kodas</th>
+                            <th>Data</th>
+                            <th>Aktyvioji medžiaga</th>
+                            <th>Kiekis</th>
+                            <th>Matavimo vnt</th>
+                            <th>Aprašymas</th>
+                            <th>Išrašė</th>  
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {soldPrescriptions}
                     </tbody>
                 </table>
             </div>

@@ -14,7 +14,6 @@ import React from 'react';
         <td>{desc}</td>
         <td>{doctorUsername}</td>
         <td>{validUntil}</td>
-        <td>{sold}</td>
       </tr>
   );
 

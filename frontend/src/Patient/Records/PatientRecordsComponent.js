@@ -28,14 +28,10 @@ const tableStyle = {
                 <table className="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Asmens kodas</th>
-                            <th>Vizito trukmė</th>
-                            <th>TLK-10</th>
-                            <th>Aprašymas</th>
-                            <th>Kompensuojamas</th>
-                            <th>Daktaras</th>
                             <th>Data</th>
+                            <th>Ligos kodas</th>
+                            <th>Gydytojas</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
