@@ -2,8 +2,8 @@ import React from 'react';
 import './Forma.css';
 const Forma = ({username, password, onPassChange, onUsernameChange, onSubmit}, context) => {
   return(
-    <div className="row">
-      <div className="col-md-3">
+    <div className="loginas">
+      <div className="login-panele">
         <div className="panel panel-default">
           <div className="panel-heading">
             <h3 className="panel-title"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Prisijunkite</h3>
