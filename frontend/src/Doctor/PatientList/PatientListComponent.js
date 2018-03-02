@@ -1,14 +1,14 @@
 import React from 'react';
-import PatientComponent from "./PatientComponent";
+import DocPatientComponent from "./PatientComponent";
 
 const tableStyle = {
     margin : {marginTop : 20},
 };
 
-    const PatientListComponent = (props) => {
+    const DocPatientListComponent = (props) => {
       const patients = props.patients.map((patient, index) => {
         return (
-          <PatientComponent
+          <DocPatientComponent
               key = {index}
               id = {patient.id}
               name = {patient.name}
@@ -48,4 +48,4 @@ const tableStyle = {
         </div>
         );
       };
-export default PatientListComponent;
+export default DocPatientListComponent;

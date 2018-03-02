@@ -7,6 +7,7 @@ import {RecordListContainer} from "./RecordList/RecordListContainer";
 import PrescriptionDetailsContainer from "./PrescriptionDetails/PrescriptionDetailsContainer";
 import {RecordDetailsContainer} from "./RecordDetails/RecordDetailsContainer";
 import PatientList from "./PatientList/PatientList";
+import {PatientRecords} from "./PatientRecords/PatientRecords";
 
 
 class AdminRouter extends Component {
@@ -24,6 +25,7 @@ class AdminRouter extends Component {
                     <Route exact path="/doctor/records/:id" component={RecordDetailsContainer} />
 
                     <Route exact path="/doctor/patients" component={PatientList} />
+                    <Route exact path="/doctor/patient/:id" component={PatientRecords} />
 
                 </Switch>
             </div>
