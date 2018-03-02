@@ -45,8 +45,7 @@ const RegisterPharmacistComponent = (props) => {
                     <select id="companyType" value={props.companyType} onChange={props.onChange}>
                         <option></option>
                         <option>UAB</option>
-                        <option>IĮ</option>
-                        <option>VĮ</option>
+                        <option>VŠĮ</option>
                         <option>MB</option>
                         <option>AB</option>
                     </select>
