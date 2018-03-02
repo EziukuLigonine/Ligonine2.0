@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -26,6 +28,7 @@ import lt.akademija.Model.Prescription;
 import lt.akademija.Model.Record;
 import lt.akademija.Model.User;
 import lt.akademija.Service.PatientService;
+import lt.akademija.Service.UserService;
 
 @RestController
 @Api(value = "Patient")
@@ -35,6 +38,9 @@ public class PatientController {
 	
 	@Autowired
 	private PatientService patientService;
+	
+	@Autowired
+	private UserService userService;
 	
 	
 	@GetMapping(value = "/patients")
@@ -60,6 +66,14 @@ public class PatientController {
 	@ApiOperation(value = "Get patient prescriptions", notes = "Returns list of patient prescriptions")
 	public List<Prescription> getPatientPrescriptions(@PathVariable String id) {
 		return patientService.getPatientPrescriptions(id);
+	}
+	
+	@GetMapping(value = "/userId")
+	@ApiOperation(value = "Get user id", notes = "Returns a single users id")
+	public Long getUserId() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String currentPrincipalName = authentication.getName();
+		return userService.getUserId(currentPrincipalName);
 	}
 	
 	

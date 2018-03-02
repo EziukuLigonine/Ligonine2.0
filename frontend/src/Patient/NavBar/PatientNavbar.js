@@ -22,17 +22,19 @@ class PatientNavBar extends Component {
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul className="nav navbar-nav">
                             <li className="dropdown">
-                                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Meniu <span className="caret"></span></a>
+                                <a href="/" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Meniu <span className="caret"></span></a>
                                 <ul className="dropdown-menu">
-                                    <li><Link to="/patient/prescriptions"><span className="glyphicon glyphicon-search" aria-hidden="true"></span>Receptai</Link></li>
+                                    <li><Link to="/patient/prescriptions"><span className="glyphicon glyphicon-search" aria-hidden="true"></span> Receptai</Link></li>
+                                    <li><Link to="/patient/records"><span className="glyphicon glyphicon-search" aria-hidden="true"></span> Ligos istorija</Link></li>
                                 </ul>
                             </li>
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
                             <li className="dropdown">
-                                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span className="glyphicon glyphicon-user" aria-hidden="true"></span> <span className="caret"></span></a>
+                                <a href="/" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span className="glyphicon glyphicon-user" aria-hidden="true"></span> <span className="caret"></span></a>
                                 <ul className="dropdown-menu">
-                                    <li><Link to="/doctor/changePassword">Keisti slaptažodį</Link></li>
+                                    <li><Link to="/patient/details">Profilis</Link></li>
+                                    <li><Link to="/patient/changePassword">Keisti slaptažodį</Link></li>
                                     <li><Link to="/loginPage?logout" onClick={this.handleClick}>Atsijungti</Link></li>
                                 </ul>
                             </li>

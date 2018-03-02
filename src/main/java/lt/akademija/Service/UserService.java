@@ -37,5 +37,9 @@ public class UserService implements UserDetailsService {
 	public String getUserRole(String username) {
 		return userRepository.findByUsername(username).getRole();
 	}
+	
+	public Long getUserId(String username) {
+		return userRepository.findByUsername(username).getId();
+	}
 
 }

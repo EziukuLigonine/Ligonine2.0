@@ -19,6 +19,7 @@ class AdminList extends Component {
             .catch((error) => {
                 console.log(error);
             });
+            
     };
 
     removeAdmin = (index) => {
