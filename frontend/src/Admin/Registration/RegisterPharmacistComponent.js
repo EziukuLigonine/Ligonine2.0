@@ -44,11 +44,11 @@ const RegisterPharmacistComponent = (props) => {
                 <div className="col-sm-3">
                     <select id="companyType" value={props.companyType} onChange={props.onChange}>
                         <option></option>
-                        <option>Uždaroji akcinė bendrovė</option>
-                        <option>Individuali įmonė</option>
-                        <option>Viešoji įstaiga</option>
-                        <option>Mažoji bendrija</option>
-                        <option>Akcinė bendrovė</option>
+                        <option>UAB</option>
+                        <option>IĮ</option>
+                        <option>VĮ</option>
+                        <option>MB</option>
+                        <option>AB</option>
                     </select>
                 </div>
             </div>
