@@ -3,6 +3,7 @@ import {PrescriptionAdministrationComponent} from "./PrescriptionAdministrationC
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
+
 export class PrescriptionAdministrationContainer extends React.Component {
 
     constructor(props) {
@@ -16,6 +17,7 @@ export class PrescriptionAdministrationContainer extends React.Component {
             desc: '',
             doctorUsername: '',
             validUntil: '',
+            timestamp: '',
             history: props.history
         }
     }
@@ -31,6 +33,20 @@ export class PrescriptionAdministrationContainer extends React.Component {
     };
 
     handleClick = (event) => {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if(dd<10) {
+            dd = '0'+dd
+        }
+
+        if(mm<10) {
+            mm = '0'+mm
+        }
+
+        today = mm + '/' + dd + '/' + yyyy;
         const outputPrescription = {
             personalId: this.state.personalId,
             date: this.state.date,
@@ -39,8 +55,10 @@ export class PrescriptionAdministrationContainer extends React.Component {
             unit: this.state.unit,
             desc: this.state.desc,
             doctorUsername: this.state.doctorUsername,
-            validUntil: this.state.validUntil
+            validUntil: this.state.validUntil,
+            timestamp: this.state.timestamp = today
         };
+        console.log(outputPrescription);
         if (this.state.personalId === "") {
             alert("Prašome įvesti asmens kodą");
         }
@@ -76,7 +94,8 @@ export class PrescriptionAdministrationContainer extends React.Component {
                     unit: '',
                     desc: '',
                     doctorUsername: '',
-                    validUntil: ''
+                    validUntil: '',
+                    timestamp:''
                 });
                 alert("Receptas išrašytas");
             })

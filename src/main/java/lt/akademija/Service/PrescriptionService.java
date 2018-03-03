@@ -43,6 +43,7 @@ public class PrescriptionService {
 		prescription.setDesc(cmd.getDesc());
 		prescription.setDoctorUsername(cmd.getDoctorUsername());
 		prescription.setValidUntil(cmd.getValidUntil());
+		prescription.setTimestamp(cmd.getTimestamp());
 		prescriptionRepository.save(prescription);
 	}
 	

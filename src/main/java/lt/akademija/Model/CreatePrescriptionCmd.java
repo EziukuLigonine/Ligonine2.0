@@ -10,6 +10,7 @@ public class CreatePrescriptionCmd {
     private String desc; // vartojimo aprasas
     private String doctorUsername; // israsiusio daktaro username. reikia su daktaru sujungt
     private String validUntil;
+    private String timestamp;
     private boolean sold = false;
     
     
@@ -67,6 +68,12 @@ public class CreatePrescriptionCmd {
 	}
 	public void setValidUntil(String validUntil) {
 		this.validUntil = validUntil;
+	}
+	public String getTimestamp() {
+		return timestamp;
+	}
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
 	}
     
     

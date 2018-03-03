@@ -20,6 +20,7 @@ export var PrescriptionListComponent = (props) => {
                 desc = {prescription.desc}
                 doctorUsername = {prescription.doctorUsername}
                 validUntil = {prescription.validUntil}
+                timestamp = {prescription.timestamp}
                 history = {props.history}
                 remove = {props.remove}
             />
@@ -41,6 +42,7 @@ export var PrescriptionListComponent = (props) => {
                             <th>Aprašymas</th>
                             <th>Daktaro slapyvardis</th>
                             <th>Galiojimo data</th>
+                            <th>Išrašymo data</th>
                             <th>Ištrinti</th>
                         </tr>
                     </thead>

@@ -3,6 +3,7 @@ import {RecordAdministrationComponent} from "./RecordAdministrationComponent";
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
+
 export class RecordAdministrationContainer extends React.Component {
 
     constructor(props) {

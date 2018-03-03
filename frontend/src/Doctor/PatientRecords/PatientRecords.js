@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {RecordListComponent} from "../RecordList/RecordListComponent";
 import {DocPatientList} from "../PatientList/PatientList";
+axios.defaults.withCredentials = true;
 
 export class PatientRecords extends Component {
 

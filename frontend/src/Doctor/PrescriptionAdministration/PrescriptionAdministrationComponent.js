@@ -40,8 +40,13 @@ export var PrescriptionAdministrationComponent = (props) => {
             <div className="form-group">
                 <label className="col-sm-2 control-label">Vienetai</label>
                 <div className="col-sm-3">
-                    <input type="text" className="form-control" id="unit" placeholder="Vienetas" value={props.unit}
-                           onChange={props.onChange}/>
+                    <select id="unit" value={props.unit}
+                           onChange={props.onChange}>
+                        <option></option>
+                        <option>Miligramai</option>
+                        <option>Mikrogramai</option>
+                        <option>TV/IU</option>
+                    </select>
                 </div>
             </div>
 
