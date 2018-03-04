@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +43,7 @@ public class AdminController {
 	
 	@GetMapping(value = "/admins")
 	@ApiOperation(value = "Get admin list", notes = "Returns list of all admins")
+	@PreAuthorize("hasRole('Admin')")
 	public List<Admin> getAdmins(@ApiParam(value = "Search admin")
 									@RequestParam(value = "search", required = false) String search ){
 		return adminService.getAdmins(search);
@@ -49,6 +51,7 @@ public class AdminController {
 	
 	@GetMapping(value = "/admins/{id}")
 	@ApiOperation(value = "Get admin", notes = "Returns a single admin")
+	@PreAuthorize("hasRole('Admin')")
 	public User getAdmin(@PathVariable String id) {
 		return adminService.getAdmin(id);
 	}
@@ -65,12 +68,14 @@ public class AdminController {
 	@PostMapping(value = "admin/admins/new")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = "Create admins", notes = "Creates admin")
+	@PreAuthorize("hasRole('Admin')")
 	public void createAdmin(@RequestBody CreateAdminCmd cmd) {
 		adminService.createAdmin(cmd);
 	}
 	
 	@PutMapping(value = "/admins/{id}")
 	@ApiOperation(value = "Update admin", notes = "Updates admin details")
+	@PreAuthorize("hasRole('Admin')")
 	public void updateAdmin(@RequestBody CreateAdminCmd cmd, @PathVariable String id) {
 		adminService.updateAdmin(cmd, id);
 	}
@@ -78,6 +83,7 @@ public class AdminController {
 	@DeleteMapping(value = "/admins/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@ApiOperation(value = "Delete admin", notes = "Removes admin")
+	@PreAuthorize("hasRole('Admin')")
 	public void deleteAdmin(@PathVariable String id) {
 		adminService.deleteAdmin(id);
 	}

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -39,6 +40,7 @@ public class DoctorController {
 	
 	@GetMapping(value = "/doctors")
 	@ApiOperation(value = "Get doctor list", notes = "Returns list of all doctors")
+	@PreAuthorize("hasRole('Admin')")
 	public List<Doctor> getDoctors(@ApiParam(value = "Search doctor")
 									@RequestParam(value = "search", required = false) String search ){
 		return doctorService.getDoctors(search);
@@ -46,24 +48,28 @@ public class DoctorController {
 	
 	@GetMapping(value = "/doctors/{id}")
 	@ApiOperation(value = "Get doctor", notes = "Returns a single doctor")
+	@PreAuthorize("hasRole('Admin')")
 	public User getDoctor(@PathVariable String id) {
 		return doctorService.getDoctor(id);
 	}
 	
 	@GetMapping(value = "/doctors/{id}/patients")
 	@ApiOperation(value = "Get all doctor patients", notes = "Returns all doctor patients")
+	@PreAuthorize("hasRole('Doctor')")
 	public List<Patient> getDoctorPatients(@PathVariable String id) {
 		return doctorService.getDoctorPatients(id);
 	}
 	
 	@GetMapping(value = "/doctors/{id}/records")
 	@ApiOperation(value = "Get all doctor records", notes = "Returns all doctor records")
+	@PreAuthorize("hasRole('Doctor')")
 	public List<Record> getDoctorRecords(@PathVariable String id) {
 		return doctorService.getDoctorRecords(id);
 	}
 	
 	@GetMapping(value = "/doctors/{id}/prescriptions")
 	@ApiOperation(value = "Get all doctor prescriptions", notes = "Returns all doctor prescriptions")
+	@PreAuthorize("hasRole('Doctor')")
 	public List<Prescription> getDoctorPrescriptions(@PathVariable String id) {
 		return doctorService.getDoctorPrescriptions(id);
 	}
@@ -72,12 +78,14 @@ public class DoctorController {
 	@PostMapping(value = "admin/doctors/new")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = "Create doctors", notes = "Creates doctor")
+	@PreAuthorize("hasRole('Admin')")
 	public void createDoctor(@RequestBody CreateDoctorCmd cmd) {
 		doctorService.createDoctor(cmd);
 	}
 	
 	@PutMapping(value = "/doctors/{id}")
 	@ApiOperation(value = "Update doctor", notes = "Updates doctor details")
+	@PreAuthorize("hasRole('Admin')")
 	public void updateDoctor(@RequestBody CreateDoctorCmd cmd, @PathVariable String id) {
 		doctorService.updateDoctor(cmd, id);
 	}
@@ -85,6 +93,7 @@ public class DoctorController {
 	@DeleteMapping(value = "/doctors/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@ApiOperation(value = "Delete doctor", notes = "Removes doctor")
+	@PreAuthorize("hasRole('Admin')")
 	public void deleteDoctor(@PathVariable String id) {
 		doctorService.deleteDoctor(id);
 	}
