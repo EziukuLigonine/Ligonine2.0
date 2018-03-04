@@ -30,7 +30,6 @@ export var PrescriptionComponent = (props) => {
         <tr>
             <td>{id}</td>
             <td>{personalId}</td>
-            <td>{date}</td>
             <td>{activeMat}</td>
             <td>{activeMatQuantity}</td>
             <td>{unit}</td>

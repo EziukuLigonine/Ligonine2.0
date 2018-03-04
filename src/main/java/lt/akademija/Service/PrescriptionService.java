@@ -36,7 +36,6 @@ public class PrescriptionService {
 	public void createPrescription(@RequestBody CreatePrescriptionCmd cmd) {
 		Prescription prescription = new Prescription();
 		prescription.setPersonalId(cmd.getPersonalId());
-		prescription.setDate(cmd.getDate());
 		prescription.setActiveMat(cmd.getActiveMat());
 		prescription.setActiveMatQuantity(cmd.getActiveMatQuantity());
 		prescription.setUnit(cmd.getUnit());

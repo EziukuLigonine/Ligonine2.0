@@ -13,13 +13,6 @@ export var PrescriptionAdministrationComponent = (props) => {
                 </div>
             </div>
 
-            <div className="form-group">
-                <label className="col-sm-2 control-label">Data</label>
-                <div className="col-sm-3">
-                    <input type="date" className="form-control" id="date" placeholder="Data" value={props.date}
-                           onChange={props.onChange}/>
-                </div>
-            </div>
 
             <div className="form-group">
                 <label className="col-sm-2 control-label">Veiklioji medžiada</label>
@@ -71,9 +64,12 @@ export var PrescriptionAdministrationComponent = (props) => {
                 <div className="col-sm-3">
                     <input type="date" className="form-control" id="validUntil" placeholder="Galiojimo data" value={props.validUntil}
                            onChange={props.onChange}/>
+                    <select id="validUntil" value={props.validUntil} onChange={props.onChange}>
+                        <option></option>
+                        <option>Neterminuotas</option>
+                    </select>
                 </div>
             </div>
-
             <div className="form-group">
                 <div className="col-sm-offset-2 col-sm-3">
                     <button type="submit" className="btn btn-success" onClick={props.onClick}>Išsaugoti</button>

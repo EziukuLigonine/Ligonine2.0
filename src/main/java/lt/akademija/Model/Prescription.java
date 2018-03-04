@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -20,9 +21,9 @@ public class Prescription implements Serializable {
     private Long id;
     @Pattern(regexp = "[3-6]{1}[0-9]{10}")
     private String personalId; // asmens kodas reik su pacientu sujungt
-    private String date; // israsymo data
     private String activeMat; // veiklioji medziaga
     private String activeMatQuantity; // veikliosios medziagos kiekis
+    @NotBlank
     private String unit; // matavimo vienetai
     private String desc; // vartojimo aprasas
     private String doctorUsername; // israsiusio daktaro username. reikia su daktaru sujungt
@@ -53,14 +54,6 @@ public class Prescription implements Serializable {
 
     public void setPersonalId(String personalId) {
         this.personalId = personalId;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public String getActiveMat() {

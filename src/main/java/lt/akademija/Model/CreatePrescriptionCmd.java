@@ -3,7 +3,6 @@ package lt.akademija.Model;
 public class CreatePrescriptionCmd {
 	
 	private String personalId; // asmens kodas reik su pacientu sujungt
-    private String date; // israsymo data
     private String activeMat; // veiklioji medziaga
     private String activeMatQuantity; // veikliosios medziagos kiekis
     private String unit; // matavimo vienetai
@@ -26,12 +25,6 @@ public class CreatePrescriptionCmd {
 	}
 	public void setPersonalId(String personalId) {
 		this.personalId = personalId;
-	}
-	public String getDate() {
-		return date;
-	}
-	public void setDate(String date) {
-		this.date = date;
 	}
 	public String getActiveMat() {
 		return activeMat;

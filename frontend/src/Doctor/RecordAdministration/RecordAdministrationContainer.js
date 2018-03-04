@@ -30,8 +30,22 @@ export class RecordAdministrationContainer extends React.Component {
             }
         );
     };
-
     handleClick = (event) => {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        today = yyyy + '-' + mm + '-' + dd;
+
         const outputRecord = {
             personalId: this.state.personalId,
             duration: this.state.duration,
@@ -40,7 +54,7 @@ export class RecordAdministrationContainer extends React.Component {
             vlk: this.state.vlk,
             repeated: this.state.repeated,
             doctorUsername: this.state.doctorUsername,
-            date: this.state.date
+            date: this.state.date = today
         };
         if (this.state.personalId === "") {
             alert("Prašome įvesti asmens kodą");

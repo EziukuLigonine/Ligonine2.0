@@ -26,9 +26,9 @@ public class Record implements Serializable{
     private String tlk; // ICD-10/TLK10
     private String appDesc; // vizito aprasas
     @NotBlank
-    private String vlk; // kompensuojamas ar ne? bool?
+    private String vlk; // kompensuojamas ar ne
     @NotBlank
-    private String repeated; // pakartotinis? bool ar ne? if boolean = true repeated ==="Kartotinas"
+    private String repeated; // pakartotinis
     private String doctorUsername; // israsiusio daktaro username. reikia su daktaru sujungt
     private String date; // vizito data
 
