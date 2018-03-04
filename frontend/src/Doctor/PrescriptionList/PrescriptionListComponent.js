@@ -13,13 +13,13 @@ export var PrescriptionListComponent = (props) => {
                 key = {index}
                 id = {prescription.id}
                 personalId = {prescription.personalId}
-                date = {prescription.date}
                 activeMat = {prescription.activeMat}
                 activeMatQuantity = {prescription.activeMatQuantity}
                 unit = {prescription.unit}
                 desc = {prescription.desc}
                 doctorUsername = {prescription.doctorUsername}
                 validUntil = {prescription.validUntil}
+                timestamp = {prescription.timestamp}
                 history = {props.history}
                 remove = {props.remove}
             />
@@ -34,13 +34,13 @@ export var PrescriptionListComponent = (props) => {
                         <tr>
                             <th>ID</th>
                             <th>Asmens kodas</th>
-                            <th>Data</th>
                             <th>Veiklioji medžiaga</th>
                             <th>Veikliosios medžiagos kiekis</th>
                             <th>Vienetai</th>
                             <th>Aprašymas</th>
                             <th>Daktaro slapyvardis</th>
                             <th>Galiojimo data</th>
+                            <th>Išrašymo data</th>
                             <th>Ištrinti</th>
                         </tr>
                     </thead>

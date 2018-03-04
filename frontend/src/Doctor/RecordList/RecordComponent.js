@@ -19,16 +19,6 @@ export var RecordComponent = (props) => {
       event.preventDefault();
   };
 
-  var handleRemove = (event) => {
-    props.remove(event.target.id);
-    axios.delete('http://localhost:8081/api/records/' + event.target.id)
-    .then(response => {
-
-    })
-    .catch(error => {
-      console.log(error);
-    })
-  }
 
   var getRecord = (event) => {
       props.history.push("/doctor/records/" + id);
@@ -49,7 +39,6 @@ export var RecordComponent = (props) => {
           <td>
             <span id={id} className="glyphicon glyphicon-wrench" aria-hidden="true" style={green} onClick={handleClick}></span>
             <span id={id} className="glyphicon glyphicon-eye-open" aria-hidden="true" style={green} onClick={getRecord}></span>
-            <span id={id} className="glyphicon glyphicon-trash" aria-hidden="true" style={styles} onClick={handleRemove}></span>
             </td>
       </tr>
   );

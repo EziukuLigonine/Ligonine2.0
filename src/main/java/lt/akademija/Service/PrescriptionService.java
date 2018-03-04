@@ -36,13 +36,13 @@ public class PrescriptionService {
 	public void createPrescription(@RequestBody CreatePrescriptionCmd cmd) {
 		Prescription prescription = new Prescription();
 		prescription.setPersonalId(cmd.getPersonalId());
-		prescription.setDate(cmd.getDate());
 		prescription.setActiveMat(cmd.getActiveMat());
 		prescription.setActiveMatQuantity(cmd.getActiveMatQuantity());
 		prescription.setUnit(cmd.getUnit());
 		prescription.setDesc(cmd.getDesc());
 		prescription.setDoctorUsername(cmd.getDoctorUsername());
 		prescription.setValidUntil(cmd.getValidUntil());
+		prescription.setTimestamp(cmd.getTimestamp());
 		prescriptionRepository.save(prescription);
 	}
 	

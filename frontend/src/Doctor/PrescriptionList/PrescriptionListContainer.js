@@ -28,6 +28,7 @@ export class PrescriptionListContainer extends Component {
     }
 
     render() {
+        console.log(this.state.prescriptions);
         return (
             <div>
                 <PrescriptionListComponent prescriptions={this.state.prescriptions} history={this.props.history}  remove={this.removePrescription} />

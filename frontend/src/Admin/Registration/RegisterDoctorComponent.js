@@ -41,6 +41,7 @@ const RegisterDoctorComponent = (props) => {
                   <div className="col-sm-3">
                       <select id="specialisation" placeholder="Specializacija" value={props.specialisation}
                              onChange={props.onChange}>
+                          <option></option>
                           <option>Apylinkės pediatras</option>
                           <option>Akušeris-ginekologas</option>
                           <option>Chirurgas</option>
@@ -116,6 +117,8 @@ const RegisterDoctorComponent = (props) => {
                           <option>Dietologas</option>
                           <option>Sporto medicinos gydytojas</option>
                       </select>
+                      <input type="text" className="form-control" id="specialisation" placeholder="Kita specializacija" value={props.specialisation}
+                             onChange={props.onChange}/>
                   </div>
               </div>
 

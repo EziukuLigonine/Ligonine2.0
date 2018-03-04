@@ -3,13 +3,13 @@ package lt.akademija.Model;
 public class CreatePrescriptionCmd {
 	
 	private String personalId; // asmens kodas reik su pacientu sujungt
-    private String date; // israsymo data
     private String activeMat; // veiklioji medziaga
     private String activeMatQuantity; // veikliosios medziagos kiekis
     private String unit; // matavimo vienetai
     private String desc; // vartojimo aprasas
     private String doctorUsername; // israsiusio daktaro username. reikia su daktaru sujungt
     private String validUntil;
+    private String timestamp;
     private boolean sold = false;
     
     
@@ -25,12 +25,6 @@ public class CreatePrescriptionCmd {
 	}
 	public void setPersonalId(String personalId) {
 		this.personalId = personalId;
-	}
-	public String getDate() {
-		return date;
-	}
-	public void setDate(String date) {
-		this.date = date;
 	}
 	public String getActiveMat() {
 		return activeMat;
@@ -67,6 +61,12 @@ public class CreatePrescriptionCmd {
 	}
 	public void setValidUntil(String validUntil) {
 		this.validUntil = validUntil;
+	}
+	public String getTimestamp() {
+		return timestamp;
+	}
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
 	}
     
     

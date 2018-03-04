@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {API} from '../ApiUrl';
 import RegisterPatientComponent from './RegisterPatientComponent';
 import axios from 'axios';
+
 axios.defaults.withCredentials = true;
 
 class RegisterPatient extends Component {
@@ -39,8 +40,41 @@ class RegisterPatient extends Component {
         }
     }
 
+    BirthdayNotIntheFuture() {
+
+        var currentDate = new Date();
+        var dd = currentDate.getDate();
+        var mm = currentDate.getMonth() + 1;
+        var yyyy = currentDate.getFullYear();
+
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        if (parseInt(this.state.dateOfBirth.substring(0, 4)) < yyyy) {
+            return true;
+        } else if (parseInt(this.state.dateOfBirth.substring(0, 4)) === yyyy &&
+            parseInt(this.state.dateOfBirth.substring(5, 7)) < mm) {
+            return true;
+        } else if (parseInt(this.state.dateOfBirth.substring(0, 4)) === yyyy &&
+            parseInt(this.state.dateOfBirth.substring(5, 7)) === mm &&
+            parseInt(this.state.dateOfBirth.substring(8, 10) <= dd)) {
+            return true;
+        } else {
+            alert("Data ateityje")
+        }
+    }
+
     handleClick = (event) => {
-        if (this.IdMatchesBirth()) {
+        console.log(this.state.dateOfBirth.substring(8, 10));
+        console.log(this.state.dateOfBirth.substring(5, 7));
+        console.log(this.state.dateOfBirth);
+        console.log(this.state.dateOfBirth.substring(0, 4));
+        if (this.IdMatchesBirth() && this.BirthdayNotIntheFuture()) {
             var outputPatient = {
                 name: this.state.name,
                 surname: this.state.surname,
@@ -66,10 +100,12 @@ class RegisterPatient extends Component {
         if (this.state.personalId === "") {
             alert("Prašome įvesti asmens kodą");
         }
+        if (this.state.personalId.length != 11){
+            alert ("Asmens kodas turi būti sudarytas iš 11 skaitmenų")
+        }
         if (this.state.dateOfBirth === "") {
             alert("Prašome įvesti gimimo datą");
         }
-        console.log(this.state.dateOfBirth);
 
         axios.post(API + "/api/admin/patients/new", outputPatient)
             .then((response) => {
