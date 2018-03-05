@@ -16,10 +16,11 @@ public class Admin extends User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private Long id;
-	@Pattern(regexp ="[A-Za-z]+")
+	@Pattern(regexp ="[A-Za-z[ĄąČčĘęĖėĮįŠšŲųŪūŽž]]+")
 	private String name;
-	@Pattern(regexp ="[A-Za-z]+")
+	@Pattern(regexp ="[A-Za-z[ĄąČčĘęĖėĮįŠšŲųŪūŽž]]+")
 	private String surname;
+	@Pattern(regexp = "[\\w[ĄąČčĘęĖėĮįŠšŲųŪūŽž]]+")
 	private String username;
     @Size(min=6)
 	private String password;
