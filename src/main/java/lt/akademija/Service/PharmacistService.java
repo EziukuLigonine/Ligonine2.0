@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,6 +23,9 @@ public class PharmacistService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
 	private PharmacistRepository pharmacistRepository;
@@ -43,7 +47,7 @@ public class PharmacistService {
 		pharmacist.setName(cmd.getName());
 		pharmacist.setSurname(cmd.getSurname());
 		pharmacist.setUsername(cmd.getUsername());
-		pharmacist.setPassword(cmd.getPassword());
+		pharmacist.setPassword(passwordEncoder.encode(cmd.getPassword()));
 		pharmacist.setCompanyType(cmd.getCompanyType());
 		pharmacist.setCompanyName(cmd.getCompanyName());
 		userRepository.save(pharmacist);
