@@ -20,7 +20,7 @@ const green = {
       event.preventDefault();
   };
 
-  var handleRemove = (event) => {
+ /* var handleRemove = (event) => {
     props.remove(event.target.id);
     axios.delete(API + "/api/patients/" + event.target.id)
     .then(response => {
@@ -29,7 +29,7 @@ const green = {
     .catch(error => {
       console.log(error);
     })
-  }
+  } TRYNIMO PAVYZDYS JEIGU PRIREIKTU*/
   var getPatient = (event) => {
       props.history.push("/admin/patient/" + id);
       event.preventDefault();
@@ -48,7 +48,6 @@ const green = {
           <td>
             <span id={id} className="glyphicon glyphicon-wrench" aria-hidden="true" style={green} onClick={handleClick}></span>
             <span id={id} className="glyphicon glyphicon-eye-open" aria-hidden="true" style={green} onClick={getPatient}></span>
-            <span id={id} className="glyphicon glyphicon-trash" aria-hidden="true" style={styles} onClick={handleRemove}></span>
             </td>
       </tr>
   );

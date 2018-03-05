@@ -46,7 +46,7 @@ public class PatientController {
 	
 	@GetMapping(value = "/patients")
 	@ApiOperation(value = "Get patient list", notes = "Returns list of all patients")
-	@PreAuthorize("hasRole('Admin')")
+	//@PreAuthorize("hasRole('Admin')")
 	public List<Patient> getPatients(@ApiParam(value = "Search patient")
 									@RequestParam(value = "search", required = false) String search ){
 		return patientService.getPatients(search);
@@ -54,21 +54,21 @@ public class PatientController {
 	
 	@GetMapping(value = "/patients/{id}")
 	@ApiOperation(value = "Get patient", notes = "Returns a single patient")
-	@PreAuthorize("hasRole('Doctor') or hasRole('Admin') or hasRole('Patient')")
+	//@PreAuthorize("hasRole('Doctor') or hasRole('Admin') or hasRole('Patient')")
 	public User getPatient(@PathVariable String id) {
 		return patientService.getPatient(id);
 	}
 	
 	@GetMapping(value = "/patients/{id}/records")
 	@ApiOperation(value = "Get patient records", notes = "Returns list of patient records")
-	@PreAuthorize("hasRole('Doctor') or hasRole('Admin') or hasRole('Patient')")
+	//@PreAuthorize("hasRole('Doctor') or hasRole('Admin') or hasRole('Patient')")
 	public List <Record> getPatientRecords(@PathVariable String id) {
 		return patientService.getPatientRecords(id);
 	}
 	
 	@GetMapping(value = "/patients/{id}/prescriptions")
 	@ApiOperation(value = "Get patient prescriptions", notes = "Returns list of patient prescriptions")
-	@PreAuthorize("hasRole('Doctor') or hasRole('Admin') or hasRole('Patient')")
+	//@PreAuthorize("hasRole('Doctor') or hasRole('Admin') or hasRole('Patient')")
 	public List<Prescription> getPatientPrescriptions(@PathVariable String id) {
 		return patientService.getPatientPrescriptions(id);
 	}
@@ -85,7 +85,7 @@ public class PatientController {
 	@PostMapping(value = "admin/patients/new")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = "Create patients", notes = "Creates patient")
-	@PreAuthorize("hasRole('Admin')")
+	//@PreAuthorize("hasRole('Admin')")
 	public void createPatient(@RequestBody CreatePatientCmd cmd) {
 		patientService.createPatient(cmd);
 	}
@@ -100,7 +100,7 @@ public class PatientController {
 	@DeleteMapping(value = "/patients/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@ApiOperation(value = "Delete patient", notes = "Removes patient")
-	@PreAuthorize("hasRole('Admin')")
+	//@PreAuthorize("hasRole('Admin')")
 	public void deletePatient(@PathVariable String id) {
 		patientService.deletePatient(id);
 	}

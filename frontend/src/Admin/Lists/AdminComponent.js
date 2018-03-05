@@ -20,16 +20,6 @@ const green = {
       event.preventDefault();
   };
 
-  var handleRemove = (event) => {
-    props.remove(event.target.id);
-    axios.delete(API + "/api/admins/" + event.target.id)
-    .then(response => {
-
-    })
-    .catch(error => {
-      console.log(error);
-    })
-  }
   var getAdmin = (event) => {
       this.props.history.push("/admin/admin/" + id);
       event.preventDefault();
@@ -45,7 +35,6 @@ const green = {
           <td>
             <span id={id} className="glyphicon glyphicon-wrench" aria-hidden="true" style={green} onClick={handleClick}></span>
             <span id={id} className="glyphicon glyphicon-eye-open" aria-hidden="true" style={green} onClick={getAdmin}></span>
-            <span id={id} className="glyphicon glyphicon-trash" aria-hidden="true" style={styles} onClick={handleRemove}></span>
             </td>
       </tr>
   );

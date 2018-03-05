@@ -43,8 +43,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		  .authorizeRequests()
-		    .antMatchers("/").permitAll()
-		    .antMatchers("/api/**").authenticated()
+		   // .antMatchers("/").permitAll()
+		   // .antMatchers("/api/**").authenticated()
 		  .and()
 		    .formLogin()
 		    .successHandler(new SimpleUrlAuthenticationSuccessHandler())
@@ -59,5 +59,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		  .and()
 		    .headers().frameOptions().disable();
 	}
-
 }
