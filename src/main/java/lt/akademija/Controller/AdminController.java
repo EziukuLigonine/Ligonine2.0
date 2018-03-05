@@ -51,7 +51,7 @@ public class AdminController {
 	
 	@GetMapping(value = "/admins/{id}")
 	@ApiOperation(value = "Get admin", notes = "Returns a single admin")
-	//@PreAuthorize("hasRole('Admin')")
+	@PreAuthorize("hasRole('Admin')")
 	public User getAdmin(@PathVariable String id) {
 		return adminService.getAdmin(id);
 	}
@@ -68,14 +68,14 @@ public class AdminController {
 	@PostMapping(value = "admin/admins/new")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = "Create admins", notes = "Creates admin")
-	//@PreAuthorize("hasRole('Admin')")
+	@PreAuthorize("hasRole('Admin')")
 	public void createAdmin(@RequestBody CreateAdminCmd cmd) {
 		adminService.createAdmin(cmd);
 	}
 	
 	@PutMapping(value = "/admins/{id}")
 	@ApiOperation(value = "Update admin", notes = "Updates admin details")
-	//@PreAuthorize("hasRole('Admin')")
+	@PreAuthorize("hasRole('Admin')")
 	public void updateAdmin(@RequestBody CreateAdminCmd cmd, @PathVariable String id) {
 		adminService.updateAdmin(cmd, id);
 	}
@@ -83,7 +83,7 @@ public class AdminController {
 	@DeleteMapping(value = "/admins/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@ApiOperation(value = "Delete admin", notes = "Removes admin")
-	//@PreAuthorize("hasRole('Admin')")
+	@PreAuthorize("hasRole('Admin')")
 	public void deleteAdmin(@PathVariable String id) {
 		adminService.deleteAdmin(id);
 	}

@@ -35,16 +35,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userService);
-			//.passwordEncoder(passwordEncoder());
+		auth.userDetailsService(userService)
+			.passwordEncoder(passwordEncoder());
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		  .authorizeRequests()
-		   // .antMatchers("/").permitAll()
-		   // .antMatchers("/api/**").authenticated()
+		   .antMatchers("/").permitAll()
+		   .antMatchers("/api/**").authenticated()
 		  .and()
 		    .formLogin()
 		    .successHandler(new SimpleUrlAuthenticationSuccessHandler())

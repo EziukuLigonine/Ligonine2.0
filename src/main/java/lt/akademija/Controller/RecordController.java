@@ -36,7 +36,7 @@ public class RecordController {
 	
 	@GetMapping(value = "/records")
 	@ApiOperation(value = "Get record list", notes = "Returns list of all records")
-	//@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
+	@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
 	public List<Record> getRecords(@ApiParam(value = "Search record")
 									@RequestParam(value = "search", required = false) String search ){
 		return recordService.getRecords(search);
@@ -44,7 +44,7 @@ public class RecordController {
 	
 	@GetMapping(value = "/records/{id}")
 	@ApiOperation(value = "Get record", notes = "Returns a single record")
-	//@PreAuthorize("hasRole('Admin') or hasRole('Patient') or hasRole('Doctor')")
+	@PreAuthorize("hasRole('Admin') or hasRole('Patient') or hasRole('Doctor')")
 	public Record getRecord(@PathVariable String id) {
 		return recordService.getRecord(id);
 	}
@@ -52,14 +52,14 @@ public class RecordController {
 	@PostMapping(value = "admin/records/new")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = "Create records", notes = "Creates record")
-	//@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
+	@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
 	public void createRecord(@RequestBody CreateRecordCmd cmd) {
 		recordService.createRecord(cmd);
 	}
 	
 	@PutMapping(value = "/records/{id}")
 	@ApiOperation(value = "Update record", notes = "Updates record details")
-	//@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
+	@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
 	public void updateRecord(@RequestBody CreateRecordCmd cmd, @PathVariable String id) {
 		recordService.updateRecord(cmd, id);
 	}
@@ -67,7 +67,7 @@ public class RecordController {
 	@DeleteMapping(value = "/records/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@ApiOperation(value = "Delete record", notes = "Removes record")
-	//@PreAuthorize("hasRole('Admin')")
+	@PreAuthorize("hasRole('Admin')")
 	public void deleteRecord(@PathVariable String id) {
 		recordService.deleteRecord(id);
 	}
