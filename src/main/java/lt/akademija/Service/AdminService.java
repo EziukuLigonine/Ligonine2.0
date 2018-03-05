@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +26,9 @@ public class AdminService {
 	
 	@Autowired
 	private AdminRepository adminRepository;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	
 	@Transactional
@@ -43,7 +47,7 @@ public class AdminService {
 		admin.setName(cmd.getName());
 		admin.setSurname(cmd.getSurname());
 		admin.setUsername(cmd.getUsername());
-		admin.setPassword(cmd.getPassword());
+		admin.setPassword(passwordEncoder.encode(cmd.getPassword()));
 		admin.setSpecialisation(cmd.getSpecialisation());
 		userRepository.save(admin);
 	}

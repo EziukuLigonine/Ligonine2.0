@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -35,6 +36,7 @@ public class PrescriptionController {
 	
 	@GetMapping(value = "/prescriptions")
 	@ApiOperation(value = "Get prescription list", notes = "Returns list of all prescriptions")
+	@PreAuthorize("hasRole('Admin') or hasRole('Doctor') or hasRole('Pharmacist')")
 	public List<Prescription> getPrescriptions(@ApiParam(value = "Search prescription")
 									@RequestParam(value = "search", required = false) String search ){
 		return prescriptionService.getPrescriptions(search);
@@ -42,6 +44,7 @@ public class PrescriptionController {
 	
 	@GetMapping(value = "/prescriptions/{id}")
 	@ApiOperation(value = "Get prescription", notes = "Returns a single prescription")
+	@PreAuthorize("hasRole('Admin') or hasRole('Patient') or hasRole('Doctor') or hasRole('Pharmacist')")
 	public Prescription getPrescription(@PathVariable String id) {
 		return prescriptionService.getPrescription(id);
 	}
@@ -49,12 +52,14 @@ public class PrescriptionController {
 	@PostMapping(value = "admin/prescriptions/new")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = "Create prescriptions", notes = "Creates prescription")
+	@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
 	public void createPrescription(@RequestBody CreatePrescriptionCmd cmd) {
 		prescriptionService.createPrescription(cmd);
 	}
 	
 	@PutMapping(value = "/prescriptions/{id}")
 	@ApiOperation(value = "Update prescription", notes = "Updates prescription details")
+	@PreAuthorize("hasRole('Admin') or hasRole('Doctor') or hasRole('Pharmacist')")
 	public void updatePrescription(@RequestBody CreatePrescriptionCmd cmd, @PathVariable String id) {
 		prescriptionService.updatePrescription(cmd, id);
 	}
@@ -62,6 +67,7 @@ public class PrescriptionController {
 	@DeleteMapping(value = "/prescriptions/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@ApiOperation(value = "Delete prescription", notes = "Removes prescription")
+	@PreAuthorize("hasRole('Admin')")
 	public void deletePrescription(@PathVariable String id) {
 		prescriptionService.deletePrescription(id);
 	}

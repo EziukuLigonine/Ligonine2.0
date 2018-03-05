@@ -6,7 +6,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +31,9 @@ public class PatientService {
 	
 	@Autowired
 	private PatientRepository patientRepository;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private RecordRepository recordRepository;
@@ -66,7 +69,7 @@ public class PatientService {
 		patient.setName(cmd.getName());
 		patient.setSurname(cmd.getSurname());
 		patient.setUsername(cmd.getUsername());
-		patient.setPassword(cmd.getPassword());
+		patient.setPassword(passwordEncoder.encode(cmd.getPassword()));
 		patient.setDateOfBirth(cmd.getDateOfBirth());
 		patient.setPersonalId(cmd.getPersonalId());
 		patient.setDoctorUsername(cmd.getDoctorUsername());
