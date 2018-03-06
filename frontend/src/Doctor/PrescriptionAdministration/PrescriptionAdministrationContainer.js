@@ -38,8 +38,15 @@ export class PrescriptionAdministrationContainer extends React.Component {
             alert("Įveskite teigiamą skaičių.")
         }
     }
+    ActiveMat(){
+        if (this.state.activeMat === "") {
+            alert("Prašome įvesti veikliąsias medžiagas.");
+        } else {
+            return true;
+        }
+    }
     handleClick = (event) => {
-        if (this.PositiveNumber()) {
+        if (this.ActiveMat && this.PositiveNumber()) {
             var today = new Date();
             var dd = today.getDate();
             var mm = today.getMonth() + 1; //January is 0!
@@ -68,9 +75,6 @@ export class PrescriptionAdministrationContainer extends React.Component {
         console.log(outputPrescription);
         if (this.state.personalId === "") {
             alert("Prašome įvesti asmens kodą.");
-        }
-        if (this.state.activeMat === "") {
-            alert("Prašome įvesti veikliąsias medžiagas.");
         }
         if (this.state.activeMatQuantity === "") {
             alert("Prašome įvesti veikliosios/veikliųjų medžiagos/ų kiekį.");

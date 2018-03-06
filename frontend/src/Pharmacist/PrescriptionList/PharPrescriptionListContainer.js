@@ -35,7 +35,9 @@ export class PharPrescriptionListContainer extends Component {
         } else {
             let filteredPrescriptions = this.state.prescriptions.filter((prescription) => {
                     return prescription.personalId.indexOf(
-                        this.state.search) !== -1;
+                        this.state.search) !== -1 || prescription.name.indexOf(
+                    this.state.search) !== -1 || prescription.surname.indexOf(
+                    this.state.search) !== -1;
                 }
             );
             console.log(this.state.prescriptions)

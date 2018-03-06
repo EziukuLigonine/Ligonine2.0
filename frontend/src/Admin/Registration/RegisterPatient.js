@@ -40,6 +40,26 @@ class RegisterPatient extends Component {
         }
     }
 
+    EmptyFields() {
+        if (this.state.name === "" || this.state.surname === "" || this.state.username === "" || this.state.personalId === "" || this.state.dateOfBirth === "") {
+            alert("Visi laukai turi būti užpildyti");
+        } else return true;
+    }
+
+    EmptySurname() {
+        if (this.state.surname === "") {
+            alert("Prašome įvesti pavardę");
+        }
+    }
+
+    EmptyUsername() {
+        if (this.state.username === "") {
+            alert("Prašome įvesti slapyvardį");
+        } else {
+            return true;
+        }
+    }
+
     BirthdayNotIntheFuture() {
 
         var currentDate = new Date();
@@ -65,16 +85,12 @@ class RegisterPatient extends Component {
             parseInt(this.state.dateOfBirth.substring(8, 10) <= dd)) {
             return true;
         } else {
-            alert("Data ateityje")
+            alert("Neteisinga data")
         }
     }
 
     handleClick = (event) => {
-        console.log(this.state.dateOfBirth.substring(8, 10));
-        console.log(this.state.dateOfBirth.substring(5, 7));
-        console.log(this.state.dateOfBirth);
-        console.log(this.state.dateOfBirth.substring(0, 4));
-        if (this.IdMatchesBirth() && this.BirthdayNotIntheFuture()) {
+        if (this.EmptyFields() && this.IdMatchesBirth() && this.BirthdayNotIntheFuture()) {
             var outputPatient = {
                 name: this.state.name,
                 surname: this.state.surname,
@@ -85,8 +101,8 @@ class RegisterPatient extends Component {
                 doctorUsername: this.state.doctorUsername
             };
         }
-        if (this.state.name === "") {
-            alert("Prašome įvesti vardą");
+        if (this.state.name===""){
+            alert("Prašome įvesti pavardę")
         }
         if (this.state.surname === "") {
             alert("Prašome įvesti pavardę");
@@ -100,8 +116,8 @@ class RegisterPatient extends Component {
         if (this.state.personalId === "") {
             alert("Prašome įvesti asmens kodą");
         }
-        if (this.state.personalId.length != 11){
-            alert ("Asmens kodas turi būti sudarytas iš 11 skaitmenų")
+        if (this.state.personalId.length != 11) {
+            alert("Asmens kodas turi būti sudarytas iš 11 skaitmenų")
         }
         if (this.state.dateOfBirth === "") {
             alert("Prašome įvesti gimimo datą");

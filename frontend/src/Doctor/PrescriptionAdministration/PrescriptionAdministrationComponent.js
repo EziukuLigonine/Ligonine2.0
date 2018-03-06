@@ -15,7 +15,7 @@ export var PrescriptionAdministrationComponent = (props) => {
 
 
             <div className="form-group">
-                <label className="col-sm-2 control-label">Veiklioji medžiada</label>
+                <label className="col-sm-2 control-label">Veiklioji medžiaga</label>
                 <div className="col-sm-3">
                     <input type="text" className="form-control" id="activeMat" placeholder="Veiklioji medžiaga" value={props.activeMat}
                            onChange={props.onChange}/>
@@ -23,7 +23,7 @@ export var PrescriptionAdministrationComponent = (props) => {
             </div>
 
             <div className="form-group">
-                <label className="col-sm-2 control-label">Veikliosios medžiagos kiekis</label>
+                <label className="col-sm-2 control-label">Veikliosios medžiagos kiekis vienoje dozėje</label>
                 <div className="col-sm-3">
                     <input type="text" className="form-control" id="activeMatQuantity" placeholder="Veikliosios medžiagos kiekis" value={props.activeMatQuantity}
                            onChange={props.onChange}/>
@@ -31,7 +31,7 @@ export var PrescriptionAdministrationComponent = (props) => {
             </div>
 
             <div className="form-group">
-                <label className="col-sm-2 control-label">Vienetai</label>
+                <label className="col-sm-2 control-label">Veikliosios medžiagos matavimo vienetai</label>
                 <div className="col-sm-3">
                     <select id="unit" value={props.unit}
                            onChange={props.onChange}>
@@ -44,7 +44,7 @@ export var PrescriptionAdministrationComponent = (props) => {
             </div>
 
             <div className="form-group">
-                <label className="col-sm-2 control-label">Aprašymas</label>
+                <label className="col-sm-2 control-label">Vartojimo aprašymas</label>
                 <div className="col-sm-3">
                     <input type="text" className="form-control" id="desc" placeholder="Aprašymas" value={props.desc}
                            onChange={props.onChange}/>

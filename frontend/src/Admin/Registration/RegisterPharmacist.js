@@ -27,16 +27,22 @@ class RegisterPharmacist extends Component {
             }
         );
     };
-
+    EmptyFields() {
+        if (this.state.name === "" || this.state.surname === "" || this.state.username === "" || this.state.personalId === "" || this.state.companyName === "" || this.state.companyType==="") {
+            alert("Visi laukai turi būti užpildyti");
+        } else return true;
+    }
     handleClick = (event) => {
-        const outputPharmacist = {
-            name: this.state.name,
-            surname: this.state.surname,
-            username: this.state.username,
-            password: this.state.password,
-            companyType: this.state.companyType,
-            companyName: this.state.companyName
-        };
+        if (this.EmptyFields()) {
+            var outputPharmacist = {
+                name: this.state.name,
+                surname: this.state.surname,
+                username: this.state.username,
+                password: this.state.password,
+                companyType: this.state.companyType,
+                companyName: this.state.companyName
+            };
+        }
         if (this.state.name === "") {
             alert("Prašome įvesti vardą");
         }

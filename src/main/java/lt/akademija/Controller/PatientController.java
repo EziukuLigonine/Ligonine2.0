@@ -46,7 +46,7 @@ public class PatientController {
 	
 	@GetMapping(value = "/patients")
 	@ApiOperation(value = "Get patient list", notes = "Returns list of all patients")
-	@PreAuthorize("hasRole('Admin')")
+	@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
 	public List<Patient> getPatients(@ApiParam(value = "Search patient")
 									@RequestParam(value = "search", required = false) String search ){
 		return patientService.getPatients(search);
