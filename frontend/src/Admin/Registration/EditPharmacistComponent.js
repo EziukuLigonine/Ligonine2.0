@@ -1,8 +1,9 @@
 import React from 'react';
 
-const RegisterAdminComponent = (props) => {
-  return(
-    <form className="form-horizontal">
+const RegisterPharmacistComponent = (props) => {
+    return (
+
+        <form className="form-horizontal">
 
             <div className="form-group">
                 <label className="col-sm-2 control-label">Vardas</label>
@@ -23,15 +24,30 @@ const RegisterAdminComponent = (props) => {
             <div className="form-group">
                 <label className="col-sm-2 control-label">Vartotojo vardas</label>
                 <div className="col-sm-3">
-                    <input type="text" className="form-control" id="username" placeholder="Vartotojo vardas" value={props.username}
+                    <input type="text" className="form-control" id="username" placeholder="Vartotojo vardas"
+                           value={props.username}
                            onChange={props.onChange}/>
                 </div>
             </div>
 
             <div className="form-group">
-                <label className="col-sm-2 control-label">Slaptažodis</label>
+                <label className="col-sm-2 control-label">Įmonės tipas</label>
                 <div className="col-sm-3">
-                    <input type="text" className="form-control" id="password" placeholder="Slaptažodis" value={props.password}
+                    <select id="companyType" value={props.companyType} onChange={props.onChange}>
+                        <option></option>
+                        <option>UAB</option>
+                        <option>VŠĮ</option>
+                        <option>MB</option>
+                        <option>AB</option>
+                    </select>
+                </div>
+            </div>
+
+            <div className="form-group">
+                <label className="col-sm-2 control-label">Įmonės pavadinimas</label>
+                <div className="col-sm-3">
+                    <input type="text" className="form-control" id="companyName" placeholder="Įmonės pavadinimas"
+                           value={props.companyName}
                            onChange={props.onChange}/>
                 </div>
             </div>
@@ -43,7 +59,8 @@ const RegisterAdminComponent = (props) => {
                 </div>
             </div>
         </form>
-  );
+
+    );
 };
 
-export default RegisterAdminComponent;
+export default RegisterPharmacistComponent;

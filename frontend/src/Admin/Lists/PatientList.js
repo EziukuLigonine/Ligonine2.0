@@ -21,17 +21,10 @@ class PatientList extends Component {
             });
     };
 
-    removePatient = (index) => {
-        const items = this.state.patients.filter((patient) => {
-          return patient.id !== parseInt(index, 10);
-        });
-        this.setState({ patients : items });
-    }
-
     render() {
         return (
             <div>
-                <PatientListComponent patients={this.state.patients} history={this.props.history} remove={this.removePatient} />
+                <PatientListComponent patients={this.state.patients} history={this.props.history} />
             </div>
         );
     }

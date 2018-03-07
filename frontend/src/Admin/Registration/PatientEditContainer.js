@@ -1,6 +1,6 @@
 import React from 'react';
 import {API} from '../ApiUrl';
-import RegisterPatientComponent from "./RegisterPatientComponent";
+import EditPatientComponent from "./EditPatientComponent";
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
@@ -12,10 +12,8 @@ class PatientEditContainer extends React.Component {
             name: '',
             surname: '',
             username: '',
-            password: '',
             personalId: '',
             dateOfBirth: '',
-            doctorUsername: '',
             history: {}
         }
 
@@ -24,15 +22,13 @@ class PatientEditContainer extends React.Component {
     componentDidMount() {
         axios.get(API + "/api/patients/" + this.props.match.params.id)
         .then(response => {
-            const {name, surname, username, password, personalId, dateOfBirth, doctorUsername} = response.data;
+            const {name, surname, username, personalId, dateOfBirth} = response.data;
             this.setState({
                 name : name,
                 surname : surname,
                 username : username,
-                password : password,
                 personalId : personalId,
                 dateOfBirth : dateOfBirth,
-                doctorUsername : doctorUsername,
                 history: this.props.history
             })
         })
@@ -56,10 +52,8 @@ class PatientEditContainer extends React.Component {
             name: this.state.name,
             surname: this.state.surname,
             username: this.state.username,
-            password: this.state.password,
             personalId: this.state.personalId,
-            dateOfBirth: this.state.dateOfBirth,
-            doctorUsername: this.state.doctorUsername
+            dateOfBirth: this.state.dateOfBirth
         };
 
         axios.put(API + "/api/patients/" + this.props.match.params.id, outputProduct)
@@ -77,14 +71,12 @@ class PatientEditContainer extends React.Component {
     render() {
         return (
             <div>
-                <RegisterPatientComponent
+                <EditPatientComponent
                     name={this.state.name}
                     surname={this.state.surname}
                     username={this.state.username}
-                    password={this.state.password}
                     personalId={this.state.personalId}
                     dateOfBirth={this.state.dateOfBirth}
-                    doctorUsername={this.state.doctorUsername}
                     onChange={this.handleChange}
                     onClick={this.handleClick}
                     history={this.state.history}

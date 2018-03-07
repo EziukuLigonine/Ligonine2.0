@@ -15,55 +15,46 @@ import lt.akademija.Model.Admin;
 import lt.akademija.Model.CreateAdminCmd;
 import lt.akademija.Model.User;
 import lt.akademija.Repository.AdminRepository;
-import lt.akademija.Repository.UserRepository;
 
 @Service
 
 public class AdminService {
-	
-	@Autowired
-	private UserRepository userRepository;
-	
+
 	@Autowired
 	private AdminRepository adminRepository;
-	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	
 	@Transactional
-	public List<Admin> getAdmins(String search){
-		return search == null ? adminRepository.findAll() : adminRepository.findByUsername(search); //reikia filtruoti tik aktarus. 
+	public List<Admin> getAdmins() {
+		return adminRepository.findAll();
+																									// tik aktarus.
 	}
-	
+
 	@Transactional
-	public User getAdmin(@PathVariable String id) {
-		return userRepository.getOne(Long.parseLong(id));
+	public User getAdmin(@PathVariable Long id) {
+		return adminRepository.findOne(id);
 	}
-	
+
 	@Transactional
 	public void createAdmin(@RequestBody CreateAdminCmd cmd) {
-		User admin = new Admin();
+		Admin admin = new Admin();
 		admin.setName(cmd.getName());
 		admin.setSurname(cmd.getSurname());
 		admin.setUsername(cmd.getUsername());
 		admin.setPassword(passwordEncoder.encode(cmd.getPassword()));
-		admin.setSpecialisation(cmd.getSpecialisation());
-		userRepository.save(admin);
+		admin.setRole("Admin");
+		adminRepository.save(admin);
 	}
-	
-	@Transactional 
-	public void updateAdmin(@RequestBody CreateAdminCmd cmd, @PathVariable String id) {
-		User admin = userRepository.getOne(Long.parseLong(id));
-		if(admin != null) {
-			BeanUtils.copyProperties(cmd, admin);
-			userRepository.save(admin);
-		}
-	}
-	
+
 	@Transactional
-	public void deleteAdmin(@PathVariable String id) {
-		userRepository.delete(Long.parseLong(id));
+	public void updateAdmin(@RequestBody CreateAdminCmd cmd, @PathVariable Long id) {
+		Admin newAdmin = adminRepository.findOne(id);
+		newAdmin.setName(cmd.getName());
+		newAdmin.setSurname(cmd.getSurname());
+		newAdmin.setUsername(cmd.getUsername());
+		adminRepository.save(newAdmin);
 	}
 
 }

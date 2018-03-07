@@ -20,18 +20,12 @@ export class PrescriptionListContainer extends Component {
             });
     };
 
-    removePrescription = (index) => {
-        const items = this.state.prescriptions.filter((prescription) => {
-          return prescription.id !== parseInt(index, 10);
-        });
-        this.setState({ prescriptions : items });
-    }
 
     render() {
         console.log(this.state.prescriptions);
         return (
             <div>
-                <PrescriptionListComponent prescriptions={this.state.prescriptions} history={this.props.history}  remove={this.removePrescription} />
+                <PrescriptionListComponent prescriptions={this.state.prescriptions} history={this.props.history}  />
             </div>
         );
     }

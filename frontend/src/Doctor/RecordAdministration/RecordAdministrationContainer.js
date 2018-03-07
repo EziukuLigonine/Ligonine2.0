@@ -15,11 +15,35 @@ export class RecordAdministrationContainer extends React.Component {
             appDesc: '',
             vlk: '',
             repeated: '',
-            doctorUsername: '',
             date: '',
+            patientId: '',
+            doctorId: '',
             history: props.history
         }
     }
+
+    componentDidMount = () => {
+        axios.get('http://localhost:8081/api/userId/')
+            .then((response) => {
+                this.setState({doctorId: response.data});
+                axios.get('http://localhost:8081/api/patients/' +  this.props.match.params.id)
+                  .then((response) => {
+                    const {id, personalId} = response.data;
+                    this.setState({
+                      personalId: personalId,
+                      patientId: id
+                    });
+
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                  })
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
 
     handleChange = (event) => {
         const target = event.target;
@@ -53,7 +77,6 @@ export class RecordAdministrationContainer extends React.Component {
             appDesc: this.state.appDesc,
             vlk: this.state.vlk,
             repeated: this.state.repeated,
-            doctorUsername: this.state.doctorUsername,
             date: this.state.date = today
         };
         if (this.state.personalId === "") {
@@ -84,7 +107,7 @@ export class RecordAdministrationContainer extends React.Component {
             alert("Prašome įvesti vizito datą");
         }
 
-        axios.post("http://localhost:8081/api/admin/records/new", outputRecord)
+        axios.post('http://localhost:8081/api/records/new/' + this.state.doctorId + '/' + this.state.patientId, outputRecord)
             .then((response) => {
                 this.setState( {
                   personalId: '',
@@ -93,10 +116,10 @@ export class RecordAdministrationContainer extends React.Component {
                   appDesc: '',
                   vlk: '',
                   repeated: '',
-                  doctorUsername: '',
                   date: ''
                 });
                 alert("Ligos istorija sėkmingai užregistruota");
+                this.props.history.push("/doctor/records");
             })
             .catch((error) => {
                 console.log(error);
@@ -114,7 +137,6 @@ export class RecordAdministrationContainer extends React.Component {
                     appDesc={this.state.appDesc}
                     vlk={this.state.vlk}
                     repeated={this.state.repeated}
-                    doctorUsername={this.state.doctorUsername}
                     date={this.state.date}
                     onChange={this.handleChange}
                     onClick={this.handleClick}

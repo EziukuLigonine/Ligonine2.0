@@ -11,61 +11,58 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import lt.akademija.Model.CreateDoctorCmd;
 import lt.akademija.Model.CreatePharmacistCmd;
+import lt.akademija.Model.Doctor;
 import lt.akademija.Model.Pharmacist;
 import lt.akademija.Model.User;
 import lt.akademija.Repository.PharmacistRepository;
-import lt.akademija.Repository.UserRepository;
 
 @Service
 
 public class PharmacistService {
-	
-	@Autowired
-	private UserRepository userRepository;
-	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
+
 	@Autowired
 	private PharmacistRepository pharmacistRepository;
 
-	
 	@Transactional
-	public List<Pharmacist> getPharmacists(String search){
-		return search == null ? pharmacistRepository.findAll() : pharmacistRepository.findByUsername(search); //reikia filtruoti tik aktarus. 
+	public List<Pharmacist> getPharmacists() {
+		return pharmacistRepository.findAll();
+																												// filtruoti
+																												// tik
+																												// aktarus.
 	}
-	
+
 	@Transactional
-	public User getPharmacist(@PathVariable String id) {
-		return userRepository.getOne(Long.parseLong(id));
+	public User getPharmacist(@PathVariable Long id) {
+		return pharmacistRepository.findOne(id);
 	}
-	
+
 	@Transactional
 	public void createPharmacist(@RequestBody CreatePharmacistCmd cmd) {
-		User pharmacist = new Pharmacist();
+		Pharmacist pharmacist = new Pharmacist();
 		pharmacist.setName(cmd.getName());
 		pharmacist.setSurname(cmd.getSurname());
 		pharmacist.setUsername(cmd.getUsername());
 		pharmacist.setPassword(passwordEncoder.encode(cmd.getPassword()));
 		pharmacist.setCompanyType(cmd.getCompanyType());
 		pharmacist.setCompanyName(cmd.getCompanyName());
-		userRepository.save(pharmacist);
+		pharmacist.setRole("Pharmacist");
+		pharmacistRepository.save(pharmacist);
 	}
-	
-	@Transactional 
-	public void updatePharmacist(@RequestBody CreatePharmacistCmd cmd, @PathVariable String id) {
-		User pharmacist = userRepository.getOne(Long.parseLong(id));
-		if(pharmacist != null) {
-			BeanUtils.copyProperties(cmd, pharmacist);
-			userRepository.save(pharmacist);
-		}
-	}
-	
+
 	@Transactional
-	public void deletePharmacist(@PathVariable String id) {
-		userRepository.delete(Long.parseLong(id));
+	public void updatePharmacist(@RequestBody CreatePharmacistCmd cmd, @PathVariable Long id) {
+		Pharmacist newPharmacist = pharmacistRepository.findOne(id);
+		newPharmacist.setName(cmd.getName());
+		newPharmacist.setSurname(cmd.getSurname());
+		newPharmacist.setUsername(cmd.getUsername());
+		newPharmacist.setCompanyType(cmd.getCompanyType());
+		newPharmacist.setCompanyName(cmd.getCompanyName());
+		pharmacistRepository.save(newPharmacist);
 	}
 
 }
-

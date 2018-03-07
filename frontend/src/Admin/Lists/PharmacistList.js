@@ -21,17 +21,11 @@ class PharmacistList extends Component {
             });
     };
 
-    removePharmacist = (index) => {
-        const items = this.state.pharmacists.filter((pharmacist) => {
-          return pharmacist.id !== parseInt(index, 10);
-        });
-        this.setState({ pharmacists : items });
-    }
 
     render() {
         return (
             <div>
-                <PharmacistListComponent pharmacists={this.state.pharmacists} history={this.props.history} remove={this.removePharmacist} />
+                <PharmacistListComponent pharmacists={this.state.pharmacists} history={this.props.history} />
             </div>
         );
     }

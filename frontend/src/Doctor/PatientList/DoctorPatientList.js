@@ -5,7 +5,7 @@ import axios from 'axios';
 axios.defaults.withCredentials = true;
 
 
-class DocPatientList extends Component {
+class DoctorPatientList extends Component {
 
     constructor(props) {
         super(props);
@@ -16,7 +16,7 @@ class DocPatientList extends Component {
     }
 
     componentDidMount = () => {
-        axios.get(API + "/api/patients")
+        axios.get(API + "/api/doctors/" + this.props.match.params.id + "/patients")
             .then((response) => {
                 this.setState({patients: response.data});
             })
@@ -61,4 +61,4 @@ class DocPatientList extends Component {
         }
     }
 }
-export default DocPatientList;
+export default DoctorPatientList;

@@ -11,83 +11,88 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import lt.akademija.Model.CreateDoctorCmd;
+import lt.akademija.Model.Admin;
+import lt.akademija.Model.CreateAdminCmd;
 import lt.akademija.Model.CreatePatientCmd;
+import lt.akademija.Model.Doctor;
 import lt.akademija.Model.Patient;
 import lt.akademija.Model.Prescription;
 import lt.akademija.Model.Record;
 import lt.akademija.Model.User;
+import lt.akademija.Repository.DoctorRepository;
 import lt.akademija.Repository.PatientRepository;
 import lt.akademija.Repository.PrescriptionRepository;
 import lt.akademija.Repository.RecordRepository;
-import lt.akademija.Repository.UserRepository;
 
 @Service
 
 public class PatientService {
-	
-	@Autowired
-	private UserRepository userRepository;
-	
+
 	@Autowired
 	private PatientRepository patientRepository;
-	
+
+	@Autowired
+	private DoctorRepository doctorRepository;
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private RecordRepository recordRepository;
-	
+
 	@Autowired
 	private PrescriptionRepository prescriptionRepository;
 
-	
 	@Transactional
-	public List<Patient> getPatients(String search){
-		return search == null ? patientRepository.findAll() : patientRepository.findByUsername(search); //reikia filtruoti tik aktarus. 
+	public List<Patient> getPatients() {
+		return patientRepository.findAll();
+
 	}
-	
+
 	@Transactional
-	public User getPatient(@PathVariable String id) {
-		return userRepository.getOne(Long.parseLong(id));
+	public User getPatient(@PathVariable Long id) {
+		return patientRepository.findOne(id);
 	}
-	
+
 	@Transactional
-	public List<Record> getPatientRecords(@PathVariable String id) {
-		return recordRepository.findByPersonalId(patientRepository.getOne(Long.parseLong(id)).getPersonalId());
+	public List<Record> getPatientRecords(@PathVariable Long id) {
+		return recordRepository.findByPatientId(id);
 	}
-	
+
 	@Transactional
-	public List<Prescription> getPatientPrescriptions(@PathVariable String id) {
-		String personalId = patientRepository.getOne(Long.parseLong(id)).getPersonalId();
-		return prescriptionRepository.findByPersonalId(personalId);
+	public List<Prescription> getPatientPrescriptions(@PathVariable Long id) {
+		return prescriptionRepository.findByPatientId(id);
 	}
-	
+
 	@Transactional
 	public void createPatient(@RequestBody CreatePatientCmd cmd) {
-		User patient = new Patient();
+		Patient patient = new Patient();
 		patient.setName(cmd.getName());
 		patient.setSurname(cmd.getSurname());
 		patient.setUsername(cmd.getUsername());
 		patient.setPassword(passwordEncoder.encode(cmd.getPassword()));
 		patient.setDateOfBirth(cmd.getDateOfBirth());
 		patient.setPersonalId(cmd.getPersonalId());
-		patient.setDoctorUsername(cmd.getDoctorUsername());
-		userRepository.save(patient);
+		patient.setRole("Patient");
+		patientRepository.save(patient);
 	}
-	
-	@Transactional 
-	public void updatePatient(@RequestBody CreatePatientCmd cmd, @PathVariable String id) {
-		User patient = userRepository.getOne(Long.parseLong(id));
-		if(patient != null) {
-			BeanUtils.copyProperties(cmd, patient);
-			userRepository.save(patient);
-		}
-	}
-	
+
 	@Transactional
-	public void deletePatient(@PathVariable String id) {
-		userRepository.delete(Long.parseLong(id));
+	public void updatePatient(@RequestBody CreatePatientCmd cmd, @PathVariable Long id) {
+		Patient newPatient = patientRepository.findOne(id);
+		newPatient.setName(cmd.getName());
+		newPatient.setSurname(cmd.getSurname());
+		newPatient.setUsername(cmd.getUsername());
+		newPatient.setDateOfBirth(cmd.getDateOfBirth());
+		newPatient.setPersonalId(cmd.getPersonalId());
+		patientRepository.save(newPatient);
 	}
-	
+
+	@Transactional
+	public void assignPatient(Long patientId, Long doctorId) {
+		Patient patient = patientRepository.findOne(patientId);
+		patient.setDoctor(doctorRepository.findOne(doctorId));
+		patientRepository.save(patient);
+	}
+
 }

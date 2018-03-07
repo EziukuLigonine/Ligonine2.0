@@ -1,6 +1,6 @@
 import React from 'react';
 import {API} from '../ApiUrl';
-import RegisterAdminComponent from "./RegisterAdminComponent";
+import EditAdminComponent from "./EditAdminComponent";
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
@@ -12,24 +12,22 @@ class AdminEditContainer extends React.Component {
             name: '',
             surname: '',
             username: '',
-            password: '',
             history: {}
         }
     }
 
     componentDidMount() {
         axios.get(API + "/api/admins/" + this.props.match.params.id)
-        .then(response => {
-            const {name, surname, username, password} = response.data;
+        .then((response) => {
+            const {name, surname, username} = response.data;
             this.setState({
                 name : name,
                 surname : surname,
                 username : username,
-                password : password,
                 history: this.props.history
             })
         })
-        .catch(error => {
+        .catch((error) => {
             console.log(error);
         })
     }
@@ -48,8 +46,7 @@ class AdminEditContainer extends React.Component {
         const outputProduct = {
             name: this.state.name,
             surname: this.state.surname,
-            username: this.state.username,
-            password: this.state.password
+            username: this.state.username
         };
 
         axios.put(API + "/api/admins/" + this.props.match.params.id, outputProduct)
@@ -67,11 +64,10 @@ class AdminEditContainer extends React.Component {
     render() {
         return (
             <div>
-                <RegisterAdminComponent
+                <EditAdminComponent
                     name={this.state.name}
                     surname={this.state.surname}
                     username={this.state.username}
-                    password={this.state.password}
                     onChange={this.handleChange}
                     onClick={this.handleClick}
                     history={this.state.history}

@@ -14,10 +14,8 @@ const tableStyle = {
             name = {doctor.name}
             surname = {doctor.surname}
             username = {doctor.username}
-            password = {doctor.password}
             specialisation = {doctor.specialisation}
             history = {props.history}
-            remove = {props.remove}
             />
         );
       });
@@ -31,7 +29,6 @@ const tableStyle = {
                         <th>Vardas</th>
                         <th>Pavardė</th>
                         <th>Vartotojo vardas</th>
-                        <th>Slaptažodis</th>
                         <th>Specializacija</th>
                         <th></th>
                         </tr>

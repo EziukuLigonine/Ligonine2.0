@@ -13,7 +13,7 @@ const green = {
 }
 
 export var PrescriptionComponent = (props) => {
-    var {id, personalId, date, activeMat, activeMatQuantity, unit, desc, validUntil, doctorUsername, timestamp} = props;
+    var {id, personalId, date, activeMat, activeMatQuantity, unit, desc, validUntil, timestamp} = props;
 
     var handleClick = (event) => {
         props.history.push('/prescriptions/' + id);
@@ -34,7 +34,6 @@ export var PrescriptionComponent = (props) => {
             <td>{activeMatQuantity}</td>
             <td>{unit}</td>
             <td>{desc}</td>
-            <td>{doctorUsername}</td>
             <td>{validUntil}</td>
             <td>{timestamp}</td>
             <td>

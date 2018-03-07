@@ -14,9 +14,7 @@ const tableStyle = {
                 name = {admin.name}
                 surname = {admin.surname}
                 username = {admin.username}
-                password = {admin.password}
                 history = {props.history}
-                remove = {props.remove}
             />
         );
       });
@@ -30,7 +28,6 @@ const tableStyle = {
                             <th>Vardas</th>
                             <th>Pavardė</th>
                             <th>Vartotojo vardas</th>
-                            <th>Slaptažodis</th>
                             <th></th>
                         </tr>
                     </thead>

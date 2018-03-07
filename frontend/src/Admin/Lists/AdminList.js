@@ -19,20 +19,13 @@ class AdminList extends Component {
             .catch((error) => {
                 console.log(error);
             });
-            
-    };
 
-    removeAdmin = (index) => {
-        const items = this.state.admins.filter((admin) => {
-          return admin.id !== parseInt(index, 10);
-        });
-        this.setState({ admins : items });
-    }
+    };
 
     render() {
         return (
             <div>
-                <AdminListComponent admins={this.state.admins} history={this.props.history} remove={this.removeAdmin} />
+                <AdminListComponent admins={this.state.admins} history={this.props.history} />
             </div>
         );
     }

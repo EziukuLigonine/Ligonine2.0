@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RegisterPatientComponent = (props) => {
+const EditPatientComponent = (props) => {
   console.log(props);
   return(
     <form className="form-horizontal">
@@ -22,17 +22,9 @@ const RegisterPatientComponent = (props) => {
               </div>
 
               <div className="form-group">
-                  <label className="col-sm-2 control-label">Slapyvardis</label>
+                  <label className="col-sm-2 control-label">Vartotojo vardas</label>
                   <div className="col-sm-3">
-                      <input type="text" className="form-control" id="username" placeholder="Slapyvardis" value={props.username}
-                             onChange={props.onChange}/>
-                  </div>
-              </div>
-
-              <div className="form-group">
-                  <label className="col-sm-2 control-label">Slaptažodis</label>
-                  <div className="col-sm-3">
-                      <input type="text" className="form-control" id="password" placeholder="Slaptažodis" value={props.password}
+                      <input type="text" className="form-control" id="username" placeholder="Vartotojo vardas" value={props.username}
                              onChange={props.onChange}/>
                   </div>
               </div>
@@ -63,4 +55,4 @@ const RegisterPatientComponent = (props) => {
   );
 };
 
-export default RegisterPatientComponent;
+export default EditPatientComponent;
