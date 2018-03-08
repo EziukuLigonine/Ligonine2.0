@@ -62,5 +62,7 @@ public class PharmacistController {
 	public void updatePharmacist(@RequestBody CreatePharmacistCmd cmd, @PathVariable Long id) {
 		pharmacistService.updatePharmacist(cmd, id);
 	}
+	
+	
 
 }

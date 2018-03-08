@@ -26,6 +26,8 @@ class DocNavBar extends Component {
                                 <ul className="dropdown-menu">
                                     <li><Link to="/doctor/myPatients"><span className="glyphicon glyphicon-search" aria-hidden="true"></span>Mano pacientai</Link></li>
                                     <li><Link to="/doctor/patients"><span className="glyphicon glyphicon-search" aria-hidden="true"></span>Visi pacientai</Link></li>
+                                    <li><Link to="/doctor/myPrescriptions"><span className="glyphicon glyphicon-search" aria-hidden="true"></span>Mano receptai</Link></li>
+                                    <li><Link to="/doctor/myRecords"><span className="glyphicon glyphicon-search" aria-hidden="true"></span>Mano įrašai</Link></li>
                                 </ul>
                             </li>
                         </ul>

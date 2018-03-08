@@ -7,17 +7,29 @@ export class RecordListContainer extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {records: []};
+        this.state = {
+          records: [],
+          doctorId: ''
+        };
     }
 
     componentDidMount = () => {
-        axios.get('http://localhost:8081/api/records')
-            .then((response) => {
-                this.setState({records: response.data});
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+      axios.get('http://localhost:8081/api/userId')
+        .then((response) => {
+          this.setState({
+            doctorId: response.data
+          });
+          axios.get('http://localhost:8081/api/doctors/' + this.state.doctorId + '/records')
+              .then((response) => {
+                  this.setState({records: response.data});
+              })
+              .catch((error) => {
+                  console.log(error);
+              });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     };
 
     removeRecord = (index) => {

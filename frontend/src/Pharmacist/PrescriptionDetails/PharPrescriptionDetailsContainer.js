@@ -18,14 +18,15 @@ class PharPrescriptionDetailsContainer extends Component {
       desc: '',
       doctorUsername: '',
       validUntil: '',
-      sold: ''
+      sold: '',
+      pharmacistId: ''
 
     };
   }
   componentDidMount() {
       axios.get(API + '/api/prescriptions/' + this.props.match.params.id)
           .then((response) => {
-            const {id, personalId, date, activeMat, activeMatQuantity, unit, desc, doctorUsername, validUntil, sold} = response.data;
+            const {id, personalId, date, activeMat, activeMatQuantity, unit, desc, validUntil, sold} = response.data;
               this.setState({
                 id: id,
                 personalId: personalId,
@@ -34,7 +35,6 @@ class PharPrescriptionDetailsContainer extends Component {
                 activeMatQuantity: activeMatQuantity,
                 unit: unit,
                 desc: desc,
-                doctorUsername: doctorUsername,
                 validUntil: validUntil,
                 sold: sold
               });
@@ -62,19 +62,34 @@ class PharPrescriptionDetailsContainer extends Component {
         activeMatQuantity: this.state.activeMatQuantity,
         unit: this.state.unit,
         desc: this.state.desc,
-        doctorUsername: this.state.doctorUsername,
         validUntil: this.state.validUntil,
         sold: !this.state.sold
       };
-      axios.put(API + "/api/prescriptions/" + this.props.match.params.id, outputPrescription)
-          .then((response) => {
-            alert("Receptas panaudotas!");
-            this.props.history.push("/pharmacist/prescriptions");
-          })
-          .catch((error) => {
-            alert("Nepavyko! Blogai įvesti duomenys");
-              console.log(error);
+      axios.get(API + "/api/userId")
+        .then((response) => {
+          this.setState({
+            pharmacistId: response.data
           });
+          axios.put(API + "/api/prescription/" + this.props.match.params.id + "/" + this.state.pharmacistId)
+            .then((response) => {
+              axios.put(API + "/api/prescriptions/" + this.props.match.params.id, outputPrescription)
+                  .then((response) => {
+                    alert("Receptas panaudotas!");
+                    this.props.history.push("/pharmacist/prescriptions");
+                  })
+                  .catch((error) => {
+                    alert("Nepavyko! Blogai įvesti duomenys");
+                      console.log(error);
+                  });
+            })
+            .catch((error) => {
+              console.log(error);
+            })
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+
       event.preventDefault();
   };
 
@@ -88,7 +103,6 @@ class PharPrescriptionDetailsContainer extends Component {
           activeMatQuantity={this.state.activeMatQuantity}
           unit={this.state.unit}
           desc={this.state.desc}
-          doctorUsername={this.state.doctorUsername}
           validUntil={this.state.validUntil}
           sold={this.state.sold}
           onChange={this.handleChange}

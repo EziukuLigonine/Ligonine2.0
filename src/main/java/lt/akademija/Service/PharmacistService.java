@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import lt.akademija.Model.CreateDoctorCmd;
 import lt.akademija.Model.CreatePharmacistCmd;
 import lt.akademija.Model.Doctor;
+import lt.akademija.Model.Patient;
 import lt.akademija.Model.Pharmacist;
 import lt.akademija.Model.User;
 import lt.akademija.Repository.PharmacistRepository;
@@ -31,9 +32,9 @@ public class PharmacistService {
 	@Transactional
 	public List<Pharmacist> getPharmacists() {
 		return pharmacistRepository.findAll();
-																												// filtruoti
-																												// tik
-																												// aktarus.
+		// filtruoti
+		// tik
+		// aktarus.
 	}
 
 	@Transactional

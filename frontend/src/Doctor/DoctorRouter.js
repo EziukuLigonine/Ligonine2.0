@@ -21,7 +21,8 @@ class AdminRouter extends Component {
                     <Route exact path="/doctor/patient/:id/prescription" component={PrescriptionAdministrationContainer} />
 
                     <Route exact path="/doctor/patient/:id/record" component={RecordAdministrationContainer} />
-                    <Route exact path="/doctor/records" component={RecordListContainer} />
+                    <Route exact path="/doctor/myRecords" component={RecordListContainer} />
+                    <Route exact path="/doctor/myPrescriptions" component={PrescriptionListContainer} />
 
                     <Route exact path="/doctor/prescription/:id" component={PrescriptionDetailsContainer} />
                     <Route exact path="/doctor/records/:id" component={RecordDetailsContainer} />
