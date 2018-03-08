@@ -68,6 +68,7 @@ public class PrescriptionService {
 		prescription.setUnit(cmd.getUnit());
 		prescription.setDesc(cmd.getDesc());
 		prescription.setValidUntil(cmd.getValidUntil());
+		prescription.setSold(cmd.isSold());
 		prescriptionRepository.save(prescription);
 	}
 	

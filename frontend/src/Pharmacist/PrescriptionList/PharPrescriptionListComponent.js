@@ -13,15 +13,13 @@ export var PharPrescriptionListComponent = (props) => {
                 key = {index}
                 id = {prescription.id}
                 personalId = {prescription.personalId}
-                date = {prescription.date}
+                timestamp = {prescription.timestamp}
                 activeMat = {prescription.activeMat}
                 activeMatQuantity = {prescription.activeMatQuantity}
                 unit = {prescription.unit}
                 desc = {prescription.desc}
-                doctorUsername = {prescription.doctorUsername}
                 validUntil = {prescription.validUntil}
                 history = {props.history}
-                remove = {props.remove}
             />
         );
     });
@@ -39,7 +37,6 @@ export var PharPrescriptionListComponent = (props) => {
                         <th>Kiekis</th>
                         <th>Vnt.</th>
                         <th>Aprašymas</th>
-                        <th>Daktaras</th>
                         <th>Galioja iki</th>
                         <th></th>
                     </tr>
