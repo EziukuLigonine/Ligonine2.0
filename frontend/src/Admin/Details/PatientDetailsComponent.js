@@ -21,7 +21,6 @@ const PatientDetailsComponent = (props) => {
             <p>Vartotojo vardas: {props.patient.username}</p>
             <p>Asmens kodas: {props.patient.personalId}</p>
             <p>Gimimo data: {props.patient.dateOfBirth}</p>
-            <p>Gydytojas: {props.patient.doctorUsername}</p>
               <button type="submit" className="btn btn-success" onClick={assignDoctor}>Priskirti gydytoją</button>
           </div>
         </div>

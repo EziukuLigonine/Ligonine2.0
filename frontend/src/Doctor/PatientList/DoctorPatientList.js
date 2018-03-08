@@ -11,18 +11,28 @@ class DoctorPatientList extends Component {
         super(props);
         this.state = {
           patients: [],
+          doctorId: '',
           search: ''
         };
     }
 
+
+
     componentDidMount = () => {
-        axios.get(API + "/api/doctors/" + this.props.match.params.id + "/patients")
-            .then((response) => {
-                this.setState({patients: response.data});
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+      axios.get(API + "/api/userId")
+        .then((response) => {
+          this.setState({ doctorId: response.data});
+          axios.get(API + "/api/doctors/" + this.state.doctorId + "/patients")
+              .then((response) => {
+                  this.setState({patients: response.data});
+              })
+              .catch((error) => {
+                  console.log(error);
+              });
+        })
+        .catch((error) => {
+          console.log(error);
+        })
     };
 
     handleChange = (event) => {
