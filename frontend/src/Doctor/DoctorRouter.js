@@ -10,6 +10,8 @@ import DocPatientList from "./PatientList/PatientList";
 import DoctorPatientList from "./PatientList/DoctorPatientList";
 import {PatientRecords} from "./PatientRecords/PatientRecords";
 import PatientDetailsContainer from './PatientDetails/PatientDetailsContainer';
+import EditPrescriptionContainer from './PrescriptionAdministration/EditPrescriptionContainer';
+import EditRecordContainer from './RecordAdministration/EditRecordContainer';
 
 
 class AdminRouter extends Component {
@@ -19,13 +21,15 @@ class AdminRouter extends Component {
                 <Switch>
                     <Route exact path="/doctor/prescriptions" component={PrescriptionListContainer} />
                     <Route exact path="/doctor/patient/:id/prescription" component={PrescriptionAdministrationContainer} />
+                    <Route exact path="/doctor/prescription/:id/edit" component={EditPrescriptionContainer} />
+                    <Route exact path="/doctor/record/:id/edit" component={EditRecordContainer} />
 
                     <Route exact path="/doctor/patient/:id/record" component={RecordAdministrationContainer} />
                     <Route exact path="/doctor/myRecords" component={RecordListContainer} />
                     <Route exact path="/doctor/myPrescriptions" component={PrescriptionListContainer} />
 
                     <Route exact path="/doctor/prescription/:id" component={PrescriptionDetailsContainer} />
-                    <Route exact path="/doctor/records/:id" component={RecordDetailsContainer} />
+                    <Route exact path="/doctor/record/:id" component={RecordDetailsContainer} />
 
                     <Route exact path="/doctor/patients" component={DocPatientList} />
                     <Route exact path="/doctor/patient/:id" component={PatientDetailsContainer} />

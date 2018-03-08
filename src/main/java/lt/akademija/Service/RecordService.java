@@ -59,7 +59,6 @@ public class RecordService {
 	@Transactional 
 	public void updateRecord(@RequestBody CreateRecordCmd cmd, @PathVariable Long id) {
 		Record record = recordRepository.findOne(id);
-		record.setPersonalId(cmd.getPersonalId());
 		record.setDuration(cmd.getDuration());
 		record.setTlk(cmd.getTlk());
 		record.setAppDesc(cmd.getAppDesc());

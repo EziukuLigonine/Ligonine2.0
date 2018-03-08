@@ -63,7 +63,6 @@ public class PrescriptionService {
 	@Transactional 
 	public void updatePrescription(@RequestBody CreatePrescriptionCmd cmd, @PathVariable Long id) {
 		Prescription prescription = prescriptionRepository.findOne(id);
-		prescription.setPersonalId(cmd.getPersonalId());
 		prescription.setActiveMat(cmd.getActiveMat());
 		prescription.setActiveMatQuantity(cmd.getActiveMatQuantity());
 		prescription.setUnit(cmd.getUnit());
