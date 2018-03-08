@@ -30,11 +30,32 @@ class AdminList extends Component {
     }
 
     render() {
-        return (
-            <div>
-                <AdminListComponent admins={this.state.admins} history={this.props.history} remove={this.removeAdmin} />
-            </div>
-        );
+        if (this.state.admins === null) {
+            return (<div>nieko nera</div>)
+        } else {
+            let filteredAdmins = this.state.admins.filter((admin) => {
+                    admin.name.indexOf(this.state.search) !== -1 || admin.surname.indexOf(this.state.search) !== -1;
+                }
+            );
+            return (
+                <div className="row">
+                    <form className="navbar-form" onSubmit={this.handleSubmit}>
+                        <div className="input-group">
+                            <input className="form-control" placeholder="Ieškoti" type="text" value={this.state.search}
+                                   onChange={this.handleChange}/>
+                            <div className="input-group-btn">
+                                <button className="btn btn-default" type="submit" onSubmit={this.handleSubmit}><i
+                                    className="glyphicon glyphicon-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                    <div>
+                        <AdminListComponent admins={filteredAdmins} history={this.props.history}
+                                             remove={this.removePatient}/>
+                    </div>
+                </div>
+            );
+        }
     }
 }
 

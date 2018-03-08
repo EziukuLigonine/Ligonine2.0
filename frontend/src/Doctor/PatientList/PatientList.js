@@ -39,7 +39,7 @@ class DocPatientList extends Component {
         } else {
             let filteredPatients = this.state.patients.filter((patient) => {
                     return patient.personalId.indexOf(
-                        this.state.search) !== -1;
+                        this.state.search) !== -1|| patient.name.indexOf(this.state.search) !== -1|| patient.surname.indexOf(this.state.search) !== -1;
                 }
             );
             return (

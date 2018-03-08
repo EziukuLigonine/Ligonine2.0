@@ -19,8 +19,11 @@ const DocPatientComponent = (props) => {
 
 
     var getPatientRecords = (event) => {
-        props.history.push("/doctor/patient/" + id);
+        props.history.push("/doctor/patient/records" + id);
     };
+    var getPatientPrescriptions = (event) => {
+        props.history.push("/doctor/patient/prescriptions" + id);
+    }
     return (
         <tr>
             <td>{id}</td>
@@ -32,7 +35,8 @@ const DocPatientComponent = (props) => {
             <td>{dateOfBirth}</td>
             <td>{doctorUsername}</td>
             <td>
-                <span id={id} className="glyphicon glyphicon-eye-open" aria-hidden="true" style={green} onClick={getPatientRecords}></span>
+                <span id={id} className="glyphicon-book" aria-hidden="true" style={green} onClick={getPatientRecords}></span>
+                <span id={id} className="glyphicon glyphicon-eye-open" aria-hidden="true" style={green} onClick={getPatientPrescriptions}></span>
             </td>
         </tr>
     );
