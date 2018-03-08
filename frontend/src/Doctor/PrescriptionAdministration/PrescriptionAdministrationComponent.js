@@ -52,14 +52,6 @@ export var PrescriptionAdministrationComponent = (props) => {
             </div>
 
             <div className="form-group">
-                <label className="col-sm-2 control-label">Daktaro slapyvardis</label>
-                <div className="col-sm-3">
-                    <input type="text" className="form-control" id="doctorUsername" placeholder="Daktaro slapyvardis" value={props.doctorUsername}
-                           onChange={props.onChange}/>
-                </div>
-            </div>
-
-            <div className="form-group">
                 <label className="col-sm-2 control-label">Galiojimo data</label>
                 <div className="col-sm-3">
                     <input type="date" className="form-control" id="validUntil" placeholder="Galiojimo data" value={props.validUntil}

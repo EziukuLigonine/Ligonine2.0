@@ -1,35 +1,41 @@
 import React, {Component} from 'react';
-import AdminListComponent from "./AdminListComponent";
-import {API} from '../ApiUrl';
+import DocPatientListComponent from "./PatientListComponent";
+import {API} from "../../Admin/ApiUrl";
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
-class AdminList extends Component {
+
+class DoctorPatientList extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {admins: [], search: ''};
+        this.state = {
+          patients: [],
+          search: ''
+        };
     }
 
     componentDidMount = () => {
-        axios.get(API + "/api/admins")
+        axios.get(API + "/api/doctors/" + this.props.match.params.id + "/patients")
             .then((response) => {
-                this.setState({admins: response.data});
+                this.setState({patients: response.data});
             })
             .catch((error) => {
                 console.log(error);
             });
-
     };
+
     handleChange = (event) => {
         this.setState({search: event.target.value});
     };
+
     render() {
-        if (this.state.admins === null) {
-            return (<div>nieko nėra</div>)
+        if (this.state.patients === null) {
+            return (<div>nieko nera</div>)
         } else {
-            let filteredAdmins = this.state.admins.filter((admin) => {
-                return admin.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || admin.surname.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+            let filteredPatients = this.state.patients.filter((patient) => {
+                    return patient.personalId.indexOf(
+                        this.state.search) !== -1;
                 }
             );
             return (
@@ -45,12 +51,14 @@ class AdminList extends Component {
                         </div>
                     </form>
                     <div>
-                        <AdminListComponent admins={filteredAdmins} history={this.props.history}/>
+                        <DocPatientListComponent
+                          patients={filteredPatients}
+                          history={this.props.history}
+                          />
                     </div>
                 </div>
             );
         }
     }
 }
-
-export default AdminList;
+export default DoctorPatientList;

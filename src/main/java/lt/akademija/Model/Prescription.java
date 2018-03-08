@@ -3,118 +3,135 @@ package lt.akademija.Model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Pattern;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Prescription implements Serializable {
+public class Prescription {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    private Long id;
-    @Pattern(regexp = "[3-6]{1}[0-9]{10}")
-    private String personalId; // asmens kodas reik su pacientu sujungt
-    private String activeMat; // veiklioji medziaga
-    private String activeMatQuantity; // veikliosios medziagos kiekis
-    @NotBlank
-    private String unit; // matavimo vienetai
-    private String desc; // vartojimo aprasas
-    private String doctorUsername; // israsiusio daktaro username. reikia su daktaru sujungt
-    private String validUntil;
-    private String timestamp;
-    private boolean sold = false;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(unique = true)
+	private Long id;
+	@Pattern(regexp = "[3-6]{1}[0-9]{10}")
+	private String personalId; // asmens kodas reik su pacientu sujungt
+	private String activeMat; // veiklioji medziaga
+	private String activeMatQuantity; // veikliosios medziagos kiekis
+	@NotBlank
+	private String unit; // matavimo vienetai
+	private String desc; // vartojimo aprasas
+	private String validUntil;
+	private String timestamp;
+	private boolean sold = false;
 
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "doctorId")
+	@JsonBackReference
+	private Doctor doctor;
 
-    public boolean isSold() {
-        return sold;
-    }
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "patientId")
+	@JsonBackReference
+	private Patient patient;
 
-    public void setSold(boolean sold) {
-        this.sold = sold;
-    }
+	public Patient getPatient() {
+		return patient;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Doctor getDoctor() {
+		return doctor;
+	}
 
-    public String getPersonalId() {
-        return personalId;
-    }
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
 
-    public void setPersonalId(String personalId) {
-        this.personalId = personalId;
-    }
+	public boolean isSold() {
+		return sold;
+	}
 
-    public String getActiveMat() {
-        return activeMat;
-    }
+	public void setSold(boolean sold) {
+		this.sold = sold;
+	}
 
-    public void setActiveMat(String activeMat) {
-        this.activeMat = activeMat;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getActiveMatQuantity() {
-        return activeMatQuantity;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setActiveMatQuantity(String activeMatQuantity) {
-        this.activeMatQuantity = activeMatQuantity;
-    }
+	public String getPersonalId() {
+		return personalId;
+	}
 
-    public String getUnit() {
-        return unit;
-    }
+	public void setPersonalId(String personalId) {
+		this.personalId = personalId;
+	}
 
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
+	public String getActiveMat() {
+		return activeMat;
+	}
 
-    public String getDesc() {
-        return desc;
-    }
+	public void setActiveMat(String activeMat) {
+		this.activeMat = activeMat;
+	}
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
+	public String getActiveMatQuantity() {
+		return activeMatQuantity;
+	}
 
-    public String getDoctorUsername() {
-        return doctorUsername;
-    }
+	public void setActiveMatQuantity(String activeMatQuantity) {
+		this.activeMatQuantity = activeMatQuantity;
+	}
 
-    public void setDoctorUsername(String doctorUsername) {
-        this.doctorUsername = doctorUsername;
-    }
+	public String getUnit() {
+		return unit;
+	}
 
-    public String getValidUntil() {
-        return validUntil;
-    }
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
 
-    public void setValidUntil(String validUntil) {
-        this.validUntil = validUntil;
-    }
+	public String getDesc() {
+		return desc;
+	}
 
-    public String getTimestamp() {
-        return timestamp;
-    }
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
+	public String getValidUntil() {
+		return validUntil;
+	}
 
-    @Override
-    public String toString() {
-        return String.valueOf(id);
-    }
+	public void setValidUntil(String validUntil) {
+		this.validUntil = validUntil;
+	}
+
+	public String getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
+	}
 
 }

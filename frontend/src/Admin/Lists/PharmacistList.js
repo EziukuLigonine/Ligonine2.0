@@ -8,7 +8,7 @@ class PharmacistList extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {pharmacists: []};
+        this.state = {pharmacists: [], search: '' };
     }
 
     componentDidMount = () => {
@@ -20,20 +20,16 @@ class PharmacistList extends Component {
                 console.log(error);
             });
     };
-
-    removePharmacist = (index) => {
-        const items = this.state.pharmacists.filter((pharmacist) => {
-          return pharmacist.id !== parseInt(index, 10);
-        });
-        this.setState({ pharmacists : items });
-    }
+    handleChange = (event) => {
+        this.setState({search: event.target.value});
+    };
 
     render() {
         if (this.state.pharmacists === null) {
             return (<div>nieko nera</div>)
         } else {
             let filteredPharmacists = this.state.pharmacists.filter((pharmacist) => {
-                    pharmacist.name.indexOf(this.state.search) !== -1 || pharmacist.surname.indexOf(this.state.search) !== -1;
+                  return  pharmacist.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || pharmacist.surname.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
                 }
             );
             return (
@@ -49,8 +45,7 @@ class PharmacistList extends Component {
                         </div>
                     </form>
                     <div>
-                        <PharmacistListComponent pharmacists={filteredPharmacists} history={this.props.history}
-                                             remove={this.removePatient}/>
+                        <PharmacistListComponent pharmacists={filteredPharmacists} history={this.props.history}/>
                     </div>
                 </div>
             );

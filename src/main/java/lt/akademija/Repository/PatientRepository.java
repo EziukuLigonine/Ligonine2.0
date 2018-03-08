@@ -8,9 +8,10 @@ import lt.akademija.Model.Patient;
 
 public interface PatientRepository extends JpaRepository <Patient, Long>{
 	
-	List<Patient> findByUsername(String search);
+	Patient findByUsername(String search);
 	
 	List<Patient> findByDoctorUsername(String search);
+	List<Patient> findByDoctorId(Long id);
 
     //List<Patient> findByUsernameContainingOrNameContainingOrSurnameContaining (String search);
 }

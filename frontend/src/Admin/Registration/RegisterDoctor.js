@@ -29,7 +29,7 @@ class RegisterDoctor extends Component {
     };
 
     EmptyFields() {
-        if (this.state.name === "" || this.state.surname === "" || this.state.username === "" || this.state.personalId === "" || this.state.specialisation === "") {
+        if (this.state.name === "" || this.state.surname === "" || this.state.username === "" || this.state.specialisation === "") {
             alert("Visi laukai turi būti užpildyti");
         } else return true;
     }
@@ -44,21 +44,11 @@ class RegisterDoctor extends Component {
                 specialisation: this.state.specialisation
             };
         }
-        if (this.state.name === "") {
-            alert("Prašome įvesti vardą");
-        }
-        if (this.state.surname === "") {
-            alert("Prašome įvesti pavardę");
-        }
-        if (this.state.username === "") {
-            alert("Prašome įvesti slapyvardį");
-        }
+
         if (this.state.password.length < 6) {
             alert("Slaptažodis turi būti sudarytas iš bent 6 simbolių");
         }
-        if (this.state.specialisation === "") {
-            alert("Prašome pasirinkti specializaciją");
-        }
+
         axios.post(API + "/api/admin/doctors/new", outputDoctor)
             .then((response) => {
                 this.setState({

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PatientDetailsComponent from './PatientDetailsComponent';
-import {API} from '../ApiUrl';
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
@@ -14,7 +13,7 @@ class PatientDetailsContainer extends Component {
 
   }
   componentDidMount() {
-    axios.get(API + "/api/patients/" + this.props.match.params.id)
+    axios.get("http://localhost:8081/api/patients/" + this.props.match.params.id)
     .then((response) => {
       this.setState({
         patient: response.data

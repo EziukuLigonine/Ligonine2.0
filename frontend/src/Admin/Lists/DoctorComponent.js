@@ -13,7 +13,7 @@ const green = {
 }
 
  const DoctorComponent = (props) => {
-  var {id, name, surname, username, password, specialisation} = props;
+  var {id, name, surname, username, specialisation} = props;
 
   var handleClick = (event) => {
       props.history.push("/admin/doctor/edit/" + id);
@@ -31,7 +31,6 @@ const green = {
       <td>{name}</td>
       <td>{surname}</td>
       <td>{username}</td>
-      <td>{password}</td>
       <td>{specialisation}</td>
           <td>
             <span id={id} className="glyphicon glyphicon-wrench" aria-hidden="true" style={green} onClick={handleClick}></span>

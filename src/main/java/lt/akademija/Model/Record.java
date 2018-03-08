@@ -1,113 +1,119 @@
 package lt.akademija.Model;
 
-import java.io.Serializable;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-public class Record implements Serializable{
+public class Record {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    private Long id;
-    @Pattern(regexp = "[3-6]{1}[0-9]{10}")
-    private String personalId; // asmens kodas reik su pacientu sujungt
-    @NotBlank
-    private String duration; // vizito laikas
-    private String tlk; // ICD-10/TLK10
-    private String appDesc; // vizito aprasas
-    @NotBlank
-    private String vlk; // kompensuojamas ar ne
-    @NotBlank
-    private String repeated; // pakartotinis
-    private String doctorUsername; // israsiusio daktaro username. reikia su daktaru sujungt
-    private String date; // vizito data
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(unique = true)
+	private Long id;
+	@Pattern(regexp = "[3-6]{1}[0-9]{10}")
+	private String personalId; // asmens kodas reik su pacientu sujungt
+	@NotBlank
+	private String duration; // vizito laikas
+	@Pattern(regexp = "[A-Z]{1}[\\d]{2}[-][A-Z]{1}[\\d]{2}")
+	private String tlk; // ICD-10/TLK10
+	private String appDesc; // vizito aprasas
+	@NotBlank
+	private String vlk; // kompensuojamas ar ne
+	@NotBlank
+	private String repeated; // pakartotinis
+	private String date; // vizito data
 
-    public Long getId() {
-        return id;
-    }
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "doctorId")
+	@JsonBackReference
+	private Doctor doctor;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "patientId")
+	@JsonBackReference
+	private Patient patient;
 
-    public String getPersonalId() {
-        return personalId;
-    }
+	public Patient getPatient() {
+		return patient;
+	}
 
-    public void setPersonalId(String personalId) {
-        this.personalId = personalId;
-    }
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
 
-    public String getVlk() {
-        return vlk;
-    }
+	public Doctor getDoctor() {
+		return doctor;
+	}
 
-    public void setVlk(String vlk) {
-        this.vlk = vlk;
-    }
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
 
-    public String getTlk() {
-        return tlk;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setTlk(String tlk) {
-        this.tlk = tlk;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getAppDesc() {
-        return appDesc;
-    }
+	public String getPersonalId() {
+		return personalId;
+	}
 
-    public void setAppDesc(String appDesc) {
-        this.appDesc = appDesc;
-    }
+	public void setPersonalId(String personalId) {
+		this.personalId = personalId;
+	}
 
-    public String getRepeated() {
-        return repeated;
-    }
+	public String getVlk() {
+		return vlk;
+	}
 
-    public void setRepeated(String repeated) {
-        this.repeated = repeated;
-    }
+	public void setVlk(String vlk) {
+		this.vlk = vlk;
+	}
 
-    public String getDoctorUsername() {
-        return doctorUsername;
-    }
+	public String getTlk() {
+		return tlk;
+	}
 
-    public void setDoctorUsername(String doctorUsername) {
-        this.doctorUsername = doctorUsername;
-    }
+	public void setTlk(String tlk) {
+		this.tlk = tlk;
+	}
 
-    public String getDate() {
-        return date;
-    }
+	public String getAppDesc() {
+		return appDesc;
+	}
 
-    public void setDate(String date) {
-        this.date = date;
-    }
+	public void setAppDesc(String appDesc) {
+		this.appDesc = appDesc;
+	}
 
-    public String getDuration() {
-        return duration;
-    }
+	public String getRepeated() {
+		return repeated;
+	}
 
-    public void setDuration(String duration) {
-        this.duration = duration;
-    }
+	public void setRepeated(String repeated) {
+		this.repeated = repeated;
+	}
 
-    @Override
-    public String toString() {
-        return String.valueOf(id);
-    }
+	public String getDate() {
+		return date;
+	}
 
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getDuration() {
+		return duration;
+	}
+
+	public void setDuration(String duration) {
+		this.duration = duration;
+	}
 
 }

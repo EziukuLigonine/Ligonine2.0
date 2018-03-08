@@ -1,29 +1,39 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, {Component} from 'react';
+import axios from 'axios';
+axios.defaults.withCredentials = true;
 
-const green = {
-  color: 'green',
-  padding: '5px'
-}
+  class AssignComponent extends Component {
+    constructor(props){
+      super(props);
 
- const AssignComponent = (props) => {
-  var {id, name, surname, username, specialisation, patient} = props;
+      this.state = {};
+    }
 
-  return (
-      <tr>
-      <td>{id}</td>
-      <td>{name}</td>
-      <td>{surname}</td>
-      <td>{username}</td>
-      <td>{specialisation}</td>
-          <td>
+    handleClick = (event) => {
+      axios.put('http://localhost:8081/api/patient/' + this.props.patient + "/" + this.props.id)
+        .then((response) => {
+          alert("Pacientas priskirtas");
+          this.props.history.push("/admin/patients");
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    }
 
-            <Link to={{ pathname: `/admin/patient/confirm/${patient}`, state: { doctorUsernameObject: {username}} }}><span className="glyphicon glyphicon-transfer" aria-hidden="true" style={green}></span></Link>
-          </td>
-
-      </tr>
-  );
-
-};
+      render(){
+        return(
+          <tr>
+          <td>{this.props.id}</td>
+          <td>{this.props.name}</td>
+          <td>{this.props.surname}</td>
+          <td>{this.props.username}</td>
+          <td>{this.props.specialisation}</td>
+              <td>
+                <button type="submit" className="btn btn-success" onClick={this.handleClick}>Priskirti</button>
+              </td>
+          </tr>
+        );
+      }
+    }
 
 export default AssignComponent;

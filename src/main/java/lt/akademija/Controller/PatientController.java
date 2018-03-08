@@ -36,43 +36,41 @@ import lt.akademija.Service.UserService;
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(value = "/api")
 public class PatientController {
-	
+
 	@Autowired
 	private PatientService patientService;
-	
+
 	@Autowired
 	private UserService userService;
-	
-	
+
 	@GetMapping(value = "/patients")
 	@ApiOperation(value = "Get patient list", notes = "Returns list of all patients")
-	@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
-	public List<Patient> getPatients(@ApiParam(value = "Search patient")
-									@RequestParam(value = "search", required = false) String search ){
-		return patientService.getPatients(search);
+	// @PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
+	public List<Patient> getPatients() {
+		return patientService.getPatients();
 	}
-	
+
 	@GetMapping(value = "/patients/{id}")
 	@ApiOperation(value = "Get patient", notes = "Returns a single patient")
-	@PreAuthorize("hasRole('Doctor') or hasRole('Admin') or hasRole('Patient')")
-	public User getPatient(@PathVariable String id) {
+	// @PreAuthorize("hasRole('Doctor') or hasRole('Admin') or hasRole('Patient')")
+	public User getPatient(@PathVariable Long id) {
 		return patientService.getPatient(id);
 	}
-	
+
 	@GetMapping(value = "/patients/{id}/records")
 	@ApiOperation(value = "Get patient records", notes = "Returns list of patient records")
-	@PreAuthorize("hasRole('Doctor') or hasRole('Admin') or hasRole('Patient')")
-	public List <Record> getPatientRecords(@PathVariable String id) {
+	// @PreAuthorize("hasRole('Doctor') or hasRole('Admin') or hasRole('Patient')")
+	public List<Record> getPatientRecords(@PathVariable Long id) {
 		return patientService.getPatientRecords(id);
 	}
-	
+
 	@GetMapping(value = "/patients/{id}/prescriptions")
 	@ApiOperation(value = "Get patient prescriptions", notes = "Returns list of patient prescriptions")
-	@PreAuthorize("hasRole('Doctor') or hasRole('Admin') or hasRole('Patient')")
-	public List<Prescription> getPatientPrescriptions(@PathVariable String id) {
+	// @PreAuthorize("hasRole('Doctor') or hasRole('Admin') or hasRole('Patient')")
+	public List<Prescription> getPatientPrescriptions(@PathVariable Long id) {
 		return patientService.getPatientPrescriptions(id);
 	}
-	
+
 	@GetMapping(value = "/userId")
 	@ApiOperation(value = "Get user id", notes = "Returns a single users id")
 	public Long getUserId() {
@@ -80,28 +78,27 @@ public class PatientController {
 		String currentPrincipalName = authentication.getName();
 		return userService.getUserId(currentPrincipalName);
 	}
-	
-	
+
 	@PostMapping(value = "admin/patients/new")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = "Create patients", notes = "Creates patient")
-	@PreAuthorize("hasRole('Admin')")
+	// @PreAuthorize("hasRole('Admin')")
 	public void createPatient(@RequestBody CreatePatientCmd cmd) {
 		patientService.createPatient(cmd);
 	}
-	
+
 	@PutMapping(value = "/patients/{id}")
 	@ApiOperation(value = "Update patient", notes = "Updates patient details")
-	@PreAuthorize("hasRole('Doctor') or hasRole('Admin')")
-	public void updatePatient(@RequestBody CreatePatientCmd cmd, @PathVariable String id) {
+	// @PreAuthorize("hasRole('Doctor') or hasRole('Admin')")
+	public void updatePatient(@RequestBody CreatePatientCmd cmd, @PathVariable Long id) {
 		patientService.updatePatient(cmd, id);
 	}
-	
-	@DeleteMapping(value = "/patients/{id}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@ApiOperation(value = "Delete patient", notes = "Removes patient")
-	@PreAuthorize("hasRole('Admin')")
-	public void deletePatient(@PathVariable String id) {
-		patientService.deletePatient(id);
+
+	@PutMapping(value = "/patient/{patientId}/{doctorId}")
+	@ApiOperation(value = "Assign patient to doctor", notes = "Assigns patient to doctor")
+	public void assignDoctorToPatient(@PathVariable Long patientId, @PathVariable Long doctorId) {
+
+		patientService.assignPatient(patientId, doctorId);
 	}
+
 }

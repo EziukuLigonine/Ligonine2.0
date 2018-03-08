@@ -13,7 +13,7 @@ const green = {
 }
 
  const PharmacistComponent = (props) => {
-  var {id, name, surname, username, password, companyType, companyName} = props;
+  var {id, name, surname, username, companyType, companyName} = props;
 
   var handleClick = (event) => {
       props.history.push("/admin/pharmacist/edit/" + id);
@@ -31,7 +31,6 @@ const green = {
       <td>{name}</td>
       <td>{surname}</td>
       <td>{username}</td>
-      <td>{password}</td>
       <td>{companyType}</td>
       <td>{companyName}</td>
           <td>

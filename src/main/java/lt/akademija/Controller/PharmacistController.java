@@ -30,47 +30,37 @@ import lt.akademija.Service.PharmacistService;
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(value = "/api")
 public class PharmacistController {
-	
+
 	@Autowired
 	private PharmacistService pharmacistService;
-	
-	
+
 	@GetMapping(value = "/pharmacists")
 	@ApiOperation(value = "Get pharmacist list", notes = "Returns list of all pharmacists")
-	@PreAuthorize("hasRole('Admin')")
-	public List<Pharmacist> getPharmacists(@ApiParam(value = "Search pharmacist")
-									@RequestParam(value = "search", required = false) String search ){
-		return pharmacistService.getPharmacists(search);
+	//@PreAuthorize("hasRole('Admin')")
+	public List<Pharmacist> getPharmacists() {
+		return pharmacistService.getPharmacists();
 	}
-	
+
 	@GetMapping(value = "/pharmacists/{id}")
 	@ApiOperation(value = "Get pharmacist", notes = "Returns a single pharmacist")
-	@PreAuthorize("hasRole('Admin') or hasRole('Pharmacist')")
-	public User getPharmacist(@PathVariable String id) {
+	//@PreAuthorize("hasRole('Admin') or hasRole('Pharmacist')")
+	public User getPharmacist(@PathVariable Long id) {
 		return pharmacistService.getPharmacist(id);
 	}
-	
-	@PostMapping(value = "admin/pharmacists/new")
+
+	@PostMapping(value = "/admin/pharmacists/new")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = "Create pharmacists", notes = "Creates pharmacist")
-	@PreAuthorize("hasRole('Admin')")
+	//@PreAuthorize("hasRole('Admin')")
 	public void createPharmacist(@RequestBody CreatePharmacistCmd cmd) {
 		pharmacistService.createPharmacist(cmd);
 	}
-	
+
 	@PutMapping(value = "/pharmacists/{id}")
 	@ApiOperation(value = "Update pharmacist", notes = "Updates pharmacist details")
-	@PreAuthorize("hasRole('Admin')")
-	public void updatePharmacist(@RequestBody CreatePharmacistCmd cmd, @PathVariable String id) {
+	//@PreAuthorize("hasRole('Admin')")
+	public void updatePharmacist(@RequestBody CreatePharmacistCmd cmd, @PathVariable Long id) {
 		pharmacistService.updatePharmacist(cmd, id);
 	}
-	
-	@DeleteMapping(value = "/pharmacists/{id}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@ApiOperation(value = "Delete pharmacist", notes = "Removes pharmacist")
-	@PreAuthorize("hasRole('Admin')")
-	public void deletePharmacist(@PathVariable String id) {
-		pharmacistService.deletePharmacist(id);
-	}
-}
 
+}

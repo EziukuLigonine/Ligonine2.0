@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lt.akademija.Model.CreatePrescriptionCmd;
 import lt.akademija.Model.CreateRecordCmd;
 import lt.akademija.Model.Record;
 import lt.akademija.Service.RecordService;
@@ -36,40 +37,31 @@ public class RecordController {
 	
 	@GetMapping(value = "/records")
 	@ApiOperation(value = "Get record list", notes = "Returns list of all records")
-	@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
-	public List<Record> getRecords(@ApiParam(value = "Search record")
-									@RequestParam(value = "search", required = false) String search ){
-		return recordService.getRecords(search);
+	//@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
+	public List<Record> getRecords(){
+		return recordService.getRecords();
 	}
 	
 	@GetMapping(value = "/records/{id}")
 	@ApiOperation(value = "Get record", notes = "Returns a single record")
-	@PreAuthorize("hasRole('Admin') or hasRole('Patient') or hasRole('Doctor')")
-	public Record getRecord(@PathVariable String id) {
+	//@PreAuthorize("hasRole('Admin') or hasRole('Patient') or hasRole('Doctor')")
+	public Record getRecord(@PathVariable Long id) {
 		return recordService.getRecord(id);
 	}
 	
-	@PostMapping(value = "admin/records/new")
+	@PostMapping(value = "/records/new/{doctorId}/{patientId}")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = "Create records", notes = "Creates record")
-	@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
-	public void createRecord(@RequestBody CreateRecordCmd cmd) {
-		recordService.createRecord(cmd);
+	//@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
+	public void createRecord(@RequestBody CreateRecordCmd cmd, @PathVariable Long doctorId, @PathVariable Long patientId) {
+		recordService.createRecord(cmd, doctorId, patientId);
 	}
 	
 	@PutMapping(value = "/records/{id}")
 	@ApiOperation(value = "Update record", notes = "Updates record details")
-	@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
-	public void updateRecord(@RequestBody CreateRecordCmd cmd, @PathVariable String id) {
+	//@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
+	public void updateRecord(@RequestBody CreateRecordCmd cmd, @PathVariable Long id) {
 		recordService.updateRecord(cmd, id);
-	}
-	
-	@DeleteMapping(value = "/records/{id}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@ApiOperation(value = "Delete record", notes = "Removes record")
-	@PreAuthorize("hasRole('Admin')")
-	public void deleteRecord(@PathVariable String id) {
-		recordService.deleteRecord(id);
 	}
 }
 

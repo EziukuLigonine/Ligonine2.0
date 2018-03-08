@@ -8,9 +8,11 @@ class DoctorList extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {doctors: []};
+        this.state = {doctors: [], search: ''};
     }
-
+    handleChange = (event) => {
+        this.setState({search: event.target.value});
+    };
     componentDidMount = () => {
         axios.get(API + "/api/doctors")
             .then((response) => {
@@ -21,19 +23,19 @@ class DoctorList extends Component {
             });
     };
 
-    removeDoctor = (index) => {
+ /*   removeDoctor = (index) => {
         const items = this.state.doctors.filter((doctor) => {
             return doctor.id !== parseInt(index, 10);
         });
         this.setState({doctors: items});
-    }
+    }*/
 
     render() {
         if (this.state.doctors === null) {
             return (<div>nieko nera</div>)
         } else {
             let filteredDoctors = this.state.doctors.filter((doctor) => {
-                    doctor.name.indexOf(this.state.search) !== -1 || doctor.surname.indexOf(this.state.search) !== -1;
+                   return doctor.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || doctor.surname.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
                 }
             );
             return (
@@ -50,7 +52,7 @@ class DoctorList extends Component {
                     </form>
                     <div>
                         <DoctorListComponent doctors={filteredDoctors} history={this.props.history}
-                                             remove={this.removePatient}/>
+                                            /* remove={this.removeDoctor}*//>
                     </div>
                 </div>
             );

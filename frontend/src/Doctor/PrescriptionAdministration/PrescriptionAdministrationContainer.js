@@ -15,12 +15,36 @@ export class PrescriptionAdministrationContainer extends React.Component {
             activeMatQuantity: '',
             unit: '',
             desc: '',
-            doctorUsername: '',
             validUntil: '',
             timestamp: '',
+            patientId: '',
+            doctorId: '',
             history: props.history
         }
     }
+
+    componentDidMount = () => {
+        axios.get('http://localhost:8081/api/userId/')
+            .then((response) => {
+                this.setState({doctorId: response.data});
+                axios.get('http://localhost:8081/api/patients/' +  this.props.match.params.id)
+                  .then((response) => {
+                    const {id, personalId} = response.data;
+                    this.setState({
+                      personalId: personalId,
+                      patientId: id
+                    });
+
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                  })
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
 
     handleChange = (event) => {
         const target = event.target;
@@ -38,15 +62,14 @@ export class PrescriptionAdministrationContainer extends React.Component {
             alert("Įveskite teigiamą skaičių.")
         }
     }
-    ActiveMat(){
-        if (this.state.activeMat === "") {
-            alert("Prašome įvesti veikliąsias medžiagas.");
-        } else {
-            return true;
+    NotEmpty(){
+        if  (this.state.unit === ""|| this.state.desc === "" ||this.state.validUntil === ""||this.state.activeMat === "") {
+            alert("Visi laukai turi būti užpildyti");
+        } else { return true;
         }
     }
     handleClick = (event) => {
-        if (this.ActiveMat && this.PositiveNumber()) {
+        if (this.NotEmpty() && this.PositiveNumber()) {
             var today = new Date();
             var dd = today.getDate();
             var mm = today.getMonth() + 1; //January is 0!
@@ -67,33 +90,17 @@ export class PrescriptionAdministrationContainer extends React.Component {
                 activeMatQuantity: this.state.activeMatQuantity,
                 unit: this.state.unit,
                 desc: this.state.desc,
-                doctorUsername: this.state.doctorUsername,
                 validUntil: this.state.validUntil,
                 timestamp: this.state.timestamp = today
             };
         }
-        console.log(outputPrescription);
         if (this.state.personalId === "") {
             alert("Prašome įvesti asmens kodą.");
         }
-        if (this.state.activeMatQuantity === "") {
-            alert("Prašome įvesti veikliosios/veikliųjų medžiagos/ų kiekį.");
-        }
-        if (this.state.unit === "") {
-            alert("Prašome įvesti kiek vienetų išrašyta.");
-        }
-        if (this.state.desc === "") {
-            alert("Prašome įvesti aprašymą.");
-        }
-        if (this.state.validUntil === "") {
-            alert("Prašome įvesti galiojimo datą.");
-        }
-        if (this.state.personalId.length != 11) {
+        if (this.state.personalId.length !== 11) {
             alert("Asmens kodas turi būti sudarytas iš 11 skaitmenų.")
         }
-
-
-        axios.post("http://localhost:8081/api/admin/prescriptions/new", outputPrescription)
+        axios.post('http://localhost:8081/api/prescriptions/new/' + this.state.doctorId + '/' + this.state.patientId, outputPrescription)
             .then((response) => {
                 this.setState({
                     personalId: '',
@@ -101,11 +108,11 @@ export class PrescriptionAdministrationContainer extends React.Component {
                     activeMatQuantity: '',
                     unit: '',
                     desc: '',
-                    doctorUsername: '',
                     validUntil: '',
                     timestamp: ''
                 });
                 alert("Receptas išrašytas");
+                this.props.history.push("/doctor/prescriptions");
             })
             .catch((error) => {
                 console.log(error);
@@ -123,7 +130,6 @@ export class PrescriptionAdministrationContainer extends React.Component {
                     activeMatQuantity={this.state.activeMatQuantity}
                     unit={this.state.unit}
                     desc={this.state.desc}
-                    doctorUsername={this.state.doctorUsername}
                     validUntil={this.state.validUntil}
                     onChange={this.handleChange}
                     onClick={this.handleClick}

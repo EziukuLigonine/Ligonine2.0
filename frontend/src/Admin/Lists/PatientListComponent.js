@@ -14,12 +14,9 @@ const tableStyle = {
               name = {patient.name}
               surname = {patient.surname}
               username = {patient.username}
-              password = {patient.password}
               personalId = {patient.personalId}
               dateOfBirth = {patient.dateOfBirth}
-              doctorUsername = {patient.doctorUsername}
               history = {props.history}
-              remove = {props.remove}
             />
         );
       });
@@ -33,10 +30,8 @@ const tableStyle = {
                             <th>Vardas</th>
                             <th>Pavardė</th>
                             <th>Vartotojo vardas</th>
-                            <th>Slaptažodis</th>
                             <th>Asmens kodas</th>
                             <th>Gimimo data</th>
-                            <th>Daktaras</th>
                             <th></th>
                         </tr>
                     </thead>

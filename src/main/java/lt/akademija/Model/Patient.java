@@ -1,101 +1,84 @@
 package lt.akademija.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import java.util.Set;
 
+import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.validator.constraints.NotBlank;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+@Table(name = "PATIENT")
+@PrimaryKeyJoinColumn(name = "patientId")
+@DiscriminatorValue("Patient")
 public class Patient extends User {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
-	private Long id;
-    @Pattern(regexp ="[A-Za-z[ĄąČčĘęĖėĮįŠšŲųŪūŽž]]+")
-	private String name;
-    @Pattern(regexp ="[A-Za-z[ĄąČčĘęĖėĮįŠšŲųŪūŽž]]+")
-	private String surname;
-    @Pattern(regexp = "[\\w[ĄąČčĘęĖėĮįŠšŲųŪūŽž]]+")
-	private String username;
-	@Size(min=6)
-	private String password;
-	private boolean enabled = true;
-	@Pattern(regexp = "[3-6]{1}[0-9]{10}")
+	@Column(unique = true)
 	private String personalId;
 	private String dateOfBirth;
-	private String doctorUsername;
-	private String role = "Patient";
-	
-	public Long getId() {
-		return id;
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "doctorId")
+	@JsonBackReference
+	private Doctor doctor;
+
+	@OneToMany(mappedBy = "patient", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private Set<Prescription> prescriptions;
+
+	@OneToMany(mappedBy = "patient", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private Set<Record> records;
+
+	public Set<Prescription> getPrescriptions() {
+		return prescriptions;
 	}
-	public void setId(Long id) {
-		this.id = id;
+
+	public void setPrescriptions(Set<Prescription> prescriptions) {
+		this.prescriptions = prescriptions;
 	}
-	public String getName() {
-		return name;
+
+	public Set<Record> getRecords() {
+		return records;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void setRecords(Set<Record> records) {
+		this.records = records;
 	}
-	public String getSurname() {
-		return surname;
+
+	public Doctor getDoctor() {
+		return doctor;
 	}
-	public void setSurname(String surname) {
-		this.surname = surname;
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
 	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public boolean isEnabled() {
-		return enabled;
-	}
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+
 	public String getPersonalId() {
 		return personalId;
 	}
+
 	public void setPersonalId(String personalId) {
 		this.personalId = personalId;
 	}
+
 	public String getDateOfBirth() {
 		return dateOfBirth;
 	}
+
 	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-	public String getDoctorUsername() {
-		return doctorUsername;
-	}
-	public void setDoctorUsername(String doctorUsername) {
-		this.doctorUsername = doctorUsername;
-	}
 	
-	public String getRole() {
-		return role;
+	public void addPrescription(Prescription prescription) {
+		this.prescriptions.add(prescription);
+		prescription.setPatient(this);
 	}
-	public void setRole(String role) {
-		this.role = role;
+
+	public void addRecord(Record record) {
+		this.records.add(record);
+		record.setPatient(this);
 	}
-	@Override
-    public String toString() {
-        return String.valueOf(id);
-    }
 
 }

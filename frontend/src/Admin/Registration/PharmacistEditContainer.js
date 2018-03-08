@@ -1,6 +1,6 @@
 import React from 'react';
 import {API} from '../ApiUrl';
-import RegisterPharmacistComponent from "./RegisterPharmacistComponent";
+import EditPharmacistComponent from "./EditPharmacistComponent";
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
@@ -12,7 +12,6 @@ class PharmacistEditContainer extends React.Component {
             name: '',
             surname: '',
             username: '',
-            password: '',
             companyType: '',
             companyName: '',
             history: {}
@@ -22,12 +21,11 @@ class PharmacistEditContainer extends React.Component {
     componentDidMount() {
         axios.get(API + "/api/pharmacists/" + this.props.match.params.id)
         .then(response => {
-            const {name, surname, username, password, companyType, companyName} = response.data;
+            const {name, surname, username, companyType, companyName} = response.data;
             this.setState({
                 name : name,
                 surname : surname,
                 username : username,
-                password : password,
                 companyType : companyType,
                 companyName : companyName,
                 history: this.props.history
@@ -53,7 +51,6 @@ class PharmacistEditContainer extends React.Component {
             name: this.state.name,
             surname: this.state.surname,
             username: this.state.username,
-            password: this.state.password,
             companyType: this.state.companyType,
             companyName: this.state.companyName
         };
@@ -73,11 +70,10 @@ class PharmacistEditContainer extends React.Component {
     render() {
         return (
             <div>
-                <RegisterPharmacistComponent
+                <EditPharmacistComponent
                     name={this.state.name}
                     surname={this.state.surname}
                     username={this.state.username}
-                    password={this.state.password}
                     companyType={this.state.companyType}
                     companyName={this.state.companyName}
                     onChange={this.handleChange}

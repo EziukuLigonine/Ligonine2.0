@@ -1,88 +1,46 @@
 package lt.akademija.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import java.util.Set;
+
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+@Table(name = "DOCTOR")
+@PrimaryKeyJoinColumn(name = "doctorId")
+@DiscriminatorValue("Doctor")
 public class Doctor extends User {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
-	private Long id;
-	@Pattern(regexp ="[A-Za-z[ĄąČčĘęĖėĮįŠšŲųŪūŽž]]+")
-	private String name;
-	@Pattern(regexp ="[A-Za-z[ĄąČčĘęĖėĮįŠšŲųŪūŽž]]+")
-	private String surname;
-	@Pattern(regexp = "[\\w[ĄąČčĘęĖėĮįŠšŲųŪūŽž]]+")
-	private String username;
-	@Size(min=6)
-	private String password;
-	private boolean enabled = true;
 	private String specialisation;
-	private String role = "Doctor";
 
-	public String getRole() {
-		return role;
+	@OneToMany(mappedBy = "doctor", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private Set<Patient> patients;
+
+	@OneToMany(mappedBy = "doctor", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private Set<Prescription> prescriptions;
+
+	@OneToMany(mappedBy = "doctor", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private Set<Record> records;
+
+	public Set<Prescription> getPrescriptions() {
+		return prescriptions;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setPrescriptions(Set<Prescription> prescriptions) {
+		this.prescriptions = prescriptions;
 	}
 
-	public Long getId() {
-		return id;
+	public Set<Record> getRecords() {
+		return records;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	public void setRecords(Set<Record> records) {
+		this.records = records;
 	}
 
 	public String getSpecialisation() {
@@ -93,9 +51,27 @@ public class Doctor extends User {
 		this.specialisation = specialisation;
 	}
 
-	@Override
-	public String toString() {
-		return String.valueOf(id);
+	public Set<Patient> getPatients() {
+		return patients;
+	}
+
+	public void setPatients(Set<Patient> patients) {
+		this.patients = patients;
+	}
+
+	public void addPatient(Patient patient) {
+		this.patients.add(patient);
+		patient.setDoctor(this);
+	}
+
+	public void addPrescription(Prescription prescription) {
+		this.prescriptions.add(prescription);
+		prescription.setDoctor(this);
+	}
+
+	public void addRecord(Record record) {
+		this.records.add(record);
+		record.setDoctor(this);
 	}
 
 }

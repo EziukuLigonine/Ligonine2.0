@@ -28,7 +28,7 @@ class RegisterPharmacist extends Component {
         );
     };
     EmptyFields() {
-        if (this.state.name === "" || this.state.surname === "" || this.state.username === "" || this.state.personalId === "" || this.state.companyName === "" || this.state.companyType==="") {
+        if (this.state.name === "" || this.state.surname === "" || this.state.username === "" || this.state.companyName === "" || this.state.companyType==="") {
             alert("Visi laukai turi būti užpildyti");
         } else return true;
     }
@@ -43,23 +43,8 @@ class RegisterPharmacist extends Component {
                 companyName: this.state.companyName
             };
         }
-        if (this.state.name === "") {
-            alert("Prašome įvesti vardą");
-        }
-        if (this.state.surname === "") {
-            alert("Prašome įvesti pavardę");
-        }
-        if (this.state.username === "") {
-            alert("Prašome įvesti slapyvardį");
-        }
         if (this.state.password.length < 6) {
             alert("Slaptažodis turi būti sudarytas iš bent 6 simbolių");
-        }
-        if (this.state.companyType === "") {
-            alert("Prašome pasirinkti įmonės tipą");
-        }
-        if (this.state.companyName === "") {
-            alert("Prašome įvesti įmonės pavadinimą");
         }
 
         axios.post(API + "/api/admin/pharmacists/new", outputPharmacist)

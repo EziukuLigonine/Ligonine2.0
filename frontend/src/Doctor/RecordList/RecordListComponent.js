@@ -18,10 +18,8 @@ export var RecordListComponent = (props) => {
                 appDesc = {record.appDesc}
                 vlk = {record.vlk}
                 repeated = {record.repeated}
-                doctorUsername = {record.doctorUsername}
                 date = {record.date}
                 history = {props.history}
-                remove = {props.remove}
             />
         );
     });
@@ -39,9 +37,8 @@ export var RecordListComponent = (props) => {
                             <th>Vizito aprašymas</th>
                             <th>VLK</th>
                             <th>Kartotinas</th>
-                            <th>Daktaro slapyvardis</th>
                             <th>Data</th>
-                            <th>Ištrinti</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>

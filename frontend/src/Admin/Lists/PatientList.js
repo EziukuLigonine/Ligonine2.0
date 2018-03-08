@@ -9,7 +9,7 @@ class PatientList extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {patients: []};
+        this.state = {patients: [], search: ''};
     }
 
     componentDidMount = () => {
@@ -22,12 +22,10 @@ class PatientList extends Component {
             });
     };
 
-    removePatient = (index) => {
-        const items = this.state.patients.filter((patient) => {
-            return patient.id !== parseInt(index, 10);
-        });
-        this.setState({patients: items});
-    }
+    handleChange = (event) => {
+        this.setState({search: event.target.value});
+    };
+
 
     render() {
         if (this.state.patients === null) {
@@ -35,7 +33,7 @@ class PatientList extends Component {
         } else {
             let filteredPatients = this.state.patients.filter((patient) => {
                     return patient.personalId.indexOf(
-                        this.state.search) !== -1 || patient.name.indexOf(this.state.search) !== -1 || patient.surname.indexOf(this.state.search) !== -1;
+                        this.state.search) !== -1 || patient.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || patient.surname.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
 
                 }
             );
@@ -52,8 +50,7 @@ class PatientList extends Component {
                         </div>
                     </form>
                     <div>
-                        <PatientListComponent patients={filteredPatients} history={this.props.history}
-                                                 remove={this.removePatient}/>
+                        <PatientListComponent patients={filteredPatients} history={this.props.history}/>
                     </div>
                 </div>
             );

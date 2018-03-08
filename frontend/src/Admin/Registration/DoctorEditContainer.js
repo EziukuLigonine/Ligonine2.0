@@ -1,6 +1,6 @@
 import React from 'react';
 import {API} from '../ApiUrl';
-import RegisterDoctorComponent from "./RegisterDoctorComponent";
+import EditDoctorComponent from "./EditDoctorComponent";
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
@@ -12,7 +12,6 @@ class DoctorEditContainer extends React.Component {
             name: '',
             surname: '',
             username: '',
-            password: '',
             specialisation: '',
             history: {}
         }
@@ -21,12 +20,11 @@ class DoctorEditContainer extends React.Component {
     componentDidMount() {
         axios.get(API + "/api/doctors/" + this.props.match.params.id)
         .then(response => {
-            const {name, surname, username, password, specialisation} = response.data;
+            const {name, surname, username, specialisation} = response.data;
             this.setState({
                 name : name,
                 surname : surname,
                 username : username,
-                password : password,
                 specialisation : specialisation,
                 history: this.props.history
             })
@@ -51,7 +49,6 @@ class DoctorEditContainer extends React.Component {
             name: this.state.name,
             surname: this.state.surname,
             username: this.state.username,
-            password: this.state.password,
             specialisation: this.state.specialisation
         };
 
@@ -70,11 +67,10 @@ class DoctorEditContainer extends React.Component {
     render() {
         return (
             <div>
-                <RegisterDoctorComponent
+                <EditDoctorComponent
                     name={this.state.name}
                     surname={this.state.surname}
                     username={this.state.username}
-                    password={this.state.password}
                     specialisation={this.state.specialisation}
                     onChange={this.handleChange}
                     onClick={this.handleClick}

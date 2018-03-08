@@ -12,7 +12,7 @@ const green = {
 }
 
 export var RecordComponent = (props) => {
-  var {id, personalId, duration, tlk, appDesc, vlk, repeated, date, doctorUsername} = props;
+  var {id, personalId, duration, tlk, appDesc, vlk, repeated, date} = props;
 
   var handleClick = (event) => {
       props.history.push('/records/' + id);
@@ -34,7 +34,6 @@ export var RecordComponent = (props) => {
         <td>{appDesc}</td>
         <td>{vlk}</td>
         <td>{repeated}</td>
-        <td>{doctorUsername}</td>
         <td>{date}</td>
           <td>
             <span id={id} className="glyphicon glyphicon-wrench" aria-hidden="true" style={green} onClick={handleClick}></span>

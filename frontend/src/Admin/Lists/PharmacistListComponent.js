@@ -14,11 +14,9 @@ const tableStyle = {
               name = {pharmacist.name}
               surname = {pharmacist.surname}
               username = {pharmacist.username}
-              password = {pharmacist.password}
               companyType = {pharmacist.companyType}
               companyName = {pharmacist.companyName}
               history = {props.history}
-              remove = {props.remove}
             />
         );
       });
@@ -32,7 +30,6 @@ const tableStyle = {
                             <th>Vardas</th>
                             <th>Pavardė</th>
                             <th>Vartotojo vardas</th>
-                            <th>Slaptažodis</th>
                             <th>Įmonės tipas</th>
                             <th>Įmonės pavadinimas</th>
                             <th></th>
