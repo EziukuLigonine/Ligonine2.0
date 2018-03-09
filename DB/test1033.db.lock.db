@@ -1,6 +1,6 @@
 #FileLock
-#Mon Mar 05 16:21:57 EET 2018
+#Fri Mar 09 13:01:00 EET 2018
 hostName=DESKTOP-IS9NVF0
-id=161f68a509865b22f9e28de65ad6b75021a0c86d4bf
+id=1620a6bc40cbaeea96ed028d187a8ec1118f19cd4ea
 method=file
-server=192.168.1.64\:64334
+server=192.168.1.64\:63640
