@@ -16,7 +16,7 @@ export var PrescriptionComponent = (props) => {
     var {id, personalId, date, activeMat, activeMatQuantity, unit, desc, validUntil, timestamp} = props;
 
     var handleClick = (event) => {
-        props.history.push('/prescriptions/' + id);
+        props.history.push('/doctor/prescription/' + id + '/edit');
         event.preventDefault();
     };
 

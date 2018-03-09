@@ -7,7 +7,7 @@ const green = {
 }
 
 export var PharPrescriptionComponent = (props) => {
-    var {id, personalId, date, activeMat, activeMatQuantity, unit, desc, validUntil, doctorUsername} = props;
+    var {id, personalId, timestamp, activeMat, activeMatQuantity, unit, desc, validUntil} = props;
 
     var getPrescription = (event) => {
         props.history.push("/pharmacist/prescription/" + id);
@@ -18,12 +18,11 @@ export var PharPrescriptionComponent = (props) => {
         <tr>
             <td>{id}</td>
             <td>{personalId}</td>
-            <td>{date}</td>
+            <td>{timestamp}</td>
             <td>{activeMat}</td>
             <td>{activeMatQuantity}</td>
             <td>{unit}</td>
             <td>{desc}</td>
-            <td>{doctorUsername}</td>
             <td>{validUntil}</td>
             <td>
                 <span id={id} className="glyphicon glyphicon-eye-open" aria-hidden="true" style={green} onClick={getPrescription}></span>

@@ -15,13 +15,13 @@ export var RecordComponent = (props) => {
   var {id, personalId, duration, tlk, appDesc, vlk, repeated, date} = props;
 
   var handleClick = (event) => {
-      props.history.push('/records/' + id);
+      props.history.push('/doctor/record/' + id + '/edit');
       event.preventDefault();
   };
 
 
   var getRecord = (event) => {
-      props.history.push("/doctor/records/" + id);
+      props.history.push("/doctor/record/" + id);
       event.preventDefault();
   };
 

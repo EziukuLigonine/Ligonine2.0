@@ -63,6 +63,13 @@ public class PrescriptionController {
 		prescriptionService.updatePrescription(cmd, id);
 	}
 	
+	@PutMapping(value = "/prescription/{prescriptionId}/{pharmacistId}")
+	@ApiOperation(value = "Sell prescription", notes = "Sells prescription and signs")
+	public void sellPrescription(@PathVariable Long prescriptionId, @PathVariable Long pharmacistId) {
+
+		prescriptionService.sellPrescription(prescriptionId, pharmacistId);
+	}
+	
 }
 
 

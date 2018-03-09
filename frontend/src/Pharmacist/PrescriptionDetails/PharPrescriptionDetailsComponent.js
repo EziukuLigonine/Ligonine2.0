@@ -20,7 +20,6 @@ const PharPrescriptionDetailsComponent = (props) => {
             <p>Aktyvioji medziaga: {props.activeMat}</p>
             <p>Aktyviosios medziagos kiekis: {props.activeMatQuantity} {props.unit}</p>
             <p>Aprasymas: {props.desc}</p>
-            <p>Israses daktaras: {props.doctorUsername}</p>
             <p>Galioja iki: {props.validUntil}</p>
             {someText}
           </div>

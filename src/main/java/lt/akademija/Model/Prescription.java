@@ -46,6 +46,19 @@ public class Prescription {
 	@JsonBackReference
 	private Patient patient;
 
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "pharmacistId")
+	@JsonBackReference
+	private Pharmacist pharmacist;
+
+	public Pharmacist getPharmacist() {
+		return pharmacist;
+	}
+
+	public void setPharmacist(Pharmacist pharmacist) {
+		this.pharmacist = pharmacist;
+	}
+
 	public Patient getPatient() {
 		return patient;
 	}

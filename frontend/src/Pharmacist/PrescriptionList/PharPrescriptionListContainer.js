@@ -58,7 +58,7 @@ export class PharPrescriptionListContainer extends Component {
                         <PharPrescriptionListComponent
                             prescriptions={filteredPrescriptions}
                             history={this.props.history}
-                            remove={this.removePrescription}/>
+                            />
                     </div>
                 </div>
             );
