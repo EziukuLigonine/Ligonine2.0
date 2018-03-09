@@ -3,28 +3,42 @@ import {PharPrescriptionListComponent} from "./PharPrescriptionListComponent";
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
-export class PharPrescriptionListContainer extends Component {
+class SoldPrescriptionListContainer extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {prescriptions: [], search: ''};
+        this.state = {
+          prescriptions: [],
+          search: '',
+          pharmacistId: ''
+        };
     }
 
     componentDidMount = () => {
-        axios.get('http://localhost:8081/api/validPrescriptions')
+      axios.get('http://localhost:8081/api/userId')
+        .then((response) => {
+          this.setState({
+            pharmacistId: response.data
+          });
+          axios.get('http://localhost:8081/api/soldPrescriptions/' + this.state.pharmacistId)
             .then((response) => {
-                this.setState({prescriptions: response.data});
+              this.setState({
+                prescriptions: response.data
+              });
             })
             .catch((error) => {
-                console.log(error);
-            });
-    };
+              console.log(error);
+            })
+        })
+        .catch((error) => {
+          console.log(error);
+        })
 
+    };
 
     handleChange = (event) => {
         this.setState({search: event.target.value});
     };
-
 
     render() {
         if (this.state.prescriptions === null) {
@@ -62,3 +76,5 @@ export class PharPrescriptionListContainer extends Component {
         }
     }
 }
+
+export default SoldPrescriptionListContainer;

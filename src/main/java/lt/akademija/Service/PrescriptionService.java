@@ -41,6 +41,16 @@ public class PrescriptionService {
 	}
 	
 	@Transactional
+	public List<Prescription> getValidPrescriptions(){
+		return prescriptionRepository.findBySoldFalse();
+	}
+	
+	@Transactional
+	public List<Prescription> getSoldPrescriptions(@PathVariable Long id){
+		return prescriptionRepository.findBySoldTrueAndPharmacistId(id);
+	}
+	
+	@Transactional
 	public Prescription getPrescription(@PathVariable Long id) {
 		return prescriptionRepository.findOne(id);
 	}

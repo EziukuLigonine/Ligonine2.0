@@ -25,6 +25,7 @@ class TopNavBar extends Component {
                                 <a href="/" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Meniu <span className="caret"></span></a>
                                 <ul className="dropdown-menu">
                                     <li><Link to="/pharmacist/prescriptions"><span className="glyphicon glyphicon-search" aria-hidden="true"></span> Receptai</Link></li>
+                                    <li><Link to="/pharmacist/soldPrescriptions"><span className="glyphicon glyphicon-search" aria-hidden="true"></span> Parduoti Receptai</Link></li>
                                 </ul>
                             </li>
                         </ul>

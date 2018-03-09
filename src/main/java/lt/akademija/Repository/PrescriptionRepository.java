@@ -14,5 +14,7 @@ public interface PrescriptionRepository extends JpaRepository <Prescription, Lon
 	List<Prescription> findByDoctorUsername(String search);
 	List<Prescription> findByDoctorId(Long search);
 	List<Prescription> findByPatientId(Long search);
+	List<Prescription> findBySoldFalse();
+	List<Prescription> findBySoldTrueAndPharmacistId(Long search);
 
 }
