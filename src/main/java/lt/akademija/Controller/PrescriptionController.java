@@ -41,6 +41,20 @@ public class PrescriptionController {
 		return prescriptionService.getPrescriptions();
 	}
 	
+	@GetMapping(value = "/validPrescriptions")
+	@ApiOperation(value = "Get all valid prescriptions", notes = "Returns list of all valid prescriptions")
+	//@PreAuthorize("hasRole('Admin') or hasRole('Doctor') or hasRole('Pharmacist')")
+	public List<Prescription> getValidPrescriptions(){
+		return prescriptionService.getValidPrescriptions();
+	}
+	
+	@GetMapping(value = "/soldPrescriptions/{id}")
+	@ApiOperation(value = "Get all sold prescriptions by pharmacist Id", notes = "Returns list of all sold prescriptions by pharmacist id")
+	//@PreAuthorize("hasRole('Admin') or hasRole('Doctor') or hasRole('Pharmacist')")
+	public List<Prescription> getSoldPrescriptions(@PathVariable Long id){
+		return prescriptionService.getSoldPrescriptions(id);
+	}
+	
 	@GetMapping(value = "/prescriptions/{id}")
 	@ApiOperation(value = "Get prescription", notes = "Returns a single prescription")
 	//@PreAuthorize("hasRole('Admin') or hasRole('Patient') or hasRole('Doctor') or hasRole('Pharmacist')")
