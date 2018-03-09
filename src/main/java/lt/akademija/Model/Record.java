@@ -17,6 +17,7 @@ public class Record {
 	private String personalId; // asmens kodas reik su pacientu sujungt
 	@NotBlank
 	private String duration; // vizito laikas
+	@Pattern(regexp = "[A-Z]{1}[\\d]{2}[-][A-Z]{1}[\\d]{2}")
 	private String tlk; // ICD-10/TLK10
 	private String appDesc; // vizito aprasas
 	@NotBlank

@@ -46,20 +46,6 @@ class RegisterPatient extends Component {
         } else return true;
     }
 
-    EmptySurname() {
-        if (this.state.surname === "") {
-            alert("Prašome įvesti pavardę");
-        }
-    }
-
-    EmptyUsername() {
-        if (this.state.username === "") {
-            alert("Prašome įvesti slapyvardį");
-        } else {
-            return true;
-        }
-    }
-
     BirthdayNotIntheFuture() {
 
         var currentDate = new Date();
@@ -88,9 +74,16 @@ class RegisterPatient extends Component {
             alert("Neteisinga data")
         }
     }
+    PersonalId(){
+        if (this.state.personalId.length !== 11) {
+            alert("Asmens kodas turi būti sudarytas iš 11 skaitmenų")
+        } else {
+            return true;
+        }
+    }
 
     handleClick = (event) => {
-        if (this.EmptyFields() && this.IdMatchesBirth() && this.BirthdayNotIntheFuture()) {
+        if (this.EmptyFields() && this.PersonalId() && this.IdMatchesBirth() && this.BirthdayNotIntheFuture()) {
             var outputPatient = {
                 name: this.state.name,
                 surname: this.state.surname,
@@ -101,26 +94,8 @@ class RegisterPatient extends Component {
                 doctorUsername: this.state.doctorUsername
             };
         }
-        if (this.state.name===""){
-            alert("Prašome įvesti pavardę")
-        }
-        if (this.state.surname === "") {
-            alert("Prašome įvesti pavardę");
-        }
-        if (this.state.username === "") {
-            alert("Prašome įvesti slapyvardį");
-        }
         if (this.state.password.length < 6) {
             alert("Slaptažodis turi būti sudarytas iš bent 6 simbolių");
-        }
-        if (this.state.personalId === "") {
-            alert("Prašome įvesti asmens kodą");
-        }
-        if (this.state.personalId.length != 11) {
-            alert("Asmens kodas turi būti sudarytas iš 11 skaitmenų")
-        }
-        if (this.state.dateOfBirth === "") {
-            alert("Prašome įvesti gimimo datą");
         }
 
         axios.post(API + "/api/admin/patients/new", outputPatient)

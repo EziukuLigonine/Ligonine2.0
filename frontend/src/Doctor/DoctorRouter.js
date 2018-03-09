@@ -7,11 +7,13 @@ import {RecordListContainer} from "./RecordList/RecordListContainer";
 import PrescriptionDetailsContainer from "./PrescriptionDetails/PrescriptionDetailsContainer";
 import {RecordDetailsContainer} from "./RecordDetails/RecordDetailsContainer";
 import DocPatientList from "./PatientList/PatientList";
+import {DocPatientPrescriptions} from "./PatientPrescriptions/DocPatientPrescriptions";
+import {DocPatientRecords} from "./PatientRecords/DocPatientRecords";
 import DoctorPatientList from "./PatientList/DoctorPatientList";
-import {PatientRecords} from "./PatientRecords/PatientRecords";
 import PatientDetailsContainer from './PatientDetails/PatientDetailsContainer';
 import EditPrescriptionContainer from './PrescriptionAdministration/EditPrescriptionContainer';
 import EditRecordContainer from './RecordAdministration/EditRecordContainer';
+
 
 
 class AdminRouter extends Component {
@@ -32,10 +34,11 @@ class AdminRouter extends Component {
                     <Route exact path="/doctor/record/:id" component={RecordDetailsContainer} />
 
                     <Route exact path="/doctor/patients" component={DocPatientList} />
+
+                    <Route exact path="/doctor/patient/records/:id" component={DocPatientRecords} />
+                    <Route exact path="/doctor/patient/prescriptions/:id" component={DocPatientPrescriptions} />
                     <Route exact path="/doctor/patient/:id" component={PatientDetailsContainer} />
-
                     <Route path="/doctor/myPatients" component={DoctorPatientList} />
-
                 </Switch>
             </div>
         );

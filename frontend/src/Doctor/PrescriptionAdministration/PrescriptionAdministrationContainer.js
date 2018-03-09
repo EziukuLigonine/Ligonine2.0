@@ -55,7 +55,35 @@ export class PrescriptionAdministrationContainer extends React.Component {
             }
         );
     };
+    PositiveNumber() {
+        if (parseInt(this.state.activeMatQuantity) > 0) {
+            return true;
+        } else {
+            alert("Įveskite teigiamą skaičių.")
+        }
+    }
+    NotEmpty(){
+        if  (this.state.unit === ""|| this.state.desc === "" ||this.state.validUntil === ""||this.state.activeMat === "") {
+            alert("Visi laukai turi būti užpildyti");
+        } else { return true;
+        }
+    }
     handleClick = (event) => {
+        if (this.NotEmpty() && this.PositiveNumber()) {
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            if (dd < 10) {
+                dd = '0' + dd
+            }
+
+            if (mm < 10) {
+                mm = '0' + mm
+            }
+
+            today = yyyy + '-' + mm + '-' + dd;
             var outputPrescription = {
                 personalId: this.state.personalId,
                 activeMat: this.state.activeMat,
@@ -63,9 +91,15 @@ export class PrescriptionAdministrationContainer extends React.Component {
                 unit: this.state.unit,
                 desc: this.state.desc,
                 validUntil: this.state.validUntil,
-                timestamp: this.state.timestamp
+                timestamp: this.state.timestamp = today
             };
-
+        }
+        if (this.state.personalId === "") {
+            alert("Prašome įvesti asmens kodą.");
+        }
+        if (this.state.personalId.length !== 11) {
+            alert("Asmens kodas turi būti sudarytas iš 11 skaitmenų.")
+        }
         axios.post('http://localhost:8081/api/prescriptions/new/' + this.state.doctorId + '/' + this.state.patientId, outputPrescription)
             .then((response) => {
                 this.setState({

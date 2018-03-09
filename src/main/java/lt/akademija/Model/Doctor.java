@@ -6,13 +6,14 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "DOCTOR")
 @PrimaryKeyJoinColumn(name = "doctorId")
 @DiscriminatorValue("Doctor")
 public class Doctor extends User {
-
+	@NotBlank
 	private String specialisation;
 
 	@OneToMany(mappedBy = "doctor", fetch = FetchType.EAGER, cascade = CascadeType.ALL)

@@ -4,7 +4,7 @@ import {RecordListComponent} from "../RecordList/RecordListComponent";
 import {DocPatientList} from "../PatientList/PatientList";
 axios.defaults.withCredentials = true;
 
-export class PatientRecords extends Component {
+export class DocPatientRecords extends Component {
 
     constructor(props) {
         super(props);
