@@ -3,13 +3,14 @@ package lt.akademija.Model;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "PHARMACIST")
 @PrimaryKeyJoinColumn(name = "pharmacistId")
 @DiscriminatorValue("Pharmacist")
 public class Pharmacist extends User {
-
+	@NotBlank
 	private String companyType;
 	private String companyName;
 
