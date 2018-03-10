@@ -4,6 +4,7 @@ import {PharPrescriptionListContainer} from "./PrescriptionList/PharPrescription
 import PharPrescriptionDetailsContainer from './PrescriptionDetails/PharPrescriptionDetailsContainer';
 import PharPrescriptionSold from './Sold/PharPrescriptionSold';
 import SoldPrescriptionListContainer from './PrescriptionList/SoldPrescriptionListContainer';
+import PasswordChangeContainer from '../PasswordChange/PasswordChangeContainer';
 
 
 
@@ -16,6 +17,7 @@ class AdminRouter extends Component {
                     <Route path="/pharmacist/prescription/:id" component={PharPrescriptionDetailsContainer} />
                     <Route path="/pharmacist/prescription/:id/confirm" component={PharPrescriptionSold} />
                     <Route path="/pharmacist/soldPrescriptions" component={SoldPrescriptionListContainer} />
+                    <Route path="/pharmacist/changePassword" component={PasswordChangeContainer} />
 
                 </Switch>
             </div>

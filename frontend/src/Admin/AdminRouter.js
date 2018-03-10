@@ -18,6 +18,7 @@ import AdminEditContainer from './Registration/AdminEditContainer';
 import DoctorEditContainer from './Registration/DoctorEditContainer';
 import PatientEditContainer from './Registration/PatientEditContainer';
 import PharmacistEditContainer from './Registration/PharmacistEditContainer';
+import PasswordChangeContainer from '../PasswordChange/PasswordChangeContainer';
 
 
   class AdminRouter extends Component {
@@ -29,6 +30,7 @@ import PharmacistEditContainer from './Registration/PharmacistEditContainer';
               <Route exact path="/admin/admins" component={AdminList} />
               <Route exact path="/admin/admin/:id" component={AdminDetailsContainer} />
               <Route exact path="/admin/admin/edit/:id" component={AdminEditContainer} />
+              <Route exact path="/admin/changePassword" component={PasswordChangeContainer} />
 
 
               <Route exact path="/admin/register/doctor" component={RegisterDoctor} />

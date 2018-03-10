@@ -5,6 +5,7 @@ import PatientRecords from './Records/PatientRecords';
 import PatientPrescriptionDetails from './PrescriptionDetails/PatientPrescriptionDetails';
 import PatientProfileContainer from './PatientProfile/PatientProfileContainer';
 import PatientRecordDetails from './RecordDetails/PatientRecordDetails';
+import PasswordChangeContainer from '../PasswordChange/PasswordChangeContainer';
 
 
   class PatientRouter extends Component {
@@ -17,6 +18,7 @@ import PatientRecordDetails from './RecordDetails/PatientRecordDetails';
               <Route path="/patient/records" component={PatientRecords} />
               <Route path="/patient/record/:id" component={PatientRecordDetails} />
               <Route path="/patient/details" component={PatientProfileContainer} />
+              <Route path="/patient/changePassword" component={PasswordChangeContainer} />
             </Switch>
           </div>
         );

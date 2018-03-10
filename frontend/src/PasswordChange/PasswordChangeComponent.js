@@ -1,33 +1,24 @@
 import React from 'react';
 
-const EditAdminComponent = (props) => {
+const PasswordChangeComponent = (props) => {
   return(
     <form className="form-horizontal">
 
             <div className="form-group">
-                <label className="col-sm-2 control-label">Vardas</label>
+                <label className="col-sm-2 control-label">Senas slaptažodis</label>
                 <div className="col-sm-3">
-                    <input type="text" className="form-control" id="name" placeholder="Vardas" value={props.name}
+                    <input type="text" className="form-control" id="matchingPass" placeholder="Senas slaptažodis" value={props.matchingPass}
                            onChange={props.onChange}/>
                 </div>
             </div>
 
             <div className="form-group">
-                <label className="col-sm-2 control-label">Pavardė</label>
+                <label className="col-sm-2 control-label">Naujas slaptažodis</label>
                 <div className="col-sm-3">
-                    <input type="text" className="form-control" id="surname" placeholder="Pavardė" value={props.surname}
+                    <input type="text" className="form-control" id="newPassword" placeholder="Naujas slaptažodis" value={props.newPassword}
                            onChange={props.onChange}/>
                 </div>
             </div>
-
-            <div className="form-group">
-                <label className="col-sm-2 control-label">Vartotojo vardas</label>
-                <div className="col-sm-3">
-                    <input type="text" className="form-control" id="username" placeholder="Vartotojo vardas" value={props.username}
-                           onChange={props.onChange}/>
-                </div>
-            </div>
-
 
             <div className="form-group">
                 <div className="col-sm-offset-2 col-sm-3">
@@ -39,4 +30,4 @@ const EditAdminComponent = (props) => {
   );
 };
 
-export default EditAdminComponent;
+export default PasswordChangeComponent;

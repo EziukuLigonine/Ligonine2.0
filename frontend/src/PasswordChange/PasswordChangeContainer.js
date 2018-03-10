@@ -1,6 +1,5 @@
 import React from 'react';
-import {API} from '../ApiUrl';
-import EditAdminComponent from "./EditAdminComponent";
+import PasswordChangeComponent from "./PasswordChangeComponent";
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
@@ -9,23 +8,19 @@ class PasswordChangeContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
-            surname: '',
-            username: '',
+            matchingPass: '',
+            newPassword: '',
+            currentUserId: '',
             history: {}
         }
     }
 
     componentDidMount() {
-        axios.get(API + "/api/admins/" + this.props.match.params.id)
+        axios.get("http://localhost:8081/api/userId/")
         .then((response) => {
-            const {name, surname, username} = response.data;
             this.setState({
-                name : name,
-                surname : surname,
-                username : username,
-                history: this.props.history
-            })
+                currentUserId : response.data
+            });
         })
         .catch((error) => {
             console.log(error);
@@ -44,15 +39,13 @@ class PasswordChangeContainer extends React.Component {
 
     handleClick = (event) => {
         const outputProduct = {
-            name: this.state.name,
-            surname: this.state.surname,
-            username: this.state.username
+            matchingPass: this.state.matchingPass,
+            newPassword: this.state.newPassword
         };
 
-        axios.put(API + "/api/admins/" + this.props.match.params.id, outputProduct)
+        axios.post("http://localhost:8081/api/user/" + this.state.currentUserId + "/changePassword", outputProduct)
             .then((response) => {
               alert("Duomenys išsaugoti!");
-                this.props.history.push("/admin/admins");
             })
             .catch((error) => {
               alert("Nepavyko! Blogai įvesti duomenys");
@@ -64,7 +57,7 @@ class PasswordChangeContainer extends React.Component {
     render() {
         return (
             <div>
-                <EditAdminComponent
+                <PasswordChangeComponent
                     name={this.state.name}
                     surname={this.state.surname}
                     username={this.state.username}

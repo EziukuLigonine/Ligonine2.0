@@ -13,6 +13,7 @@ import DoctorPatientList from "./PatientList/DoctorPatientList";
 import PatientDetailsContainer from './PatientDetails/PatientDetailsContainer';
 import EditPrescriptionContainer from './PrescriptionAdministration/EditPrescriptionContainer';
 import EditRecordContainer from './RecordAdministration/EditRecordContainer';
+import PasswordChangeContainer from '../PasswordChange/PasswordChangeContainer';
 
 
 
@@ -25,6 +26,7 @@ class AdminRouter extends Component {
                     <Route exact path="/doctor/patient/:id/prescription" component={PrescriptionAdministrationContainer} />
                     <Route exact path="/doctor/prescription/:id/edit" component={EditPrescriptionContainer} />
                     <Route exact path="/doctor/record/:id/edit" component={EditRecordContainer} />
+                    <Route exact path="/doctor/changePassword" component={PasswordChangeContainer} />
 
                     <Route exact path="/doctor/patient/:id/record" component={RecordAdministrationContainer} />
                     <Route exact path="/doctor/myRecords" component={RecordListContainer} />
