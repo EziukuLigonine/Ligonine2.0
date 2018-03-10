@@ -19,7 +19,6 @@ const tableStyle = {
                 activeMatQuantity = {prescription.activeMatQuantity}
                 unit = {prescription.unit}
                 desc = {prescription.desc}
-                doctorUsername = {prescription.doctorUsername}
                 validUntil = {prescription.validUntil}
                 history = {props.history}
             />
@@ -38,7 +37,6 @@ const tableStyle = {
                 activeMatQuantity = {prescription.activeMatQuantity}
                 unit = {prescription.unit}
                 desc = {prescription.desc}
-                doctorUsername = {prescription.doctorUsername}
                 history = {props.history}
             />
         );
@@ -78,7 +76,7 @@ const tableStyle = {
                             <th>Kiekis</th>
                             <th>Matavimo vnt</th>
                             <th>Aprašymas</th>
-                            <th>Išrašė</th>  
+                            <th>Išrašė</th>
                         </tr>
                     </thead>
                     <tbody>

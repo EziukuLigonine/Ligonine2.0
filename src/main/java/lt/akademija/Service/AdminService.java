@@ -1,5 +1,6 @@
 package lt.akademija.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import lt.akademija.Model.Admin;
 import lt.akademija.Model.CreateAdminCmd;
+import lt.akademija.Model.CreateUserCmd;
 import lt.akademija.Model.User;
 import lt.akademija.Repository.AdminRepository;
+import lt.akademija.Repository.UserRepository;
 
 @Service
 
@@ -26,10 +29,13 @@ public class AdminService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	@Autowired
+	private UserRepository userRepository;
+
 	@Transactional
 	public List<Admin> getAdmins() {
 		return adminRepository.findAll();
-																									// tik aktarus.
+		// tik aktarus.
 	}
 
 	@Transactional
@@ -49,6 +55,16 @@ public class AdminService {
 	}
 
 	@Transactional
+	public void changePassword(@RequestBody CreateUserCmd cmd, @PathVariable Long id) throws Exception {
+		User user = userRepository.findOne(id);
+		if(passwordEncoder.matches(cmd.getMatchingPass(), user.getPassword())){
+			user.setPassword(passwordEncoder.encode(cmd.getNewPassword()));
+		} else {
+			throw new Exception();
+		}
+	}
+
+	@Transactional
 	public void updateAdmin(@RequestBody CreateAdminCmd cmd, @PathVariable Long id) {
 		Admin newAdmin = adminRepository.findOne(id);
 		newAdmin.setName(cmd.getName());
@@ -56,5 +72,4 @@ public class AdminService {
 		newAdmin.setUsername(cmd.getUsername());
 		adminRepository.save(newAdmin);
 	}
-
 }

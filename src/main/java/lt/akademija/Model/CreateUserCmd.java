@@ -9,8 +9,28 @@ public abstract class CreateUserCmd {
 	private String surname;
 	private String username;
 	private String password;
+	private String newPassword;
+	private String matchingPass;
 	private boolean enabled = true;
 	private String role;
+	
+	
+
+	public String getNewPassword() {
+		return newPassword;
+	}
+
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
+
+	public String getMatchingPass() {
+		return matchingPass;
+	}
+
+	public void setMatchingPass(String matchingPass) {
+		this.matchingPass = matchingPass;
+	}
 
 	public Long getId() {
 		return id;

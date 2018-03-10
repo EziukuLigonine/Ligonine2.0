@@ -1,6 +1,10 @@
 package lt.akademija.Controller;
 
+import java.io.InvalidObjectException;
 import java.util.List;
+import java.util.Locale;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,6 +20,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +29,9 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lt.akademija.Model.Admin;
 import lt.akademija.Model.CreateAdminCmd;
+import lt.akademija.Model.CreateUserCmd;
 import lt.akademija.Model.User;
+import lt.akademija.Repository.UserRepository;
 import lt.akademija.Service.AdminService;
 import lt.akademija.Service.UserService;
 
@@ -39,6 +46,9 @@ public class AdminController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserRepository userRepository;
 
 	@GetMapping(value = "/admins")
 	@ApiOperation(value = "Get admin list", notes = "Returns list of all admins")
@@ -69,12 +79,19 @@ public class AdminController {
 	public void createAdmin(@RequestBody CreateAdminCmd cmd) {
 		adminService.createAdmin(cmd);
 	}
-
+	
 	@PutMapping(value = "/admins/{id}")
 	@ApiOperation(value = "Update admin", notes = "Updates admin details")
 	//@PreAuthorize("hasRole('Admin')")
 	public void updateAdmin(@RequestBody CreateAdminCmd cmd, @PathVariable Long id) {
 		adminService.updateAdmin(cmd, id);
 	}
+	
+	@PostMapping(value = "/user/{id}/changePassword")
+	@ApiOperation(value = "Change user password", notes = "Changes user password")
+	public void changePassword(@RequestBody CreateAdminCmd cmd, @PathVariable Long id) throws Exception {
+		adminService.changePassword(cmd, id);
+	}
+	
 
 }
