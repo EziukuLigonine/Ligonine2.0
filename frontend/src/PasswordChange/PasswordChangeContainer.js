@@ -1,6 +1,7 @@
 import React from 'react';
 import PasswordChangeComponent from "./PasswordChangeComponent";
 import axios from 'axios';
+
 axios.defaults.withCredentials = true;
 
 class PasswordChangeContainer extends React.Component {
@@ -11,20 +12,21 @@ class PasswordChangeContainer extends React.Component {
             matchingPass: '',
             newPassword: '',
             currentUserId: '',
+            repeatedPassword: '',
             history: {}
         }
     }
 
     componentDidMount() {
         axios.get("http://localhost:8081/api/userId/")
-        .then((response) => {
-            this.setState({
-                currentUserId : response.data
-            });
-        })
-        .catch((error) => {
-            console.log(error);
-        })
+            .then((response) => {
+                this.setState({
+                    currentUserId: response.data
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 
     handleChange = (event) => {
@@ -37,18 +39,26 @@ class PasswordChangeContainer extends React.Component {
         );
     };
 
+    NewPasswordMatches() {
+        if (this.state.newPassword === this.state.repeatedPassword) {
+            return true;
+        }
+    }
+
     handleClick = (event) => {
-        const outputProduct = {
+        if(this.NewPasswordMatches())
+        var outputProduct = {
             matchingPass: this.state.matchingPass,
-            newPassword: this.state.newPassword
+            newPassword: this.state.newPassword,
+
         };
 
         axios.post("http://localhost:8081/api/user/" + this.state.currentUserId + "/changePassword", outputProduct)
             .then((response) => {
-              alert("Duomenys išsaugoti!");
+                alert("Duomenys išsaugoti!");
             })
             .catch((error) => {
-              alert("Nepavyko! Blogai įvesti duomenys");
+                alert("Nepavyko! Blogai įvesti duomenys");
                 console.log(error);
             });
         event.preventDefault();
