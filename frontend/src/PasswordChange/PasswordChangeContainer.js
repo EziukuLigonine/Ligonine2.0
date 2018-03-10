@@ -42,7 +42,7 @@ class PasswordChangeContainer extends React.Component {
     NewPasswordMatches() {
         if (this.state.newPassword === this.state.repeatedPassword) {
             return true;
-        }
+        } else alert("Neteisingai pakartotas slaptažodis")
     }
 
     handleClick = (event) => {
