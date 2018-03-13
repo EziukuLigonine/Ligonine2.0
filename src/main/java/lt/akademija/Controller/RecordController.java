@@ -2,6 +2,8 @@ package lt.akademija.Controller;
 
 import java.util.List;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,7 +32,7 @@ import lt.akademija.Service.RecordService;
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(value = "/api")
 public class RecordController {
-	
+	private static final Logger log = LogManager.getLogger(RecordController.class);
 	@Autowired
 	private RecordService recordService;
 	
@@ -39,6 +41,7 @@ public class RecordController {
 	@ApiOperation(value = "Get record list", notes = "Returns list of all records")
 	@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
 	public List<Record> getRecords(){
+		log.info("Request to return a list of all records");
 		return recordService.getRecords();
 	}
 	
@@ -46,6 +49,7 @@ public class RecordController {
 	@ApiOperation(value = "Get record", notes = "Returns a single record")
 	@PreAuthorize("hasRole('Admin') or hasRole('Patient') or hasRole('Doctor')")
 	public Record getRecord(@PathVariable Long id) {
+		log.info("Request to return a record");
 		return recordService.getRecord(id);
 	}
 	
@@ -54,6 +58,7 @@ public class RecordController {
 	@ApiOperation(value = "Create records", notes = "Creates record")
 	@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
 	public void createRecord(@RequestBody CreateRecordCmd cmd, @PathVariable Long doctorId, @PathVariable Long patientId) {
+		log.info("Request to create a record");
 		recordService.createRecord(cmd, doctorId, patientId);
 	}
 	
@@ -61,6 +66,7 @@ public class RecordController {
 	@ApiOperation(value = "Update record", notes = "Updates record details")
 	@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
 	public void updateRecord(@RequestBody CreateRecordCmd cmd, @PathVariable Long id) {
+		log.info("Request to update record's details");
 		recordService.updateRecord(cmd, id);
 	}
 }
