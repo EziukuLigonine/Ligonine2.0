@@ -780,34 +780,34 @@
         </CLASSES>
       </library> 
     </orderEntry>  
-    <orderEntry type="module-library">
-      <library>
+    <orderEntry type="module-library"> 
+      <library> 
         <CLASSES>
           <root url="jar://C:/Users/Karolis/.m2/repository/org/apache/logging/log4j/log4j-api/2.5/log4j-api-2.5.jar!/"/>
         </CLASSES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library"> 
+      <library> 
         <CLASSES>
           <root url="jar://C:/Users/Karolis/.m2/repository/org/apache/logging/log4j/log4j-jcl/2.5/log4j-jcl-2.5.jar!/"/>
         </CLASSES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library"> 
+      <library> 
         <CLASSES>
           <root url="jar://C:/Users/Karolis/.m2/repository/org/apache/logging/log4j/log4j-slf4j-impl/2.5/log4j-slf4j-impl-2.5.jar!/"/>
         </CLASSES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
+      </library> 
+    </orderEntry>  
+    <orderEntry type="module-library"> 
+      <library> 
         <CLASSES>
           <root url="jar://C:/Users/Karolis/.m2/repository/org/apache/logging/log4j/log4j-core/2.5/log4j-core-2.5.jar!/"/>
         </CLASSES>
-      </library>
-    </orderEntry>
+      </library> 
+    </orderEntry> 
   </component>  
   <component name="WebModuleBuildComponent"> 
     <setting name="EXPLODED_URL" value="file://$MODULE_DIR$/target/Sveikata"/> 
