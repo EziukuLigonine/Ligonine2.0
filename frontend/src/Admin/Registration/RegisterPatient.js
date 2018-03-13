@@ -81,9 +81,16 @@ class RegisterPatient extends Component {
             return true;
         }
     }
+    PasswordLength(){
+        if (this.state.password.length < 6) {
+            alert("Slaptažodis turi būti sudarytas iš bent 6 simbolių");
+        } else {
+            return true;
+        }
+    }
 
     handleClick = (event) => {
-        if (this.EmptyFields() && this.PersonalId() && this.IdMatchesBirth() && this.BirthdayNotIntheFuture()) {
+        if (this.EmptyFields() && this.PersonalId() && this.IdMatchesBirth() && this.BirthdayNotIntheFuture() && this.PasswordLength()) {
             var outputPatient = {
                 name: this.state.name,
                 surname: this.state.surname,
@@ -94,9 +101,7 @@ class RegisterPatient extends Component {
                 doctorUsername: this.state.doctorUsername
             };
         }
-        if (this.state.password.length < 6) {
-            alert("Slaptažodis turi būti sudarytas iš bent 6 simbolių");
-        }
+
 
         axios.post(API + "/api/admin/patients/new", outputPatient)
             .then((response) => {

@@ -100,6 +100,9 @@ export class PrescriptionAdministrationContainer extends React.Component {
         if (this.state.personalId.length !== 11) {
             alert("Asmens kodas turi būti sudarytas iš 11 skaitmenų.")
         }
+        if (this.state.activeMat.length >50){
+            alert("Veiklioji medžiaga negali viršyti 50 simbolių")
+        }
         axios.post('http://localhost:8081/api/prescriptions/new/' + this.state.doctorId + '/' + this.state.patientId, outputPrescription)
             .then((response) => {
                 this.setState({

@@ -32,18 +32,21 @@ class RegisterAdmin extends Component {
             alert("Visi laukai turi būti užpildyti");
         } else return true;
     }
-
+    PasswordLength(){
+        if (this.state.password.length < 6) {
+            alert("Slaptažodis turi būti sudarytas iš bent 6 simbolių");
+        } else {
+            return true;
+        }
+    }
     handleClick = (event) => {
-        if (this.EmptyFields()) {
+        if (this.EmptyFields()&& this.PasswordLength()) {
             var outputAdmin = {
                 name: this.state.name,
                 surname: this.state.surname,
                 username: this.state.username,
                 password: this.state.password
             };
-        }
-        if (this.state.password.length < 6) {
-            alert("Slaptažodis turi būti sudarytas iš 6 arba daugiau simbolių");
         }
         axios.post(API + "/api/admin/admins/new", outputAdmin)
             .then((response) => {

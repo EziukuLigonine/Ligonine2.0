@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -27,6 +28,7 @@ public class Prescription {
 	private Long id;
 	@Pattern(regexp = "[3-6]{1}[0-9]{10}")
 	private String personalId; // asmens kodas reik su pacientu sujungt
+	@Size(max = 50)
 	private String activeMat; // veiklioji medziaga
 	private String activeMatQuantity; // veikliosios medziagos kiekis
 	@NotBlank

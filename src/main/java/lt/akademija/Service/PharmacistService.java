@@ -34,7 +34,7 @@ public class PharmacistService {
 		return pharmacistRepository.findAll();
 		// filtruoti
 		// tik
-		// aktarus.
+		// daktarus.
 	}
 
 	@Transactional

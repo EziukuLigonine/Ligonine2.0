@@ -1,6 +1,8 @@
 package lt.akademija.Model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -10,10 +12,17 @@ public abstract class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
+	@Size(min = 2, max = 30)
+	@Pattern(regexp ="[A-Za-z[ĄąČčĘęĖėĮįŠšŲųŪūŽž]]+")
 	private String name;
+	@Size(min = 2, max = 30)
+	@Pattern(regexp ="[A-Za-z[ĄąČčĘęĖėĮįŠšŲųŪūŽž]]+")
 	private String surname;
+	@Size(min = 2, max = 30)
+	@Pattern(regexp ="[\\w[ĄąČčĘęĖėĮįŠšŲųŪūŽž]]+")
 	@Column(unique = true)
 	private String username;
+	@Size(min = 6)
 	private String password;
 	private boolean enabled = true;
 	private String role;

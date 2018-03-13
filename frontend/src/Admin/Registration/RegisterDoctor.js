@@ -33,9 +33,16 @@ class RegisterDoctor extends Component {
             alert("Visi laukai turi būti užpildyti");
         } else return true;
     }
+    PasswordLength(){
+        if (this.state.password.length < 6) {
+            alert("Slaptažodis turi būti sudarytas iš bent 6 simbolių");
+        } else {
+            return true;
+        }
+    }
 
     handleClick = (event) => {
-        if (this.EmptyFields()) {
+        if (this.EmptyFields() && this.PasswordLength()) {
             var outputDoctor = {
                 name: this.state.name,
                 surname: this.state.surname,
@@ -45,9 +52,7 @@ class RegisterDoctor extends Component {
             };
         }
 
-        if (this.state.password.length < 6) {
-            alert("Slaptažodis turi būti sudarytas iš bent 6 simbolių");
-        }
+
 
         axios.post(API + "/api/admin/doctors/new", outputDoctor)
             .then((response) => {
@@ -58,7 +63,7 @@ class RegisterDoctor extends Component {
                     password: '',
                     specialisation: ''
                 });
-                alert("Daktaras užregistruotas!");
+                alert("Gydytojas užregistruotas!");
                 this.props.history.push("/admin/doctors");
             })
             .catch((error) => {

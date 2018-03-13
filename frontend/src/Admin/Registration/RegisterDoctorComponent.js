@@ -13,7 +13,7 @@ const RegisterDoctorComponent = (props) => {
               </div>
 
               <div className="form-group">
-                  <label className="col-sm-2 control-label">Surname</label>
+                  <label className="col-sm-2 control-label">Pavardė</label>
                   <div className="col-sm-3">
                       <input type="text" className="form-control" id="surname" placeholder="Pavardė" value={props.surname}
                              onChange={props.onChange}/>

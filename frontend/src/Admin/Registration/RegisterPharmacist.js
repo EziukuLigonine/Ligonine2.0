@@ -32,8 +32,16 @@ class RegisterPharmacist extends Component {
             alert("Visi laukai turi būti užpildyti");
         } else return true;
     }
+    PasswordLength(){ //Checks whether password has 6 or more symbols.
+        if (this.state.password.length < 6) {
+            alert("Slaptažodis turi būti sudarytas iš bent 6 simbolių");
+        } else {
+            return true;
+        }
+    }
+
     handleClick = (event) => {
-        if (this.EmptyFields()) {
+        if (this.EmptyFields() && this.PasswordLength()) {
             var outputPharmacist = {
                 name: this.state.name,
                 surname: this.state.surname,
@@ -43,10 +51,12 @@ class RegisterPharmacist extends Component {
                 companyName: this.state.companyName
             };
         }
-        if (this.state.password.length < 6) {
-            alert("Slaptažodis turi būti sudarytas iš bent 6 simbolių");
+        if (this.state.name.length > 30){
+            alert("Vardas turi neviršyti 30 simbolių");
         }
-
+        if (this.state.surname.length > 30){
+            alert("Pavardė turi neviršyti 30 simbolių")
+        }
         axios.post(API + "/api/admin/pharmacists/new", outputPharmacist)
             .then((response) => {
                 this.setState({
