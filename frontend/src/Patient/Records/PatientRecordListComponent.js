@@ -1,7 +1,7 @@
 import React from 'react';
 
  const PatientPrescriptionListComponent = (props) => {
-  var {id, personalId, duration, tlk, appDesc, vlk, repeated, doctorUsername, date} = props;
+  var {id, tlk, doctorUsername, date} = props;
 
   var getRecord = (event) => {
       props.history.push("/patient/record/" + id);

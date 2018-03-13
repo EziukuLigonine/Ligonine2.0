@@ -2,6 +2,8 @@ package lt.akademija.Controller;
 
 import java.util.List;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -38,7 +40,7 @@ import lt.akademija.Service.UserService;
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(value = "/api")
 public class PatientController {
-
+	private static final Logger log = LogManager.getLogger(PatientController.class);
 	@Autowired
 	private PatientService patientService;
 
@@ -49,6 +51,7 @@ public class PatientController {
 	@ApiOperation(value = "Get patient list", notes = "Returns list of all patients")
 	//@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
 	public List<Patient> getPatients() {
+		log.info("Returned a list of all doctors");
 		return patientService.getPatients();
 	}
 	
@@ -57,6 +60,7 @@ public class PatientController {
 	@PreAuthorize("hasRole('Doctor') or hasRole('Admin')")
 	public Page<Patient> findPaginated(
 			@RequestParam("page") int page, @RequestParam("size") int size) throws Exception {
+		log.info("Patient list was seperated into smaller pieces and returned");
 		Page<Patient> resultPage = patientService.findPaginated(page, size);
 		if(page > resultPage.getTotalPages()) {
 			throw new Exception();
@@ -68,6 +72,7 @@ public class PatientController {
 	@ApiOperation(value = "Get patient", notes = "Returns a single patient")
 	@PreAuthorize("hasRole('Doctor') or hasRole('Admin') or hasRole('Patient')")
 	public User getPatient(@PathVariable Long id) {
+		log.info("Returned a single patient");
 		return patientService.getPatient(id);
 	}
 
@@ -75,6 +80,7 @@ public class PatientController {
 	@ApiOperation(value = "Get patient records", notes = "Returns list of patient records")
 	@PreAuthorize("hasRole('Doctor') or hasRole('Admin') or hasRole('Patient')")
 	public List<Record> getPatientRecords(@PathVariable Long id) {
+		log.info("Request to return a list of patient's records");
 		return patientService.getPatientRecords(id);
 	}
 
@@ -82,12 +88,14 @@ public class PatientController {
 	@ApiOperation(value = "Get patient prescriptions", notes = "Returns list of patient prescriptions")
 	//@PreAuthorize("hasRole('Doctor') or hasRole('Admin') or hasRole('Patient') or hasRole('Pharmacist')")
 	public List<Prescription> getPatientPrescriptions(@PathVariable Long id) {
+		log.info("Request to return a list of patient's prescriptions");
 		return patientService.getPatientPrescriptions(id);
 	}
 
 	@GetMapping(value = "/userId")
 	@ApiOperation(value = "Get user id", notes = "Returns a single users id")
 	public Long getUserId() {
+		log.info("Request to return a user's id");
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
 		return userService.getUserId(currentPrincipalName);
@@ -98,6 +106,7 @@ public class PatientController {
 	@ApiOperation(value = "Create patients", notes = "Creates patient")
 	//@PreAuthorize("hasRole('Admin')")
 	public void createPatient(@RequestBody CreatePatientCmd cmd) {
+		log.info("Request to create a patient");
 		patientService.createPatient(cmd);
 	}
 
@@ -105,6 +114,7 @@ public class PatientController {
 	@ApiOperation(value = "Update patient", notes = "Updates patient details")
 	@PreAuthorize("hasRole('Doctor') or hasRole('Admin')")
 	public void updatePatient(@RequestBody CreatePatientCmd cmd, @PathVariable Long id) {
+		log.info("Request to update a patient");
 		patientService.updatePatient(cmd, id);
 	}
 
@@ -112,7 +122,7 @@ public class PatientController {
 	@ApiOperation(value = "Assign patient to doctor", notes = "Assigns patient to doctor")
 	@PreAuthorize("hasRole('Admin')")
 	public void assignDoctorToPatient(@PathVariable Long patientId, @PathVariable Long doctorId) {
-
+		log.info("Request to assign a patient to a doctor");
 		patientService.assignPatient(patientId, doctorId);
 	}
 

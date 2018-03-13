@@ -1,6 +1,7 @@
 import React from 'react';
 import {RecordAdministrationComponent} from "./RecordAdministrationComponent";
 import axios from 'axios';
+
 axios.defaults.withCredentials = true;
 
 
@@ -26,18 +27,18 @@ export class RecordAdministrationContainer extends React.Component {
         axios.get('http://localhost:8081/api/userId/')
             .then((response) => {
                 this.setState({doctorId: response.data});
-                axios.get('http://localhost:8081/api/patients/' +  this.props.match.params.id)
-                  .then((response) => {
-                    const {id, personalId} = response.data;
-                    this.setState({
-                      personalId: personalId,
-                      patientId: id
-                    });
+                axios.get('http://localhost:8081/api/patients/' + this.props.match.params.id)
+                    .then((response) => {
+                        const {id, personalId} = response.data;
+                        this.setState({
+                            personalId: personalId,
+                            patientId: id
+                        });
 
-                  })
-                  .catch((error) => {
-                    console.log(error);
-                  })
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
             })
             .catch((error) => {
                 console.log(error);
@@ -69,7 +70,7 @@ export class RecordAdministrationContainer extends React.Component {
         }
 
         today = yyyy + '-' + mm + '-' + dd;
-
+        this.state.date.setState(today)
         const outputRecord = {
             personalId: this.state.personalId,
             duration: this.state.duration,
@@ -77,15 +78,15 @@ export class RecordAdministrationContainer extends React.Component {
             appDesc: this.state.appDesc,
             vlk: this.state.vlk,
             repeated: this.state.repeated,
-            date: this.state.date = today
+            date: this.state.date
         };
         if (this.state.personalId === "") {
             alert("Prašome įvesti asmens kodą");
         }
-        if (this.state.personalId.length>11) {
+        if (this.state.personalId.length > 11) {
             alert("Asmens kodas turi būti sudarytas iš 11 simbolių");
         }
-        if (this.state.personalId.length<11) {
+        if (this.state.personalId.length < 11) {
             alert("Asmens kodas turi būti sudarytas iš 11 simbolių");
         }
         if (this.state.tlk === "") {
@@ -109,14 +110,14 @@ export class RecordAdministrationContainer extends React.Component {
 
         axios.post('http://localhost:8081/api/records/new/' + this.state.doctorId + '/' + this.state.patientId, outputRecord)
             .then((response) => {
-                this.setState( {
-                  personalId: '',
-                  duration: '',
-                  tlk: '',
-                  appDesc: '',
-                  vlk: '',
-                  repeated: '',
-                  date: ''
+                this.setState({
+                    personalId: '',
+                    duration: '',
+                    tlk: '',
+                    appDesc: '',
+                    vlk: '',
+                    repeated: '',
+                    date: ''
                 });
                 alert("Ligos istorija sėkmingai užregistruota");
                 this.props.history.push("/doctor/records");
@@ -124,7 +125,7 @@ export class RecordAdministrationContainer extends React.Component {
             .catch((error) => {
                 console.log(error);
             });
-            event.preventDefault();
+        event.preventDefault();
     };
 
     render() {

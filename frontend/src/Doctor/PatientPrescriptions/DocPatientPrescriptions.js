@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {DocPatientList} from "../PatientList/PatientList";
 import {PrescriptionListComponent} from "../PrescriptionList/PrescriptionListComponent";
 axios.defaults.withCredentials = true;
 

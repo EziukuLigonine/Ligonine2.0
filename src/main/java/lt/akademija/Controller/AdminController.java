@@ -6,6 +6,8 @@ import java.util.Locale;
 
 import javax.validation.Valid;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,30 +43,31 @@ import lt.akademija.Service.UserService;
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(value = "/api")
 public class AdminController {
-
+	private static final Logger log = LogManager.getLogger(AdminController.class);
 	@Autowired
 	private AdminService adminService;
 
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private UserRepository userRepository;
 
 	@GetMapping(value = "/admins")
 	@ApiOperation(value = "Get admin list", notes = "Returns list of all admins")
-	//@PreAuthorize("hasRole('Admin')")
+	@PreAuthorize("hasRole('Admin')")
 	public List<Admin> getAdmins() {
+		log.info("Request to call admin list");
 		return adminService.getAdmins();
 	}
-	
+
 	@GetMapping(value = "/admins", params = { "page", "size" })
 	@ApiOperation(value = "Get admin list", notes = "Returns admin list in chunks")
-	//@PreAuthorize("hasRole('Admin')")
-	public Page<Admin> findPaginated(
-			@RequestParam("page") int page, @RequestParam("size") int size) throws Exception {
+	@PreAuthorize("hasRole('Admin')")
+	public Page<Admin> findPaginated(@RequestParam("page") int page, @RequestParam("size") int size) throws Exception {
+		log.info("Request to seperate and call admin list");
 		Page<Admin> resultPage = adminService.findPaginated(page, size);
-		if(page > resultPage.getTotalPages()) {
+		if (page > resultPage.getTotalPages()) {
 			throw new Exception();
 		}
 		return resultPage;
@@ -72,14 +75,16 @@ public class AdminController {
 
 	@GetMapping(value = "/admins/{id}")
 	@ApiOperation(value = "Get admin", notes = "Returns a single admin")
-	//@PreAuthorize("hasRole('Admin')")
+	@PreAuthorize("hasRole('Admin')")
 	public User getAdmin(@PathVariable Long id) {
+		log.info("Request to return an admin");
 		return adminService.getAdmin(id);
 	}
 
 	@GetMapping(value = "/userRole")
 	@ApiOperation(value = "Get user role", notes = "Returns a single user role")
 	public String getUserRole() {
+		log.info("Request to return a user role");
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
 		return userService.getUserRole(currentPrincipalName);
@@ -90,21 +95,23 @@ public class AdminController {
 	@ApiOperation(value = "Create admins", notes = "Creates admin")
 	@PreAuthorize("hasRole('Admin')")
 	public void createAdmin(@RequestBody CreateAdminCmd cmd) {
+		log.info("Request to create an admin");
 		adminService.createAdmin(cmd);
 	}
-	
+
 	@PutMapping(value = "/admins/{id}")
 	@ApiOperation(value = "Update admin", notes = "Updates admin details")
 	@PreAuthorize("hasRole('Admin')")
 	public void updateAdmin(@RequestBody CreateAdminCmd cmd, @PathVariable Long id) {
+		log.info("Request to update an admin");
 		adminService.updateAdmin(cmd, id);
 	}
-	
+
 	@PostMapping(value = "/user/{id}/changePassword")
 	@ApiOperation(value = "Change user password", notes = "Changes user password")
 	public void changePassword(@RequestBody CreateAdminCmd cmd, @PathVariable Long id) throws Exception {
+		log.info("Request to change Užuser's password");
 		adminService.changePassword(cmd, id);
 	}
-	
 
 }
