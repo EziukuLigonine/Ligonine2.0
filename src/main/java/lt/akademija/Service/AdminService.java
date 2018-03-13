@@ -7,6 +7,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,7 +37,11 @@ public class AdminService {
 	@Transactional
 	public List<Admin> getAdmins() {
 		return adminRepository.findAll();
-		// tik aktarus.
+	}
+	
+	@Transactional
+	public Page<Admin> findPaginated(int page, int size){
+		return adminRepository.findAll(new PageRequest(page, size));
 	}
 
 	@Transactional
