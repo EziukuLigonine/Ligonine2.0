@@ -1,28 +1,56 @@
 import React, {Component} from 'react';
 import PharmacistListComponent from "./PharmacistListComponent";
 import {API} from '../ApiUrl';
+import Pagination from "react-js-pagination";
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
 class PharmacistList extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {pharmacists: [], search: '' };
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      pharmacists: [],
+      totalItems: '',
+      perPage: 10,
+      activePage: 1,
+      startPage: 0,
+      search: ''
+    };
+  }
 
-    componentDidMount = () => {
-        axios.get(API + "/api/pharmacists")
-            .then((response) => {
-                this.setState({pharmacists: response.data});
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    };
-    handleChange = (event) => {
-        this.setState({search: event.target.value});
-    };
+  componentDidMount = () => {
+    axios.get(API + "/api/pharmacists?page=" + this.state.startPage + "&size=" + this.state.perPage)
+    .then((response) => {
+      this.setState({
+        pharmacists: response.data.content,
+        totalItems: response.data.totalElements,
+
+      });
+      console.log(this.state.pharmacists)
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  };
+  handleChange = (event) => {
+    this.setState({search: event.target.value});
+  };
+
+  handlePageChange = (pageNumber) => {
+    this.setState({
+      activePage: pageNumber
+    });
+    let number = parseInt(pageNumber) - 1;
+    console.log(pageNumber)
+    axios.get(API + "/api/pharmacists?page=" + number + "&size=" + this.state.perPage)
+    .then((response) => {
+      this.setState({
+        pharmacists: response.data.content
+      });
+    })
+  }
 
     render() {
         if (this.state.pharmacists === null) {
@@ -46,6 +74,12 @@ class PharmacistList extends Component {
                     </form>
                     <div>
                         <PharmacistListComponent pharmacists={filteredPharmacists} history={this.props.history}/>
+                          <Pagination
+                            activePage={this.state.activePage}
+                            itemsCountPerPage={this.state.perPage}
+                            totalItemsCount={this.state.totalItems}
+                            onChange={this.handlePageChange}
+                            />
                     </div>
                 </div>
             );

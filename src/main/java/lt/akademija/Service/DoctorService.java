@@ -6,11 +6,14 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import lt.akademija.Model.Admin;
 import lt.akademija.Model.CreateDoctorCmd;
 import lt.akademija.Model.CreatePatientCmd;
 import lt.akademija.Model.Doctor;
@@ -47,6 +50,11 @@ public class DoctorService {
 	@Transactional
 	public List<Doctor> getDoctors(){
 		return doctorRepository.findAll();
+	}
+	
+	@Transactional
+	public Page<Doctor> findPaginated(int page, int size){
+		return doctorRepository.findAll(new PageRequest(page, size));
 	}
 	
 	@Transactional

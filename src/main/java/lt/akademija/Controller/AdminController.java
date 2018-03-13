@@ -55,14 +55,15 @@ public class AdminController {
 
 	@GetMapping(value = "/admins")
 	@ApiOperation(value = "Get admin list", notes = "Returns list of all admins")
-	// @PreAuthorize("hasRole('Admin')")
+	@PreAuthorize("hasRole('Admin')")
 	public List<Admin> getAdmins() {
 		return adminService.getAdmins();
 
 	}
 
 	@GetMapping(value = "/admins", params = { "page", "size" })
-	@ApiOperation(value = "Get admin list", notes = "Returns admin list in chuncks")
+	@ApiOperation(value = "Get admin list", notes = "Returns admin list in chunks")
+	@PreAuthorize("hasRole('Admin')")
 	public Page<Admin> findPaginated(
 			@RequestParam("page") int page, @RequestParam("size") int size) throws Exception {
 		Page<Admin> resultPage = adminService.findPaginated(page, size);
@@ -74,7 +75,7 @@ public class AdminController {
 
 	@GetMapping(value = "/admins/{id}")
 	@ApiOperation(value = "Get admin", notes = "Returns a single admin")
-	//@PreAuthorize("hasRole('Admin')")
+	@PreAuthorize("hasRole('Admin')")
 	public User getAdmin(@PathVariable Long id) {
 		return adminService.getAdmin(id);
 	}
@@ -90,14 +91,14 @@ public class AdminController {
 	@PostMapping(value = "admin/admins/new")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = "Create admins", notes = "Creates admin")
-	//@PreAuthorize("hasRole('Admin')")
+	@PreAuthorize("hasRole('Admin')")
 	public void createAdmin(@RequestBody CreateAdminCmd cmd) {
 		adminService.createAdmin(cmd);
 	}
 	
 	@PutMapping(value = "/admins/{id}")
 	@ApiOperation(value = "Update admin", notes = "Updates admin details")
-	//@PreAuthorize("hasRole('Admin')")
+	@PreAuthorize("hasRole('Admin')")
 	public void updateAdmin(@RequestBody CreateAdminCmd cmd, @PathVariable Long id) {
 		adminService.updateAdmin(cmd, id);
 	}

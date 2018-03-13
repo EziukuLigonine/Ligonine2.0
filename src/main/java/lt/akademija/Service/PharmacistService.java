@@ -6,6 +6,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,9 +34,11 @@ public class PharmacistService {
 	@Transactional
 	public List<Pharmacist> getPharmacists() {
 		return pharmacistRepository.findAll();
-		// filtruoti
-		// tik
-		// daktarus.
+	}
+	
+	@Transactional
+	public Page<Pharmacist> findPaginated(int page, int size){
+		return pharmacistRepository.findAll(new PageRequest(page, size));
 	}
 
 	@Transactional
