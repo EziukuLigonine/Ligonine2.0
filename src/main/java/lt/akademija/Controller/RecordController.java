@@ -37,14 +37,14 @@ public class RecordController {
 	
 	@GetMapping(value = "/records")
 	@ApiOperation(value = "Get record list", notes = "Returns list of all records")
-	//@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
+	@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
 	public List<Record> getRecords(){
 		return recordService.getRecords();
 	}
 	
 	@GetMapping(value = "/records/{id}")
 	@ApiOperation(value = "Get record", notes = "Returns a single record")
-	//@PreAuthorize("hasRole('Admin') or hasRole('Patient') or hasRole('Doctor')")
+	@PreAuthorize("hasRole('Admin') or hasRole('Patient') or hasRole('Doctor')")
 	public Record getRecord(@PathVariable Long id) {
 		return recordService.getRecord(id);
 	}
@@ -52,14 +52,14 @@ public class RecordController {
 	@PostMapping(value = "/records/new/{doctorId}/{patientId}")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = "Create records", notes = "Creates record")
-	//@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
+	@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
 	public void createRecord(@RequestBody CreateRecordCmd cmd, @PathVariable Long doctorId, @PathVariable Long patientId) {
 		recordService.createRecord(cmd, doctorId, patientId);
 	}
 	
 	@PutMapping(value = "/records/{id}")
 	@ApiOperation(value = "Update record", notes = "Updates record details")
-	//@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
+	@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
 	public void updateRecord(@RequestBody CreateRecordCmd cmd, @PathVariable Long id) {
 		recordService.updateRecord(cmd, id);
 	}

@@ -1,33 +1,57 @@
 import React, {Component} from 'react';
 import DocPatientListComponent from "./PatientListComponent";
 import {API} from "../../Admin/ApiUrl";
+import Pagination from "react-js-pagination";
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
 
 class DocPatientList extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-          patients: [],
-          search: ''
-        };
-    }
-
-    componentDidMount = () => {
-        axios.get(API + "/api/patients")
-            .then((response) => {
-                this.setState({patients: response.data});
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+  constructor(props) {
+    super(props);
+    this.state = {
+      patients: [],
+      totalItems: '',
+      perPage: 10,
+      activePage: 1,
+      startPage: 0,
+      search: ''
     };
+  }
 
-    handleChange = (event) => {
-        this.setState({search: event.target.value});
-    };
+  componentDidMount = () => {
+    axios.get(API + "/api/patients?page=" + this.state.startPage + "&size=" + this.state.perPage)
+    .then((response) => {
+      this.setState({
+        patients: response.data.content,
+        totalItems: response.data.totalElements,
+
+      });
+      console.log(this.state.patients)
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  };
+  handleChange = (event) => {
+    this.setState({search: event.target.value});
+  };
+
+  handlePageChange = (pageNumber) => {
+    this.setState({
+      activePage: pageNumber
+    });
+    let number = parseInt(pageNumber) - 1;
+    console.log(pageNumber)
+    axios.get(API + "/api/patients?page=" + number + "&size=" + this.state.perPage)
+    .then((response) => {
+      this.setState({
+        patients: response.data.content
+      });
+    })
+  }
 
     render() {
         if (this.state.patients === null) {
@@ -55,6 +79,12 @@ class DocPatientList extends Component {
                           patients={filteredPatients}
                           history={this.props.history}
                           />
+                          <Pagination
+                            activePage={this.state.activePage}
+                            itemsCountPerPage={this.state.perPage}
+                            totalItemsCount={this.state.totalItems}
+                            onChange={this.handlePageChange}
+                            />
                     </div>
                 </div>
             );

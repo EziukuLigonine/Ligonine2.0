@@ -3,6 +3,7 @@ package lt.akademija.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lt.akademija.Model.CreateDoctorCmd;
 import lt.akademija.Model.CreatePatientCmd;
+import lt.akademija.Model.Doctor;
 import lt.akademija.Model.Patient;
 import lt.akademija.Model.Prescription;
 import lt.akademija.Model.Record;
@@ -45,28 +47,40 @@ public class PatientController {
 
 	@GetMapping(value = "/patients")
 	@ApiOperation(value = "Get patient list", notes = "Returns list of all patients")
-	// @PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
+	@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
 	public List<Patient> getPatients() {
 		return patientService.getPatients();
+	}
+	
+	@GetMapping(value = "/patients", params = { "page", "size" })
+	@ApiOperation(value = "Get patient list", notes = "Returns patient list in chunks")
+	@PreAuthorize("hasRole('Doctor') or hasRole('Admin')")
+	public Page<Patient> findPaginated(
+			@RequestParam("page") int page, @RequestParam("size") int size) throws Exception {
+		Page<Patient> resultPage = patientService.findPaginated(page, size);
+		if(page > resultPage.getTotalPages()) {
+			throw new Exception();
+		}
+		return resultPage;
 	}
 
 	@GetMapping(value = "/patients/{id}")
 	@ApiOperation(value = "Get patient", notes = "Returns a single patient")
-	// @PreAuthorize("hasRole('Doctor') or hasRole('Admin') or hasRole('Patient')")
+	@PreAuthorize("hasRole('Doctor') or hasRole('Admin') or hasRole('Patient')")
 	public User getPatient(@PathVariable Long id) {
 		return patientService.getPatient(id);
 	}
 
 	@GetMapping(value = "/patients/{id}/records")
 	@ApiOperation(value = "Get patient records", notes = "Returns list of patient records")
-	// @PreAuthorize("hasRole('Doctor') or hasRole('Admin') or hasRole('Patient')")
+	@PreAuthorize("hasRole('Doctor') or hasRole('Admin') or hasRole('Patient')")
 	public List<Record> getPatientRecords(@PathVariable Long id) {
 		return patientService.getPatientRecords(id);
 	}
 
 	@GetMapping(value = "/patients/{id}/prescriptions")
 	@ApiOperation(value = "Get patient prescriptions", notes = "Returns list of patient prescriptions")
-	// @PreAuthorize("hasRole('Doctor') or hasRole('Admin') or hasRole('Patient')")
+	@PreAuthorize("hasRole('Doctor') or hasRole('Admin') or hasRole('Patient') or hasRole('Pharmacist')")
 	public List<Prescription> getPatientPrescriptions(@PathVariable Long id) {
 		return patientService.getPatientPrescriptions(id);
 	}
@@ -82,20 +96,21 @@ public class PatientController {
 	@PostMapping(value = "admin/patients/new")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = "Create patients", notes = "Creates patient")
-	// @PreAuthorize("hasRole('Admin')")
+	@PreAuthorize("hasRole('Admin')")
 	public void createPatient(@RequestBody CreatePatientCmd cmd) {
 		patientService.createPatient(cmd);
 	}
 
 	@PutMapping(value = "/patients/{id}")
 	@ApiOperation(value = "Update patient", notes = "Updates patient details")
-	// @PreAuthorize("hasRole('Doctor') or hasRole('Admin')")
+	@PreAuthorize("hasRole('Doctor') or hasRole('Admin')")
 	public void updatePatient(@RequestBody CreatePatientCmd cmd, @PathVariable Long id) {
 		patientService.updatePatient(cmd, id);
 	}
 
 	@PutMapping(value = "/patient/{patientId}/{doctorId}")
 	@ApiOperation(value = "Assign patient to doctor", notes = "Assigns patient to doctor")
+	@PreAuthorize("hasRole('Admin')")
 	public void assignDoctorToPatient(@PathVariable Long patientId, @PathVariable Long doctorId) {
 
 		patientService.assignPatient(patientId, doctorId);

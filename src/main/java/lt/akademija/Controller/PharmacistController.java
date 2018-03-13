@@ -3,6 +3,7 @@ package lt.akademija.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lt.akademija.Model.CreatePharmacistCmd;
+import lt.akademija.Model.Patient;
 import lt.akademija.Model.Pharmacist;
 import lt.akademija.Model.User;
 import lt.akademija.Service.PharmacistService;
@@ -36,14 +38,26 @@ public class PharmacistController {
 
 	@GetMapping(value = "/pharmacists")
 	@ApiOperation(value = "Get pharmacist list", notes = "Returns list of all pharmacists")
-	//@PreAuthorize("hasRole('Admin')")
+	@PreAuthorize("hasRole('Admin')")
 	public List<Pharmacist> getPharmacists() {
 		return pharmacistService.getPharmacists();
+	}
+	
+	@GetMapping(value = "/pharmacists", params = { "page", "size" })
+	@ApiOperation(value = "Get pharmacists list", notes = "Returns pharmacists list in chunks")
+	@PreAuthorize("hasRole('Admin')")
+	public Page<Pharmacist> findPaginated(
+			@RequestParam("page") int page, @RequestParam("size") int size) throws Exception {
+		Page<Pharmacist> resultPage = pharmacistService.findPaginated(page, size);
+		if(page > resultPage.getTotalPages()) {
+			throw new Exception();
+		}
+		return resultPage;
 	}
 
 	@GetMapping(value = "/pharmacists/{id}")
 	@ApiOperation(value = "Get pharmacist", notes = "Returns a single pharmacist")
-	//@PreAuthorize("hasRole('Admin') or hasRole('Pharmacist')")
+	@PreAuthorize("hasRole('Admin') or hasRole('Pharmacist')")
 	public User getPharmacist(@PathVariable Long id) {
 		return pharmacistService.getPharmacist(id);
 	}
@@ -51,14 +65,14 @@ public class PharmacistController {
 	@PostMapping(value = "/admin/pharmacists/new")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = "Create pharmacists", notes = "Creates pharmacist")
-	//@PreAuthorize("hasRole('Admin')")
+	@PreAuthorize("hasRole('Admin')")
 	public void createPharmacist(@RequestBody CreatePharmacistCmd cmd) {
 		pharmacistService.createPharmacist(cmd);
 	}
 
 	@PutMapping(value = "/pharmacists/{id}")
 	@ApiOperation(value = "Update pharmacist", notes = "Updates pharmacist details")
-	//@PreAuthorize("hasRole('Admin')")
+	@PreAuthorize("hasRole('Admin')")
 	public void updatePharmacist(@RequestBody CreatePharmacistCmd cmd, @PathVariable Long id) {
 		pharmacistService.updatePharmacist(cmd, id);
 	}
