@@ -1,7 +1,7 @@
 import React from 'react';
 
  const PatientPrescriptionListComponent = (props) => {
-  var {id, personalId, timestamp, activeMat, activeMatQuantity, unit, desc, validUntil, sold} = props;
+  var {id, personalId, timestamp, activeMat, activeMatQuantity, unit, desc, validUntil} = props;
 
   return (
       <tr>

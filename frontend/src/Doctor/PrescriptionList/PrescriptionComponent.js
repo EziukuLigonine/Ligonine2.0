@@ -3,17 +3,13 @@ import axios from 'axios';
 
 axios.defaults.withCredentials = true;
 
-const styles = {
-    color: 'red',
-    padding: '5px'
-}
 const green = {
     color: 'green',
     padding: '5px'
 }
 
 export var PrescriptionComponent = (props) => {
-    var {id, personalId, date, activeMat, activeMatQuantity, unit, desc, validUntil, timestamp} = props;
+    var {id, personalId, activeMat, activeMatQuantity, unit, desc, validUntil, timestamp} = props;
 
     var handleClick = (event) => {
         props.history.push('/doctor/prescription/' + id + '/edit');

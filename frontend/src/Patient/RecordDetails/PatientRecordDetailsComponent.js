@@ -3,9 +3,7 @@ import React from 'react';
 const PatientRecordDetailsComponent = (props) => {
   console.log(props);
 
- const styles = {
-   margin: '20px'
- }
+
   return (
     <div className="row">
       <div className="col-md-4">

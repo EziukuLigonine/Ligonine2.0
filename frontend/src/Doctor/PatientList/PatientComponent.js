@@ -1,5 +1,4 @@
 import React from 'react';
-import {API} from "../../Admin/ApiUrl";
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
