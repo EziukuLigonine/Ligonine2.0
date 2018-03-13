@@ -6,6 +6,8 @@ import java.util.Locale;
 
 import javax.validation.Valid;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,7 +43,7 @@ import lt.akademija.Service.UserService;
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(value = "/api")
 public class AdminController {
-
+	private static final Logger log = Logger.getLogger(AdminController.class);
 	@Autowired
 	private AdminService adminService;
 
@@ -56,8 +58,9 @@ public class AdminController {
 	// @PreAuthorize("hasRole('Admin')")
 	public List<Admin> getAdmins() {
 		return adminService.getAdmins();
+
 	}
-	
+
 	@GetMapping(value = "/admins", params = { "page", "size" })
 	@ApiOperation(value = "Get admin list", notes = "Returns admin list in chuncks")
 	public Page<Admin> findPaginated(

@@ -32,9 +32,9 @@ const DocPatientComponent = (props) => {
             <td>{dateOfBirth}</td>
             <td>
 
-                <span id={id} className="glyphicon glyphicon-book" aria-hidden="true" alt="Paciento ligos įrašai" style={green} onClick={getPatientRecords}></span>
-                <span id={id} className="glyphicon glyphicon-check" aria-hidden="true" alt="Paciento receptai" style={green} onClick={getPatientPrescriptions}></span>
-                <span id={id} className="glyphicon glyphicon-eye-open" aria-hidden="true" alt="Išrašyti receptą arba ligos įrašą" style={green} onClick={getPatient}></span>
+                <span id={id} className="glyphicon glyphicon-book" aria-hidden="true" /*Paciento ligos įrašai*/ style={green} onClick={getPatientRecords}></span>
+                <span id={id} className="glyphicon glyphicon-check" aria-hidden="true" /*Paciento receptai*/ style={green} onClick={getPatientPrescriptions}></span>
+                <span id={id} className="glyphicon glyphicon-eye-open" aria-hidden="true" /*Išrašyti receptą arba ligos įrašą*/ style={green} onClick={getPatient}></span>
 
             </td>
         </tr>
