@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -55,6 +56,17 @@ public class AdminController {
 	// @PreAuthorize("hasRole('Admin')")
 	public List<Admin> getAdmins() {
 		return adminService.getAdmins();
+	}
+	
+	@GetMapping(value = "/admins", params = { "page", "size" })
+	@ApiOperation(value = "Get admin list", notes = "Returns admin list in chuncks")
+	public Page<Admin> findPaginated(
+			@RequestParam("page") int page, @RequestParam("size") int size) throws Exception {
+		Page<Admin> resultPage = adminService.findPaginated(page, size);
+		if(page > resultPage.getTotalPages()) {
+			throw new Exception();
+		}
+		return resultPage;
 	}
 
 	@GetMapping(value = "/admins/{id}")
