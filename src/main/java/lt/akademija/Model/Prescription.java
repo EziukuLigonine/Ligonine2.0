@@ -36,6 +36,7 @@ public class Prescription {
 	private String desc; // vartojimo aprasas
 	private String validUntil;
 	private String timestamp;
+	private String fullName;
 	private boolean sold = false;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -52,6 +53,16 @@ public class Prescription {
 	@JoinColumn(name = "pharmacistId")
 	@JsonBackReference
 	private Pharmacist pharmacist;
+	
+	
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
 
 	public Pharmacist getPharmacist() {
 		return pharmacist;

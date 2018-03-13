@@ -47,7 +47,7 @@ public class PatientController {
 
 	@GetMapping(value = "/patients")
 	@ApiOperation(value = "Get patient list", notes = "Returns list of all patients")
-	@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
+	//@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
 	public List<Patient> getPatients() {
 		return patientService.getPatients();
 	}
@@ -80,7 +80,7 @@ public class PatientController {
 
 	@GetMapping(value = "/patients/{id}/prescriptions")
 	@ApiOperation(value = "Get patient prescriptions", notes = "Returns list of patient prescriptions")
-	@PreAuthorize("hasRole('Doctor') or hasRole('Admin') or hasRole('Patient') or hasRole('Pharmacist')")
+	//@PreAuthorize("hasRole('Doctor') or hasRole('Admin') or hasRole('Patient') or hasRole('Pharmacist')")
 	public List<Prescription> getPatientPrescriptions(@PathVariable Long id) {
 		return patientService.getPatientPrescriptions(id);
 	}
@@ -96,7 +96,7 @@ public class PatientController {
 	@PostMapping(value = "admin/patients/new")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = "Create patients", notes = "Creates patient")
-	@PreAuthorize("hasRole('Admin')")
+	//@PreAuthorize("hasRole('Admin')")
 	public void createPatient(@RequestBody CreatePatientCmd cmd) {
 		patientService.createPatient(cmd);
 	}

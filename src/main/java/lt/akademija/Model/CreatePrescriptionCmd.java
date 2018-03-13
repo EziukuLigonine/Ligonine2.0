@@ -3,14 +3,23 @@ package lt.akademija.Model;
 public class CreatePrescriptionCmd {
 
 	private Long id;
-	private String personalId; // asmens kodas reik su pacientu sujungt
-	private String activeMat; // veiklioji medziaga
-	private String activeMatQuantity; // veikliosios medziagos kiekis
-	private String unit; // matavimo vienetai
-	private String desc; // vartojimo aprasas
+	private String personalId;
+	private String activeMat;
+	private String activeMatQuantity; 
+	private String unit; 
+	private String desc; 
 	private String validUntil;
 	private String timestamp;
+	private String fullName;
 	private boolean sold = false;
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
 
 	public Long getId() {
 		return id;

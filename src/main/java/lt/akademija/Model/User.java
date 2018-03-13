@@ -27,6 +27,7 @@ public abstract class User {
 	private boolean enabled = true;
 	private String role;
 	
+	
 	public Long getId() {
 		return id;
 	}
@@ -70,6 +71,8 @@ public abstract class User {
 		this.role = role;
 	}
 
-	
+	public String getFullName() {
+		return name + " " + surname;
+	}
 
 }

@@ -45,6 +45,7 @@ public class PrescriptionService {
 		return prescriptionRepository.findBySoldFalse();
 	}
 	
+	
 	@Transactional
 	public List<Prescription> getSoldPrescriptions(@PathVariable Long id){
 		return prescriptionRepository.findBySoldTrueAndPharmacistId(id);
@@ -65,6 +66,7 @@ public class PrescriptionService {
 		prescription.setDesc(cmd.getDesc());
 		prescription.setValidUntil(cmd.getValidUntil());
 		prescription.setTimestamp(cmd.getTimestamp());
+		prescription.setFullName(cmd.getFullName());
 		prescription.setDoctor(doctorRepository.findOne(doctorId));
 		prescription.setPatient(patientRepository.findOne(patientId));
 		prescriptionRepository.save(prescription);

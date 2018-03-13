@@ -19,6 +19,7 @@ const tableStyle = {
                 activeMatQuantity = {prescription.activeMatQuantity}
                 unit = {prescription.unit}
                 desc = {prescription.desc}
+                fullName={prescription.fullName}
                 validUntil = {prescription.validUntil}
                 history = {props.history}
             />
@@ -37,6 +38,7 @@ const tableStyle = {
                 activeMatQuantity = {prescription.activeMatQuantity}
                 unit = {prescription.unit}
                 desc = {prescription.desc}
+                fullName={prescription.fullName}
                 history = {props.history}
             />
         );

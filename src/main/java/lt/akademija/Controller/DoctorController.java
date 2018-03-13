@@ -60,7 +60,7 @@ public class DoctorController {
 
 	@GetMapping(value = "/doctors/{id}")
 	@ApiOperation(value = "Get doctor", notes = "Returns a single doctor")
-	@PreAuthorize("hasRole('Admin')")
+	@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
 	public User getDoctor(@PathVariable Long id) {
 		return doctorService.getDoctor(id);
 	}
@@ -89,7 +89,7 @@ public class DoctorController {
 	@PostMapping(value = "admin/doctors/new")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = "Create doctors", notes = "Creates doctor")
-	@PreAuthorize("hasRole('Admin')")
+	//@PreAuthorize("hasRole('Admin')")
 	public void createDoctor(@RequestBody CreateDoctorCmd cmd) {
 		doctorService.createDoctor(cmd);
 	}
