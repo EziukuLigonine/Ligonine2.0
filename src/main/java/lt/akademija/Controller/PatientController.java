@@ -49,7 +49,7 @@ public class PatientController {
 
 	@GetMapping(value = "/patients")
 	@ApiOperation(value = "Get patient list", notes = "Returns list of all patients")
-	//@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
+	@PreAuthorize("hasRole('Admin') or hasRole('Doctor')")
 	public List<Patient> getPatients() {
 		log.info("Returned a list of all doctors");
 		return patientService.getPatients();

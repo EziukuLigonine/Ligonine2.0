@@ -38,7 +38,7 @@ public class PrescriptionController {
 	
 	@GetMapping(value = "/prescriptions")
 	@ApiOperation(value = "Get prescription list", notes = "Returns list of all prescriptions")
-	//@PreAuthorize("hasRole('Admin') or hasRole('Doctor') or hasRole('Pharmacist')")
+	@PreAuthorize("hasRole('Admin') or hasRole('Doctor') or hasRole('Pharmacist')")
 	public List<Prescription> getPrescriptions(){
 		log.info("Request to return all prescriptions");
 		return prescriptionService.getPrescriptions();
