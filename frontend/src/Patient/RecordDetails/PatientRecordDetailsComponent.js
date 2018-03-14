@@ -1,7 +1,7 @@
 import React from 'react';
 
 const PatientRecordDetailsComponent = (props) => {
-  console.log(props);
+
 
 
   return (

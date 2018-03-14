@@ -28,7 +28,7 @@ class DocPatientList extends Component {
         totalItems: response.data.totalElements,
 
       });
-      console.log(this.state.patients)
+
     })
     .catch((error) => {
       console.log(error);
@@ -44,7 +44,6 @@ class DocPatientList extends Component {
       activePage: pageNumber
     });
     let number = parseInt(pageNumber) - 1;
-    console.log(pageNumber)
     axios.get(API + "/api/patients?page=" + number + "&size=" + this.state.perPage)
     .then((response) => {
       this.setState({

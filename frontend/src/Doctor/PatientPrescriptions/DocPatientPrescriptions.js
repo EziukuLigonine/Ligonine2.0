@@ -11,7 +11,6 @@ export class DocPatientPrescriptions extends Component {
     }
 
     componentDidMount = () => {
-        console.log(this.props.match.params.id);
         axios.get('http://localhost:8081/api/patients/'+ this.props.match.params.id + '/prescriptions')
             .then((response) => {
                 this.setState({prescriptions: response.data});
@@ -29,11 +28,9 @@ export class DocPatientPrescriptions extends Component {
     }
 
     render() {
-        console.log(this.props.match.params.id);
         if (this.state.prescriptions === null) {
             return (<div>nieko nera</div>)
         } else {
-            console.log(this.state.prescriptions);
             return (
                 <div>
                     <PrescriptionListComponent prescriptions={this.state.prescriptions} history={this.props.history}

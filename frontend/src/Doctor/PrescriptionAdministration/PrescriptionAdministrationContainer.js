@@ -28,8 +28,6 @@ export class PrescriptionAdministrationContainer extends React.Component {
         axios.get('http://localhost:8081/api/userId/')
             .then((response) => {
                 this.setState({doctorId: response.data});
-                console.log(response.data);
-                console.log('sudas');
                 axios.get('http://localhost:8081/api/patients/' +  this.props.match.params.id)
                   .then((response) => {
                     const {id, personalId} = response.data;
@@ -37,16 +35,14 @@ export class PrescriptionAdministrationContainer extends React.Component {
                       personalId: personalId,
                       patientId: id
                     });
-                    console.log(response.data);
-                    console.log('sudas');
+
                     axios.get('http://localhost:8081/api/doctors/' + this.state.doctorId)
                       .then((response) => {
                         this.setState({
                           fullName: response.data.fullName
 
                         });
-                        console.log(response.data.fullName);
-                        console.log('vardas');
+
                       })
                       .catch((error) => {
                         console.log(error);
@@ -59,7 +55,7 @@ export class PrescriptionAdministrationContainer extends React.Component {
             .catch((error) => {
                 console.log(error);
             });
-            console.log(this.state.fullName);
+            
     };
 
 

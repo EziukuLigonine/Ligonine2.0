@@ -18,7 +18,7 @@ class PatientRecordDetails extends Component {
       this.setState({
         record: response.data
       });
-      console.log(this.state.record);
+    
     })
     .catch((error) => {
       console.log(error);

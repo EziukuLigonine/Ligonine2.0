@@ -51,8 +51,7 @@ class SoldPrescriptionListContainer extends Component {
                     this.state.search) !== -1;
                 }
             );
-            console.log(this.state.prescriptions)
-            console.log(filteredPrescriptions)
+          
             return (
                 <div className="row">
                     <form className="navbar-form" onSubmit={this.handleSubmit}>

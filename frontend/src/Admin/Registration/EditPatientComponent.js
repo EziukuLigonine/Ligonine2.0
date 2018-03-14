@@ -1,7 +1,6 @@
 import React from 'react';
 
 const EditPatientComponent = (props) => {
-  console.log(props);
   return(
     <form className="form-horizontal">
 

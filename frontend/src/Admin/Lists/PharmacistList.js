@@ -27,7 +27,6 @@ class PharmacistList extends Component {
         totalItems: response.data.totalElements,
 
       });
-      console.log(this.state.pharmacists)
     })
     .catch((error) => {
       console.log(error);
@@ -43,7 +42,6 @@ class PharmacistList extends Component {
       activePage: pageNumber
     });
     let number = parseInt(pageNumber) - 1;
-    console.log(pageNumber)
     axios.get(API + "/api/pharmacists?page=" + number + "&size=" + this.state.perPage)
     .then((response) => {
       this.setState({

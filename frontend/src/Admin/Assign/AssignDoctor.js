@@ -10,7 +10,6 @@ class AssignDoctor extends React.Component {
         super(props);
         const {doctorUsernameObject} = props.location.state
         const newDoctorUsername = doctorUsernameObject.username
-        console.log(newDoctorUsername);
         this.state = {
             name: '',
             surname: '',
